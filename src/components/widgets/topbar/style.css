@@ -1,0 +1,23 @@
+.showcase>*:nth-child(1){
+    background:linear-gradient(60deg, rgba(206, 76, 0, 0.452), rgba(0, 26, 255, 0.5));
+    background-color: var(--black);
+}
+.showcase>*:nth-child(2){
+    background:linear-gradient(-60deg, rgba(0, 206, 45, 0.452), rgba(0, 26, 255, 0.5));
+    background-color: var(--black);
+}
+.showcase>*:nth-child(3){
+    background:linear-gradient(60deg, rgba(0, 206, 45, 0.452), rgba(179, 255, 0, 0.5));
+    background-color: var(--black);
+}
+.showcase h5 > span, .showcase h1 > *{
+    color: var(--banner-color) !important;
+    text-transform: uppercase;
+}
+.showcase{
+    justify-content: center;
+    width: 100%;
+}
+.showcase>div{
+    min-width: 300px;
+}
