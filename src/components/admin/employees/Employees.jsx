@@ -6,6 +6,7 @@ import Card from './Card'
 import './style.css'
 import AddEmployee from './AddEmployee'
 import axios from 'axios'
+import Update from './Update'
 
 const Employees = () => {
     
@@ -37,8 +38,8 @@ const Employees = () => {
                 });
             });
 
-            jQuery(".selling .cancel button").on("click", () => {
-                jQuery(".selling_box").fadeOut({
+            jQuery(".rename .cancel button").on("click", () => {
+                jQuery(".rename_box").fadeOut({
                     duration: 500,
                     easing: 'linear',
                     done: function () {
@@ -46,9 +47,9 @@ const Employees = () => {
                     }
                 })
             });
-            jQuery(".selling_open").on("click", () => {
-                jQuery(".selling_box").addClass("animate__animated animate_fadeInUp");
-                jQuery(".selling_box").fadeIn({
+            jQuery(".updateMe").on("click", () => {
+                jQuery(".rename_box").addClass("animate__animated animate_fadeInUp");
+                jQuery(".rename_box").fadeIn({
                     duration: 500,
                     easing: 'linear',
                     done: function () {
@@ -61,8 +62,6 @@ const Employees = () => {
     useEffect(() => {
         const getall = async() => {
             const response = await axios.get("http://localhost/tailor_backend/employee.php");
-            const employee = response.data;
-            // contents = employee.employees !== undefined? employee.employees.map((people,i) => <Card key={i}/>):"loading";
             setContents(response.data.employees);
         }
         getall();
@@ -82,7 +81,7 @@ const Employees = () => {
                     </div>
                 </div>
                 <div className="dash_grid_items">
-                    <TopBar />
+                    <TopBar location={"EMPLOYEES"} />
                     <div className=" container " style={{
 
 
@@ -137,13 +136,14 @@ const Employees = () => {
                         <div className="card_holder" style={{
                             boxShadow: "0px 10px 10px 0px rgba(0, 0, 0, 0.1)",borderBottomLeftRadius:"10px",borderBottomRightRadius:"10px" }}
                             data-aos="fade-right" data-aos-duration="1000" data-aos-delay="3000">
-                            {contents !== undefined? contents.map((people, i) => <Card key={i} employee={people} />):'ue'}
+                            {contents !== undefined? contents.map((people, i) => <Card key={i} employee={people} setEmployee={setContents} />):'ue'}
                         </div>
                     </div>
                 </div>
             </div>
             {/* ADDING */}
-            <AddEmployee />
+            <AddEmployee setEmployee={setContents} />
+            <Update setEmployee={setContents} />
             <div className="addnew">
                 <button className='bi bi-person-plus-fill add_open'>
                 </button>

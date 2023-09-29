@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 // import useEmployee from '../../customerHooks/useEmployee';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const AddEmployee = () => {
+const AddEmployee = ({ setEmployee }) => {
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [address, setAddress] = useState("");
@@ -10,6 +11,7 @@ const AddEmployee = () => {
     const [mail, setMail] = useState("");
     const [codes, setCodes] = useState("");
     const [status, setStatus] = useState();
+    const navigate = useNavigate();
     const addNew = async (PATH) => {
         let formdata = new FormData();
         formdata.append("fname", fname);
@@ -40,11 +42,17 @@ const AddEmployee = () => {
                 break;
             case '200':
                 console.log("new User");
+                navigate('/employees');
                 break;
             default:
                 console.log(status);
                 break;
         }
+        const getall = async() => {
+            const response = await axios.get("http://localhost/tailor_backend/employee.php");
+            setEmployee(response.data.employees);
+        }
+        getall();
     }
   return (
     <div className="add_box" style={{display: "none"}}>

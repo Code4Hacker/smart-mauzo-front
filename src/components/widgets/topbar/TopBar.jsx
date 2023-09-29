@@ -1,11 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Aos from 'aos'
 import './style.css'
-const TopBar = () => {
+import axios from 'axios';
+const TopBar = ({ location }) => {
     Aos.init({
         duration:1000,
         easing:'linear'
     });
+    const [admin, setAdmin] = useState();
+    const [count, setCount] = useState();
+    useEffect(() => {
+        const getall = async() => {
+            const response = await axios.get(`http://localhost/tailor_backend/admin.php?admin_id=${1}`);
+
+            if(response.data.status === "200"){
+               setAdmin(response.data.admin);
+            }
+        }
+        getall();
+    const counterGet = async() => {
+        const response = await axios.get(`http://localhost/tailor_backend/counter.php?admin_id=${1}`);
+        if(response.data.status === "200"){
+            setCount(response.data.counts);
+         }
+    }
+    counterGet();
+    },[]);
     return (
         <div>
             <div className="box_full" style={{"--width":"100%"}}>
@@ -17,7 +37,7 @@ const TopBar = () => {
                                 <h2 style={{
                                     marginTop:"50px",
                                     marginLeft:"20px"
-                                }} className='gradient-text'>ADMIN DASHBOARD</h2>
+                                }} className='gradient-text'>ADMIN - {location}</h2>
                             </div>
                         </div>
                         <div className="col-3 flex mt-20">
@@ -26,10 +46,10 @@ const TopBar = () => {
                             </div>
                             <div className="grid mt-20">
                                 <span className="white">
-                                   Gemini Child
+                                   {admin ? admin[0].adminFirst + " " + admin[0].adminLast : "John Doe"}
                                 </span>
                                 <div className="up">
-                                    <span className="gray small italic">Administrator</span>
+                                    <span className="gray small italic">{admin ? admin[0].adminEmail: "fakemail@gmail.com"}</span>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +65,7 @@ const TopBar = () => {
                     <div className="number">
                         <div className="title text-center mt-2">
                             <h1><span>
-                                683
+                               {count !== undefined ? count.employees : "0"}
                             </span></h1>
                         </div>
                     </div>
@@ -58,7 +78,7 @@ const TopBar = () => {
                     <div className="number">
                         <div className="title text-center mt-2">
                             <h1><span>
-                                872
+                               {count !== undefined ? count.customers : "0"}
                             </span></h1>
                         </div>
                     </div>

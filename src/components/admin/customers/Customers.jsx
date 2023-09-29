@@ -1,9 +1,69 @@
-import React from 'react'
-import Card from './Card'
+import React, { useEffect, useState } from 'react'
+import jQuery from 'jquery'
 import SideBar from '../../widgets/sidebar/SideBar'
 import TopBar from '../../widgets/topbar/TopBar'
+import Card from './Card'
+import axios from 'axios'
+import Update from './Update'
 
 const Customers = () => {
+    const jqueryCodes = () => {
+        // jQuery.noConflict();
+            setTimeout(() => {
+                jQuery(".pre_loader ").fadeOut({
+                    duration: 500,
+                    easing: 'linear'
+                });
+            }, 2000);
+            jQuery(".update .cancel button").on("click", () => {
+                jQuery(".add_box").fadeOut({
+                    duration: 500,
+                    easing: 'linear',
+                    done: function () {
+                        console.log("ADD CANCELED!");
+                    }
+                })
+            });
+            jQuery(".add_open").on("click", () => {
+                jQuery(".add_box").addClass("animate__animated animate_fadeInUp");
+                jQuery(".add_box").fadeIn({
+                    duration: 500,
+                    easing: 'linear',
+                    done: function () {
+                        console.log("ADD CANCELED!");
+                    }
+                });
+            });
+
+            jQuery(".rename .cancel button").on("click", () => {
+                jQuery(".rename_box").fadeOut({
+                    duration: 500,
+                    easing: 'linear',
+                    done: function () {
+                        console.log("UPDATE CANCELED!");
+                    }
+                })
+            });
+            jQuery(".updateMe").on("click", () => {
+                jQuery(".rename_box").addClass("animate__animated animate_fadeInUp");
+                jQuery(".rename_box").fadeIn({
+                    duration: 500,
+                    easing: 'linear',
+                    done: function () {
+                        console.log("SELL CANCELED!");
+                    }
+                });
+            });
+    }
+    const [contents, setContents] = useState();
+    useEffect(() => {
+        const getall = async() => {
+            const response = await axios.get("http://localhost/tailor_backend/customers.php");
+            setContents(response.data.customers);
+        }
+        getall();
+        jqueryCodes();
+    },[]);
     return (
         <div>
             {/* <div className="pre_loader">
@@ -18,7 +78,7 @@ const Customers = () => {
                     </div>
                 </div>
                 <div className="dash_grid_items">
-                    <TopBar />
+                    <TopBar location={"CUSTOMERS"} />
                     <div className=" container " style={{
 
 
@@ -40,7 +100,7 @@ const Customers = () => {
                             <div className="grid-item "
                                 style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>
                                 <div className="title " style={{textAlign:'start'}}>
-                                    <h5><span>Customer Id</span></h5>
+                                    <h5><span>Email/Username</span></h5>
                                 </div>
                             </div>
                             <div className="grid-item "
@@ -52,14 +112,14 @@ const Customers = () => {
                             <div className="grid-item "
                                 style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>
                                 <div className="title " style={{textAlign:'start'}}>
-                                    <h5><span>Deal</span></h5>
+                                    <h5><span>Address</span></h5>
                                 </div>
                             </div>
 
                             <div className="grid-item "
                                 style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>
                                 <div className="title ">
-                                    <h5><span>Date Issued</span></h5>
+                                    <h5><span>Registered by</span></h5>
                                 </div>
                             </div>
                             <div className="grid-item "
@@ -71,19 +131,21 @@ const Customers = () => {
                         </div>
                         {/* Employees */}
                         <div className="card_holder" style={{
-                            boxShadow: "0px 10px 10px 0px rgba(0, 0, 0, 0.1)", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px"
-                        }}
+                            boxShadow: "0px 10px 10px 0px rgba(0, 0, 0, 0.1)",borderBottomLeftRadius:"10px",borderBottomRightRadius:"10px" }}
                             data-aos="fade-right" data-aos-duration="1000" data-aos-delay="3000">
-                            <Card />
-                            <Card />
-                            <Card />
-                            <Card />
+                            {contents !== undefined? contents.map((people, i) => <Card key={i} employee={people} setEmployee={setContents} />):'ue'}
                         </div>
                     </div>
                 </div>
             </div>
+            {/* ADDING
+            <AddEmployee setEmployee={setContents} /> */}
+            <Update setEmployee={setContents} />
+            {/* <div className="addnew">
+                <button className='bi bi-person-plus-fill add_open'>
+                </button>
+            </div> */}
         </div >
     )
 }
-
 export default Customers;

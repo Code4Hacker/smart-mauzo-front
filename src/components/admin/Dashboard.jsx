@@ -36,7 +36,7 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className="dash_grid_items">
-                    <TopBar />
+                    <TopBar location={"DASHBOARD"} />
                     <div className="grid_template_for_two">
                         <div className="box_full_template_grid " style={{
                             "--width": "100%",
