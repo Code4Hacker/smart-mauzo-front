@@ -13,7 +13,6 @@ const Update = ({ setEmployee }) => {
     const [mail, setMail] = useState("");
     const [codes, setCodes] = useState("");
     const [status, setStatus] = useState();
-    const navigate = useNavigate();
     const addNew = async (PATH) => {
         let jsonpatch = JSON.stringify({ 
             "fname":fname === "" && store.first ? store.first : fname,

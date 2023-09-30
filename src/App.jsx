@@ -4,6 +4,7 @@ import { Dashboard, Employees, Welcome } from './components';
 import Login from './components/Welcome/Login';
 import Customers from './components/admin/customers/Customers';
 import Customer from './components/admin/customers/Customer';
+import AllDeals from './components/admin/customers/AllDeals';
 
 function App() {
 
@@ -19,6 +20,9 @@ function App() {
         } />
         <Route path='/customers' element={
           <Customers />
+        } />
+        <Route path='/deals' element={
+          <AllDeals />
         } />
         <Route path='/customers/:id' element={
           <Customer />

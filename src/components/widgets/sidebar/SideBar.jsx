@@ -1,18 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './sidebar.css'
 import Aos from 'aos'
 import { Link } from 'react-router-dom';
+import jQuery from 'jquery';
 
 const SideBar = () => {
     Aos.init({
         duration: 1000,
         easing: 'linear'
     });
+    const queries = () => {
+        jQuery(".min_board").on("click", function(){
+            jQuery(".sidebar").addClass("minimized");
+            jQuery(".dashboard_grid_container").addClass("minimized");
+            jQuery(".mini-sidebar>*").addClass("minimized");
+        });
+    }
+    useEffect(() => {queries()},[]);
     return (
         <div>
             <div className="col-xl-12 flex navtab">
-                <div className="title">
-                    <h5>Tailor<span>2023</span></h5>
+                <div className="row">
+                    <div className="col-10">
+                        <div className="title">
+                            <h5>Tailor<span>2023</span></h5>
+                        </div>
+                    </div>
+                    <div className="col-2">
+                        <i className="bi bi-arrow-left min_board" style={{cursor:'pointer'}}></i>
+                    </div>
                 </div>
             </div>
             <div className="col-xl-12">
@@ -39,29 +55,16 @@ const SideBar = () => {
                         <Link to={"/customers"} className="dropdown">
                             <i className="bi bi-people-fill"></i>
                             <span> Customers
-                                {/* <i className="bi bi-arrow-right-circle-fill drop"></i> */}
                             </span>
                         </Link>
                     </li>
-                    {/* <li>
-                        <a href="profile.jsp" className="dropdown">
-                            <i className="bi bi-person-fill"></i>
-                            <span> Profile</span>
-                        </a>
+                    <li className="nested_list">
+                        <Link to={"/deals"} className="dropdown">
+                            <i className="bi bi-cart-fill"></i>
+                            <span> All deals
+                            </span>
+                        </Link>
                     </li>
-                    <li>
-                        <a href="sales.jsp" className="dropdown">
-                            <i className="bi bi-box-seam-fill"></i>
-                            <span> Sales</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="reports.jsp" className="dropdown">
-                            <i className="bi bi-body-text"></i>
-                            <span> Reports</span>
-                        </a>
-                    </li> */}
-
                     <li>
                         <a href="logout.jsp" className="dropdown">
                             <i className="bi bi-shield-fill"></i>

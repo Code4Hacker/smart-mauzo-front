@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SideBar from '../widgets/sidebar/SideBar'
 import TopBar from '../widgets/topbar/TopBar'
 import Aos from 'aos'
 import Chart from 'react-google-charts'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+import Mini from '../widgets/sidebar/Mini'
 
 const Dashboard = () => {
     Aos.init({
@@ -20,7 +23,14 @@ const Dashboard = () => {
         pieHole: 0.4,
         is3D: false,
     };
-
+    const [contents, setContents] = useState();
+    useEffect(() => {
+        const getall = async() => {
+            const response = await axios.get("http://localhost/tailor_backend/employee.php");
+            setContents(response.data.employees.splice(0,3));
+        }
+        getall();
+    },[]);
     return (
         <div>
             {/* <div className="pre_loader">
@@ -28,17 +38,19 @@ const Dashboard = () => {
                     <div className="loader"></div>
                 </div>
             </div> */}
+            <Mini />
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar">
                     <div className="row" data-aos="fade-left" data-aos-duration="1000"
                         data-aos-delay="3000">
                         <SideBar />
+                        
                     </div>
                 </div>
                 <div className="dash_grid_items">
                     <TopBar location={"DASHBOARD"} />
-                    <div className="grid_template_for_two">
-                        <div className="box_full_template_grid " style={{
+                    <div className="grid_template_for_two customer">
+                        <div className="box_full_template_grid" style={{
                             "--width": "100%",
                             "--h": "250px"
                         }}
@@ -47,22 +59,23 @@ const Dashboard = () => {
                             <div className="number">
                                 <div className="title text-center" style={{ marginTop: "10px" }}>
                                     {/* <div className="loader"></div> */}
-                                    <div className="title">
-                                        <h3><span className="slim">Employeed People</span></h3>
-                                    </div>
+                                    <div className="title"><h3><span style={{
+                                    fontWeight: 100, marginTop: '50px !important', padding: '20px', background: 'var(--milk)', color: 'var(--black)', position: 'relative', minHeight: '30px', marginLeft: '-50px', borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px'
+                                }}>EMPLOYEES</span></h3></div>
 
 
                                     <div className="row"
                                         style={{
-                                            margin: "10px",
+                                            margin: "10px", marginTop:'25px',
                                             justifyContent: "center"
                                         }}>
 
-                                        <div className="col-sm-4 flex"
+                                        {contents !== undefined && contents?.length > -1 ? contents.map((employee, i) => <div className="col-sm-4 flex"
                                             style={{
                                                 boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.1)",
                                                 margin: "4px",
                                                 padding: "8px",
+                                                minWidth:"200px",
                                                 borderRadius: "10px"
                                             }}
                                             data-aos="fade-up" data-aos-duration="1000"
@@ -82,91 +95,24 @@ const Dashboard = () => {
                                                     fontSize: "small",
                                                     fontWeight: 100,
                                                     textTransform: "uppercase"
-                                                }}>John Doe</span>
+                                                }}>{employee.employeeFirst + " " + employee.employeeLast}</span>
                                                 <div style={{ marginTop: " -7px" }}>
                                                     <span style={{ color: "rgb(102, 102, 102)" }}
-                                                        className="gray small">Employee</span>
+                                                        className="gray small">{(employee.employeeEmail).substring(0,12)}...</span>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>):"Loading ..."}
 
-                                        <div className="col-sm-4 flex"
-                                            style={{
-                                                boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.1)",
-                                                margin: "4px",
-                                                padding: "8px",
-                                                borderRadius: "10px"
-                                            }}
-                                            data-aos="fade-up" data-aos-duration="1000"
-                                            data-aos-delay="3000">
-                                            <div className="profile">
-                                                <img src="https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"
-                                                    alt="" />
-                                            </div>
-
-                                            <div className="p-10"
-                                                style={{
-                                                    marginTop: "10px",
-                                                    paddingBottom: "-10px !important",
-                                                    position: "relative"
-                                                }}>
-                                                <span className="" style={{
-                                                    fontSize: "small",
-                                                    fontWeight: 100,
-                                                    textTransform: "uppercase"
-                                                }}>John Doe</span>
-                                                <div style={{ marginTop: " -7px" }}>
-                                                    <span style={{ color: "rgb(102, 102, 102)" }}
-                                                        className="gray small">Employee</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-sm-4 flex"
-                                            style={{
-                                                boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.1)",
-                                                margin: "4px",
-                                                padding: "8px",
-                                                borderRadius: "10px"
-                                            }}
-                                            data-aos="fade-up" data-aos-duration="1000"
-                                            data-aos-delay="3000">
-                                            <div className="profile">
-                                                <img src="https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"
-                                                    alt="" />
-                                            </div>
-
-                                            <div className="p-10"
-                                                style={{
-                                                    marginTop: "10px",
-                                                    paddingBottom: "-10px !important",
-                                                    position: "relative"
-                                                }}>
-                                                <span className="" style={{
-                                                    fontSize: "small",
-                                                    fontWeight: 100,
-                                                    textTransform: "uppercase"
-                                                }}>John Doe</span>
-                                                <div style={{ marginTop: " -7px" }}>
-                                                    <span style={{ color: "rgb(102, 102, 102)" }}
-                                                        className="gray small">Employee</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
+                                        
 
                                     </div>
                                     <div className="more text-center"
                                         style={{
                                             margin: "10px",
                                             marginTop: "-10px"
-                                        }}
-                                        data-aos="fade-right" data-aos-duration="1000"
-                                        data-aos-delay="3000">
-                                        <a href="allEmployee.jsp" className="small" style={{ color: "var(--orange)" }}>View
-                                            All</a>
+                                        }}>
+                                        <Link to={"/employees"} className="small" style={{ color: "var(--orange)" }}>View
+                                            All</Link>
                                     </div>
                                 </div>
                             </div>

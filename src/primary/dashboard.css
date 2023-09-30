@@ -45,7 +45,13 @@ body {
 .dashboard_grid_container > div:nth-child(1) a{
     color:white !important;
 }
-
+.grid_templated .small{
+    padding: 10px !important;
+    color: var(--black);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    background-color: var(--milk);
+}
 .grid_templated {
     display: grid;
     position: relative;
@@ -440,6 +446,23 @@ li:hover .list_dropdown {
     padding: -20px;
     position: relative;
     margin-top: -100px;
+}
+.card_holder{
+    overflow-x: scroll;
+    max-height: 300px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+}
+.d>*{
+    overflow-x: scroll;
+    /* width: 30px !important; */
+}
+.d>* h5{
+    font-size: x-small;
+}
+.card_holder >*{
+    min-width: 100%;
+    width: 1000px !important;
 }
 @media screen and (max-width:500px){
     
