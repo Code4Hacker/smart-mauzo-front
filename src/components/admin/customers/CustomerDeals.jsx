@@ -14,7 +14,7 @@ const CustomerDeals = ({ deals, num, setDeals, setCount }) => {
         getall();
     }
     return (
-        <div className="row">
+        <div className="row deal">
             <div className="col-2 card_black">
                 <div className="center">
                     <h1>{num + 1}</h1>

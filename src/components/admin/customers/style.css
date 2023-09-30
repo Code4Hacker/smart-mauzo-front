@@ -286,6 +286,7 @@
         border-bottom: 8px solid var(--milk);
         min-height: 250px;
     }
+
     .card_black {
         position: relative;
         background-color: var(--milk);
@@ -294,21 +295,47 @@
         margin-left: 25px;
         padding: 10px;
     }
+
     .deals p,
     .grid_mini p {
         font-size: small;
         font-style: normal;
         margin-bottom: -0px;
     }
-    
+
     .deals h4,
     .grid_mini h5 {
         margin-top: 15px;
         font-size: 16px;
         margin-bottom: -0px;
     }
+
     .deals span {
         font-size: small;
     }
-    
+
+
+}
+
+@media screen and (max-width:436px) {
+    .card_black {
+        position: relative;
+        background: linear-gradient(0deg,rgb(1, 231, 1),darkblue);
+        border-radius: 10px;
+        margin: 10px;
+        margin-left: 5px;
+        padding: -10px !important;
+        min-width: 2px !important;
+        max-width: 2px !important;
+        flex: 0;
+        overflow: hidden;
+        width: 0px !important;
+    }
+
+    .card_black > * {
+        padding: 0px !important;
+        width: 0px !important;
+        display: none !important;
+        margin: 0px !important;
+    }
 }
