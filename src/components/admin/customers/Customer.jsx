@@ -65,9 +65,9 @@ const Customer = () => {
     const [onecount, setOnecount] = useState();
     useEffect(() => {
         const getall = async () => {
-            const response = await axios.get(`http://localhost/tailor_backend/onecustomer.php?id=${params.id}`);
+            const response = await axios.get(`https://tailorgemini.000webhostapp.com/tailorwebapp/onecustomer.php?id=${params.id}`);
             setContents(response.data.customer[0]);
-            const deals = await axios.get(`http://localhost/tailor_backend/dealforone.php?customer=${response.data.customer[0].customerUnique}&employee=${response.data.customer[0].registeredBy}`);
+            const deals = await axios.get(`https://tailorgemini.000webhostapp.com/tailorwebapp/dealforone.php?customer=${response.data.customer[0].customerUnique}&employee=${response.data.customer[0].registeredBy}`);
             setWorks(deals.data.deals);
             for (let index = 0; index < deals.data.deals.length; index++) {
                 if (index < deals.data.deals.length - 1) {

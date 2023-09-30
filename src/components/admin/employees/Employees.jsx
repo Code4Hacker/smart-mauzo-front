@@ -62,7 +62,7 @@ const Employees = () => {
     const [contents, setContents] = useState();
     useEffect(() => {
         const getall = async () => {
-            const response = await axios.get("http://localhost/tailor_backend/employee.php");
+            const response = await axios.get("https://tailorgemini.000webhostapp.com/tailorwebapp/employee.php");
             setContents(response.data.employees);
         }
         getall();

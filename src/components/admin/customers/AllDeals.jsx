@@ -64,7 +64,7 @@ const AllDeals = () => {
     const [count, setCount] = useState();
     useEffect(() => {
         const getall = async () => {
-            const deals = await axios.get(`http://localhost/tailor_backend/deals.php`);
+            const deals = await axios.get(`https://tailorgemini.000webhostapp.com/tailorwebapp/deals.php`);
             // setContents(response.data.deals);
             setWorks(deals.data.deals);
             setCount(deals.data.counter);

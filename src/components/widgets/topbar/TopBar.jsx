@@ -13,7 +13,7 @@ const TopBar = ({ location }) => {
 
     useEffect(() => {
         const getall = async() => {
-            const response = await axios.get(`http://localhost/tailor_backend/admin.php?admin_id=${1}`);
+            const response = await axios.get(`https://tailorgemini.000webhostapp.com/tailorwebapp/admin.php?admin_id=${1}`);
 
             if(response.data.status === "200"){
                setAdmin(response.data.admin);
@@ -21,8 +21,8 @@ const TopBar = ({ location }) => {
         }
         getall();
     const counterGet = async() => {
-        const response = await axios.get(`http://localhost/tailor_backend/counter.php?admin_id=${1}`);
-        const deals = await axios.get(`http://localhost/tailor_backend/deals.php`);
+        const response = await axios.get(`https://tailorgemini.000webhostapp.com/tailorwebapp/counter.php?admin_id=${1}`);
+        const deals = await axios.get(`https://tailorgemini.000webhostapp.com/tailorwebapp/deals.php`);
         for (let index = 0; index < deals.data.deals.length; index++) {
             if (index < deals.data.deals.length - 1) {
                 setCount2(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));

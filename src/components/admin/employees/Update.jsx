@@ -38,7 +38,7 @@ const Update = ({ setEmployee }) => {
     // useEffect(() => {
     // }, [PATH,fname,lname,address,phone,mail,codes]);
     const handlepost = () => {
-        addNew("http://localhost/tailor_backend/employee.php");
+        addNew("https://tailorgemini.000webhostapp.com/tailorwebapp/employee.php");
         switch (status) {
             case '404':
                 console.log("No User Exist");
@@ -55,7 +55,7 @@ const Update = ({ setEmployee }) => {
                 break;
         }
         const getall = async () => {
-            const response = await axios.get("http://localhost/tailor_backend/employee.php");
+            const response = await axios.get("https://tailorgemini.000webhostapp.com/tailorwebapp/employee.php");
             setEmployee(response.data.employees);
         }
         getall();

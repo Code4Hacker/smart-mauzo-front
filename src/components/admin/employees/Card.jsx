@@ -6,10 +6,10 @@ import jQuery from 'jquery';
 const Card = ({ employee, setEmployee }) => {
     const { employeeID, employeeFirst, employeeLast, employeeEmail, employeeContact, registedDate, employeeAddress } = employee;
     const handledel = async () => {
-        const del = await axios.delete("http://localhost/tailor_backend/employee.php", { data: JSON.stringify({ "id": employeeID }) });
+        const del = await axios.delete("https://tailorgemini.000webhostapp.com/tailorwebapp/employee.php", { data: JSON.stringify({ "id": employeeID }) });
         // const status = del.data;
         const getall = async () => {
-            const response = await axios.get("http://localhost/tailor_backend/employee.php");
+            const response = await axios.get("https://tailorgemini.000webhostapp.com/tailorwebapp/employee.php");
             setEmployee(response.data.employees);
         }
         getall();

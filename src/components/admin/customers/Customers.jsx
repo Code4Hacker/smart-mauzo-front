@@ -59,7 +59,7 @@ const Customers = () => {
     const [contents, setContents] = useState();
     useEffect(() => {
         const getall = async () => {
-            const response = await axios.get("http://localhost/tailor_backend/customers.php");
+            const response = await axios.get("https://tailorgemini.000webhostapp.com/tailorwebapp/customers.php");
             setContents(response.data.customers);
         }
         getall();
