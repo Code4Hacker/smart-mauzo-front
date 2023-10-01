@@ -16,6 +16,11 @@
     --green-slim: rgb(4, 18, 212);
     --banner-color:rgb(29, 29, 29);
 }
+*{
+    outline: none !important;
+    text-decoration: none !important;
+    outline-offset: none;
+}
 .button{
     text-align: center;
 }

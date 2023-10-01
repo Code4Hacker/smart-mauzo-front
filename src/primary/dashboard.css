@@ -1,4 +1,5 @@
 @import url("styles.css");
+
 body {
     overflow-x: hidden;
     background-color: var(--black);
@@ -42,16 +43,19 @@ body {
     height: 100vh;
     padding: 10px;
 }
-.dashboard_grid_container > div:nth-child(1) a{
-    color:white !important;
+
+.dashboard_grid_container>div:nth-child(1) a {
+    color: white !important;
 }
-.grid_templated .small{
+
+.grid_templated .small {
     padding: 10px !important;
     color: var(--black);
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     background-color: var(--milk);
 }
+
 .grid_templated {
     display: grid;
     position: relative;
@@ -70,6 +74,7 @@ body {
     /* animation: 1s fader linear infinite; */
     background-color: var(--black);
 }
+
 rect {
     background: transparent !important;
     fill: transparent !important;
@@ -89,7 +94,9 @@ table {
     color: var(--blue);
     fill: var(--blue) !important;
 }
-#donutchart, #donutchart *{
+
+#donutchart,
+#donutchart * {
     justify-content: center;
     align-items: center;
     justify-items: center;
@@ -97,7 +104,8 @@ table {
     align-self: center;
     align-content: center;
 }
-#donutchart *{
+
+#donutchart * {
     justify-content: center;
     align-items: center;
     justify-items: center;
@@ -153,7 +161,8 @@ table {
     margin-top: -35px;
     position: relative;
 }
-.pie{
+
+.pie {
     /* margin-top: 100px; */
     position: relative;
     left: 25%;
@@ -252,11 +261,13 @@ table {
     /* box-shadow: inset 0px 0px 10px 0px rgb(14, 14, 14); */
     border: 1px solid var(--shadow);
 }
-.Search input::placeholder{
+
+.Search input::placeholder {
     color: var(--black);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: small;
 }
+
 .grid_template_for_two {
     margin-top: 30px;
     padding: 10px;
@@ -319,24 +330,28 @@ li:hover .list_dropdown {
     0% {
         height: 0px;
     }
+
     100% {
         height: 70px;
     }
 }
-.grid_template_for_two input{
-   border-color: var(--green);
+
+.grid_template_for_two input {
+    border-color: var(--green);
 }
-.banner_img{
+
+.banner_img {
     width: 100%;
-    height:300px;
+    height: 300px;
     background-color: gray;
 }
-.dp_crossed{
+
+.dp_crossed {
     position: relative;
     width: 100%;
 }
 
-.dp_crossed > div{
+.dp_crossed>div {
     position: relative;
     width: 450px;
     justify-content: end;
@@ -349,20 +364,23 @@ li:hover .list_dropdown {
     margin-top: -200px;
     float: right;
 }
-.dp_crossed .banner_img, 
-.dp_crossed .shado{
-    width:100%;
+
+.dp_crossed .banner_img,
+.dp_crossed .shado {
+    width: 100%;
     height: 200px;
     border-bottom-right-radius: 100px;
     /* overflow: hidden; */
     border-bottom-left-radius: 100px;
 
 }
-.dp_crossed .title{
+
+.dp_crossed .title {
     padding: 10px;
     text-align: start;
 }
-.dp_crossed .profile{
+
+.dp_crossed .profile {
     position: absolute;
     width: 100px;
     height: 100px;
@@ -372,13 +390,15 @@ li:hover .list_dropdown {
     left: 50%;
     transform: translate(-50%, -60%);
 }
-.icons{
+
+.icons {
     position: relative;
     width: 100%;
     text-align: center;
     margin: 2px;
 }
-.icons .icon{
+
+.icons .icon {
     padding: 1px;
     border-radius: 50px;
     color: var(--green);
@@ -389,10 +409,13 @@ li:hover .list_dropdown {
     background-color: var(--green);
     /* border: 1px solid var(--black); */
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.137);
-}.icons .icon a:hover{
+}
+
+.icons .icon a:hover {
     padding: 18px;
 }
-.icon a{
+
+.icon a {
     text-decoration: none;
     text-align: center;
     transition: .6s ease-in-out;
@@ -402,15 +425,19 @@ li:hover .list_dropdown {
     font-size: large;
     color: var(--black);
 }
-.profile_details{
+
+.profile_details {
     padding: 10px;
     /* text-align: center; */
     border-radius: 10px;
 }
-.title .common-grid{
+
+.title .common-grid {
     background-color: var(--gray_color);
 }
-.add_box, .rename_box{
+
+.add_box,
+.rename_box {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -419,7 +446,9 @@ li:hover .list_dropdown {
     backdrop-filter: blur(5px);
     background-color: rgba(0, 0, 0, 0.151);
 }
-.update,.rename{
+
+.update,
+.rename {
     position: absolute;
     width: 500px;
     left: 50%;
@@ -430,51 +459,102 @@ li:hover .list_dropdown {
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.185);
 }
-.update input,.rename input{
+
+.update input,
+.rename input {
     margin: 10px;
     width: 95%;
     border-color: var(--green);
     outline: none;
 
 }
-.cancel button{
+
+.cancel button {
     padding: 5px;
     width: 40px;
     height: 40px;
 }
-.cancel button i{
+
+.cancel button i {
     padding: -20px;
     position: relative;
     margin-top: -100px;
 }
-.card_holder{
+
+.card_holder {
     overflow-x: scroll;
     max-height: 300px;
     overflow-y: scroll;
     box-sizing: border-box;
 }
-.d>*{
+
+.d>* {
     overflow-x: scroll;
     /* width: 30px !important; */
 }
-.d>* h5{
+
+.d>* h5 {
     font-size: x-small;
 }
-.card_holder >*{
+
+.card_holder>* {
     min-width: 100%;
     width: 1000px !important;
 }
-@media screen and (max-width:500px){
-    
-    .grid_template_for_two  {
-    position: relative;
-    width: 100%;
-    /* padding: 10px; */
-    border-radius: 10px;
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: none;
-    overflow: hidden;
+
+@media screen and (max-width:500px) {
+
+    .grid_template_for_two {
+        position: relative;
+        width: 100%;
+        /* padding: 10px; */
+        border-radius: 10px;
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: none;
+        overflow: hidden;
+    }
+
+    .update,
+    .rename {
+        position: absolute;
+        width: 380px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+        background-color: var(--black);
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.185);
+    }
+
 }
 
+@media screen and (max-width:400px) {
+
+    .update,
+    .rename {
+        position: absolute;
+        width: 300px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+        background-color: var(--black);
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.185);
+    }
+
+    .update input,
+    .rename input {
+        margin: 10px;
+        width: 95%;
+        padding: 10px !important;
+        border-color: var(--green);
+        outline: none;
+    }
+
+    button {
+        padding: 10px !important;
+    }
 }

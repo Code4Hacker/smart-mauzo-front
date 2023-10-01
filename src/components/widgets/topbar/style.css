@@ -44,4 +44,10 @@
     }.showcase>div h5{
        font-size: small;
     }
+    .grid.cc{
+        display: none;
+    }
+    .profile.cc{
+        margin-top: 40px;
+    }
 }

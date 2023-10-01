@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Dashboard, Employees, Welcome } from './components';
+import { Dashboard, Employees } from './components';
 import Login from './components/Welcome/Login';
 import Customers from './components/admin/customers/Customers';
 import Customer from './components/admin/customers/Customer';
@@ -11,7 +11,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Welcome />} />
         <Route path='/admin' element={
           <Dashboard />
         } />
@@ -27,7 +26,7 @@ function App() {
         <Route path='/customers/:id' element={
           <Customer />
         } />
-        <Route path='/login' element={
+        <Route path='/' element={
           <Login />
         } />
 
