@@ -32,7 +32,13 @@ const Card = ({ employee, setEmployee }) => {
     }, []);
     const clickhandle = () => {
         let store = window.localStorage;
-        store.clear();
+        store.removeItem("id2");
+        store.removeItem("first2");
+        store.removeItem("last2");
+        store.removeItem("email2");
+        store.removeItem("phone2");
+        store.removeItem("add2");
+
         store.setItem("id2", customerID);
         store.setItem("first2", customerFirst);
         store.setItem("last2", customerLast);
