@@ -36,7 +36,7 @@ const TopBar = ({ location }) => {
             }
         }
         counterGet();
-        if (window.localStorage.adminmail !== undefined && window.localStorage.adminmail === admin[0].adminEmail) {
+        if (window.localStorage.adminmail !== undefined) {
 
         } else {
             navigate('/');
