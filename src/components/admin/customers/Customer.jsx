@@ -110,7 +110,7 @@ const Customer = () => {
                                     }}>CUSTOMER PROFILE</span></h3></div>
                                     <div className="grid2" style={{ "--template": "150px auto" }}>
                                         <div className="photo">
-                                            <img src={contents !== undefined ? "http://localhost/tailor_backend" + contents.customerProfile : ""} alt="" />
+                                            <img src={contents !== undefined ? "https://tailorgemini.000webhostapp.com/tailorwebapp" + contents.customerProfile : ""} alt="" />
                                         </div>
                                         <div className="content">
                                             <div className="container">

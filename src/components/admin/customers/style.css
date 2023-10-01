@@ -323,6 +323,7 @@
         background: linear-gradient(0deg,rgb(1, 231, 1),darkblue);
         border-radius: 10px;
         margin: 10px;
+        margin-left: 15px !important;
         padding: -10px !important;
         min-width: 2px !important;
         max-width: 2px !important;
