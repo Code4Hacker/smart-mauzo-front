@@ -5,6 +5,7 @@ import Login from './components/Welcome/Login';
 import Customers from './components/admin/customers/Customers';
 import Customer from './components/admin/customers/Customer';
 import AllDeals from './components/admin/customers/AllDeals';
+import { ECustomers, EDashboard, ELogin } from './components/employees';
 
 function App() {
 
@@ -29,6 +30,16 @@ function App() {
         <Route path='/' element={
           <Login />
         } />
+        <Route path='/e_login' element={
+          <ELogin />
+        } />
+        <Route path='/employee' element={
+          <EDashboard />
+        } />
+        <Route path='/e_customers' element={
+          <ECustomers />
+        } />
+        
 
       </Routes>
     </BrowserRouter>

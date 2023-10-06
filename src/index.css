@@ -94,13 +94,13 @@
     transform: translateX(-50%);
 }
 
-.reg_items div {
+.reg_items * {
     text-decoration: none;
     padding: 20px;
     position: relative;
     cursor: pointer;
     width: 100%;
-
+    color: var(--milk);
     border-radius: 50px;
     background-color: var(--black);
 }

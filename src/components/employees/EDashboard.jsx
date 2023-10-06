@@ -8,16 +8,17 @@ import { Link } from 'react-router-dom'
 import Mini from '../widgets/sidebar/Mini'
 import Loader from '../Loader/Loader'
 import { baseURL } from '../../baseURL'
+import './../../primary/style2.css'
 
-const Dashboard = () => {
+const EDashboard = () => {
     Aos.init({
         duration: 1000,
         easing: 'linear'
     });
     const data = [
         ["Categories", "Hours per Day"],
-        ["Employeed", 131],
-        ["Customers", 111],
+        ["All Customers", 131],
+        ["Your Customers", 111],
         ["Total Sales", 299],
     ];
 
@@ -35,6 +36,7 @@ const Dashboard = () => {
     },[]);
     return (
         <div>
+            {console.log(baseURL)}
             <Loader/>
             <Mini />
             <div className="dashboard_grid_container">
@@ -59,7 +61,7 @@ const Dashboard = () => {
                                     {/* <div className="loader"></div> */}
                                     <div className="title"><h3><span style={{
                                     fontWeight: 100, marginTop: '50px !important', padding: '20px', background: 'var(--milk)', color: 'var(--black)', position: 'relative', minHeight: '30px', marginLeft: '-50px', borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px'
-                                }}>EMPLOYEES</span></h3></div>
+                                }}>YOUR CUSTOMERS</span></h3></div>
 
 
                                     <div className="row"
@@ -109,7 +111,7 @@ const Dashboard = () => {
                                             margin: "10px",
                                             marginTop: "-10px"
                                         }}>
-                                        <Link to={"/employees"} className="small" style={{ color: "var(--orange)" }}>View
+                                        <Link to={"/e_customers"} className="small" style={{ color: "var(--orange)" }}>View
                                             All</Link>
                                     </div>
                                 </div>
@@ -120,7 +122,7 @@ const Dashboard = () => {
                             data-aos-delay="3000">
                             <div className="title"><h3><span style={{
                                 fontWeight:100,marginTop:'20px !important',padding:'20px',background:'var(--milk)',color:'var(--black)',position:'relative',minHeight:'30px',marginLeft:'-50px',borderBottomLeftRadius:'30px',borderBottomRightRadius:'30px'
-                            }}>SUMMARY</span></h3></div>
+                            }}>SHOWCASE</span></h3></div>
                             {data ?
                                 <Chart
                                     chartType="PieChart"
@@ -141,6 +143,6 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard;
+export default EDashboard;
 
 

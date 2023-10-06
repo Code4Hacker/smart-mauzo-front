@@ -15,23 +15,24 @@ const Card = ({ employee, setEmployee }) => {
         registeredBy,
         registedDate } = employee;
         const handledel = async () => {
-            const del = await axios.delete("https://tailorgemini.000webhostapp.com/tailorwebapp/customers.php", { data: JSON.stringify({ "id": customerID }) });
+            const del = await axios.delete(`${baseURL}customers.php`, { data: JSON.stringify({ "id": customerID }) });
             // const status = del.data;
             const getall = async () => {
-                const response = await axios.get("https://tailorgemini.000webhostapp.com/tailorwebapp/customers.php");
+                const response = await axios.get(`${baseURL}customers.php`);
                 setEmployee(response.data.customers);
             }
             getall();
         }
     useEffect(() => {
         const emp = async () => {
-            const response = await axios.get(`https://tailorgemini.000webhostapp.com/tailorwebapp/employeeid.php?id=${registeredBy}`);
+            const response = await axios.get(`${baseURL}employeeid.php?id=${registeredBy}`);
             setEmpname(response.data.fullname[0]);
         }
         emp();
     }, []);
     const clickhandle = () => {
         let store = window.localStorage;
+        
         store.removeItem("id2");
         store.removeItem("first2");
         store.removeItem("last2");
@@ -112,4 +113,4 @@ const Card = ({ employee, setEmployee }) => {
     )
 }
 
-export default Card
+export default Card;

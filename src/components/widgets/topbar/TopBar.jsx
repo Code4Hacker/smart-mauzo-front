@@ -3,6 +3,7 @@ import Aos from 'aos'
 import './style.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { baseURL } from '../../../baseURL';
 const TopBar = ({ location }) => {
     Aos.init({
         duration: 1000,
@@ -15,7 +16,7 @@ const TopBar = ({ location }) => {
 
     useEffect(() => {
         const getall = async () => {
-            const response = await axios.get(`https://tailorgemini.000webhostapp.com/tailorwebapp/admin.php?admin_id=${window.localStorage.adminmail}`);
+            const response = await axios.get(`${baseURL}admin.php?admin_id=${window.localStorage.adminmail}`);
 
             if (response.data.status === "200") {
                 setAdmin(response.data.admin);
@@ -23,8 +24,8 @@ const TopBar = ({ location }) => {
         }
         getall();
         const counterGet = async () => {
-            const response = await axios.get(`https://tailorgemini.000webhostapp.com/tailorwebapp/counter.php?admin_id=${window.localStorage.adminmail}`);
-            const deals = await axios.get(`https://tailorgemini.000webhostapp.com/tailorwebapp/deals.php`);
+            const response = await axios.get(`${baseURL}counter.php?admin_id=${window.localStorage.adminmail}`);
+            const deals = await axios.get(`${baseURL}deals.php`);
             for (let index = 0; index < deals.data.deals.length; index++) {
                 if (index < deals.data.deals.length - 1) {
                     setCount2(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
@@ -53,7 +54,7 @@ const TopBar = ({ location }) => {
                                 <h2 style={{
                                     marginTop: "50px",
                                     marginLeft: "20px"
-                                }} className='gradient-text'>ADMIN - {location}</h2>
+                                }} className='gradient-text'>EMPLOYEE - {location}</h2>
                             </div>
                         </div>
                         <div className="col-3 flex mt-20">
@@ -76,7 +77,7 @@ const TopBar = ({ location }) => {
                 <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="flip-up" data-aos-duration="1000"
                     data-aos-delay="3000">
                     <div className="title text-center mt-2">
-                        <h5><span>Employeed</span></h5>
+                        <h5><span>All Customers</span></h5>
                     </div>
                     <div className="number">
                         <div className="title text-center mt-2">
@@ -89,7 +90,7 @@ const TopBar = ({ location }) => {
                 <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="flip-up" data-aos-duration="1000"
                     data-aos-delay="3000">
                     <div className="title text-center mt-2">
-                        <h5><span>Customers</span></h5>
+                        <h5><span>Your Customers</span></h5>
                     </div>
                     <div className="number">
                         <div className="title text-center mt-2">

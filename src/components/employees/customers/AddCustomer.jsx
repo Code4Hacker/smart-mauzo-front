@@ -1,11 +1,10 @@
+import React, { useEffect, useState } from 'react';
+// import useCustomer from '../../customerHooks/useCustomer';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import jQuery from 'jquery';
+import { useNavigate } from 'react-router-dom';
 import { baseURL } from '../../../baseURL';
 
-const Update = ({ setEmployee }) => {
-    // const {employeeid2, employeefirst2,employeelast2,employeeemail2,employeeContact,registedDate} = employee;
-    let store = window.localStorage;
+const AddCustomers = ({ setCustomers }) => {
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [address, setAddress] = useState("");
@@ -19,32 +18,32 @@ const Update = ({ setEmployee }) => {
     const [mVail, setMVail] = useState("");
     const [cVodes, setCVodes] = useState("");
     const [status, setStatus] = useState();
-
+    const navigate = useNavigate();
+    const jqueries = () => {
+        store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+    }
     const addNew = async (PATH) => {
-        let jsonpatch = JSON.stringify({
-            "fname": fname === "" && store.first2 ? store.first2 : fname,
-            "lname": lname === "" && store.last2 ? store.last2 : lname,
-            "address": address === "" && store.add2 ? store.add2 : address,
-            "phone": phone === "" && store.phone2 ? store.phone2 : phone,
-            "mail": mail === "" && store.email2 ? store.email2 : mail,
-            "codes": codes,
-            "id": store.id2 ? store.id2 : 0
-        });
+        let formdata = new FormData();
+        formdata.append("fname", fname);
+        formdata.append("lname", lname);
+        formdata.append("address", address);
+        formdata.append("phone", phone);
+        formdata.append("mail", mail);
+        formdata.append("codes", codes);
 
-        let bodyContent = jsonpatch;
+        let bodyContent = formdata;
 
         let reqOptions = {
             url: PATH,
-            method: "PATCH",
+            method: "POST",
             data: bodyContent,
         }
 
         let response = await axios.request(reqOptions);
         setStatus(response.data.status);
     }
-    const jqueries = () => {
-        store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
-    }
+    // useEffect(() => {
+    // }, [PATH,fname,lname,address,phone,mail,codes]);    
     const handleupdate = () => {
         fname.length < 4 ?
             setFVname(<span style={{ color: 'red' }}>First Name is Too Small!</span>) :
@@ -55,76 +54,85 @@ const Update = ({ setEmployee }) => {
         mail.length < 10 ?
             setMVail(<span style={{ color: 'red' }}>Email is Invalid!</span>) :
             setMVail(<span style={{ color: 'orange' }}>Rule Followed Successiful!</span>);
-        phone.match(/[a-z]/g) ?
+        phone.length < 10 || phone.match(/[a-z]/g) ?
             setPVhone(<span style={{ color: 'red' }}>Phone Number Not Valid!</span>) :
             setPVhone(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
         address.length < 10 ?
             setAVddress(<span style={{ color: 'red' }}>Address is not Valid!</span>) :
             setAVddress(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
-        if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10) {
-            addNew(`${baseURL}customers.php`);
+        !codes.match(/[0-9]/g) || codes.length < 8 ?
+            setCVodes(<span style={{ color: 'red' }}>Unique code is too small!</span>) :
+            setCVodes(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
+        if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && (phone.length >= 10 || phone.match(/[\d+]/g)) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length >= 8)) {
+            addNew(`${baseURL}Customer.php`);
             switch (status) {
-                case '404':
+                case '400':
                     setFVname(<span style={{ color: 'red' }}></span>);
                     setLVname(<span style={{ color: 'orange' }}></span>);
                     setMVail(<span style={{ color: 'orange' }}></span>);
                     setPVhone(<span style={{ color: 'orange' }}></span>);
-                    setAVddress(<span style={{ color: 'blue' }}>No Existing User!</span>);
+                    setCVodes(<span style={{ color: 'orange' }}></span>);
+                    setAVddress(<span style={{ color: 'blue' }}>Sorry, Customer with this Email Exist!</span>);
                     break;
                 case '200':
                     setFVname(<span style={{ color: 'red' }}></span>);
                     setLVname(<span style={{ color: 'orange' }}></span>);
                     setMVail(<span style={{ color: 'orange' }}></span>);
                     setPVhone(<span style={{ color: 'orange' }}></span>);
-                    setAVddress(<span style={{ color: 'green' }}>Successiful!</span>);
-                    store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
-                    jQuery(".rename_box").fadeOut({
-                        duration: 1000
-                    });
+                    setCVodes(<span style={{ color: 'orange' }}></span>);
+                    setAVddress(<span style={{ color: 'green' }}>New Customer Added!</span>);
                     break;
                 default:
                     console.log(status);
                     break;
             }
             const getall = async () => {
-                const response = await axios.get(`${baseURL}customers.php`);
-                setEmployee(response.data.customers);
+                const response = await axios.get(`${baseURL}Customer.php`);
+                setCustomers(response.data.Customers);
             }
             getall();
-
         }
 
     }
     return (
-        <div className="rename_box" style={{ display: "none" }}>
-            <div className="rename" style={{ padding: "2px" }}>
+        <div className="add_box" style={{ display: "block" }}>
+            <div className="update" style={{ padding: "2px" }}>
                 <div className="cancel" onClick={jqueries}>
                     <button><i className="bi bi-x-lg"></i></button>
                 </div>
                 <div className="container">
-                    <input type="text" placeholder="Customer First Name" name="fname" value={fname === "" && store.first2 ? store.first2 : fname}
+                    <input type="text" placeholder="Customer First Name" name="fname" value={fname}
                         onChange={(e) => setFname(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{fVname}</div>
-                    <input type="text" placeholder="Customer Last Name" name="lName" value={lname === "" && store.last2 ? store.last2 : lname}
+                    <input type="text" placeholder="Customer Last Name" name="lName" value={lname}
                         onChange={(e) => setLname(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{lVname}</div>
-                    <input type="text" placeholder="Customer Email" name="email2" value={mail === "" && store.email2 ? store.email2 : mail}
+                    <input type="text" placeholder="Customer Email" name="email" value={mail}
                         onChange={(e) => setMail(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{mVail}</div>
-                    <input type="text" placeholder="Customer Contact " name="contact" value={phone === "" && store.phone2 ? store.phone2 : phone}
+                    <input type="text" placeholder="Customer Contact " name="contact" value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{pVhone}</div>
-                    <input type="text" placeholder="Customer Address " name="selling" value={address === "" && store.add2 ? store.add2 : address}
+                    <input type="text" placeholder="Address " name="address" value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{aVddress}</div>
 
+
+
+                    <input type="text" placeholder="Customer Unique ID" name="unique" value={codes}
+                        onChange={(e) => setCodes(e.target.value)}
+                        style={{ marginTop: "5px", marginBottom: "5px" }} />
+                    <div className="small text-center">{cVodes}</div>
+
+
+
                     <div className="button">
-                        <button id2="bottonGet" onClick={handleupdate}>Complete</button>
+                        <button id="bottonGet" onClick={handleupdate}>Complete</button>
                     </div>
                 </div>
             </div>
@@ -132,4 +140,4 @@ const Update = ({ setEmployee }) => {
     )
 }
 
-export default Update;
+export default AddCustomers;

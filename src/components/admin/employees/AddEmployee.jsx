@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import useEmployee from '../../customerHooks/useEmployee';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { baseURL } from '../../../baseURL';
 
 const AddEmployee = ({ setEmployee }) => {
     const [fname, setFname] = useState("");
@@ -62,8 +63,8 @@ const AddEmployee = ({ setEmployee }) => {
         !codes.match(/[0-9]/g) || codes.length < 8?
             setCVodes(<span style={{ color: 'red' }}>Strong Password Required!</span>) :
             setCVodes(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
-        if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length < 8)) {
-            addNew("https://tailorgemini.000webhostapp.com/tailorwebapp/employee.php");
+        if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length >= 8)) {
+            addNew(`${baseURL}employee.php`);
             switch (status) {
                 case '400':
                     setFVname(<span style={{ color: 'red' }}></span>);
@@ -86,7 +87,7 @@ const AddEmployee = ({ setEmployee }) => {
                     break;
             }
             const getall = async () => {
-                const response = await axios.get("https://tailorgemini.000webhostapp.com/tailorwebapp/employee.php");
+                const response = await axios.get(`${baseURL}employee.php`);
                 setEmployee(response.data.employees);
             }
             getall();

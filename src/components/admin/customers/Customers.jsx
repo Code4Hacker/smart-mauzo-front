@@ -6,6 +6,7 @@ import Card from './Card'
 import axios from 'axios'
 import Update from './Update'
 import Mini from '../../widgets/sidebar/Mini'
+import { baseURL } from '../../../baseURL'
 
 const Customers = () => {
     const jqueryCodes = () => {
@@ -59,7 +60,7 @@ const Customers = () => {
     const [contents, setContents] = useState();
     useEffect(() => {
         const getall = async () => {
-            const response = await axios.get("https://tailorgemini.000webhostapp.com/tailorwebapp/customers.php");
+            const response = await axios.get(`${baseURL}customers.php`);
             setContents(response.data.customers);
         }
         getall();

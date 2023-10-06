@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React from 'react'
+import { baseURL } from '../../../baseURL';
 
 const CustomerDeals = ({ deals, num, setDeals, setCount }) => {
     const {dealID, dealTitle, dealDescription, dealSummary, dealPicture, registeredBy, CustomerUnique, customerId, price, registedDate} = deals;
     const handledel = async () => {
-        const del = await axios.delete("https://tailorgemini.000webhostapp.com/tailorwebapp/deals.php", { data: JSON.stringify({ "id": dealID }) });
+        const del = await axios.delete(`${baseURL}deals.php`, { data: JSON.stringify({ "id": dealID }) });
         // const status = del.data;
         const getall = async () => {
-            const response = await axios.get(`https://tailorgemini.000webhostapp.com/tailorwebapp/dealforone.php?customer=${CustomerUnique}&employee=${registeredBy}`);
+            const response = await axios.get(`${baseURL}dealforone.php?customer=${CustomerUnique}&employee=${registeredBy}`);
             setDeals(response.data.deals);
             setCount(response.data.counter);
         }

@@ -8,6 +8,7 @@ import './style.css';
 import { useParams } from 'react-router-dom'
 import CustomerDeals from './CustomerDeals'
 import Mini from '../../widgets/sidebar/Mini'
+import { baseURL } from '../../../baseURL'
 
 const Customer = () => {
     const jqueryCodes = () => {
@@ -65,9 +66,9 @@ const Customer = () => {
     const [onecount, setOnecount] = useState();
     useEffect(() => {
         const getall = async () => {
-            const response = await axios.get(`https://tailorgemini.000webhostapp.com/tailorwebapp/onecustomer.php?id=${params.id}`);
+            const response = await axios.get(`${baseURL}onecustomer.php?id=${params.id}`);
             setContents(response.data.customer[0]);
-            const deals = await axios.get(`https://tailorgemini.000webhostapp.com/tailorwebapp/dealforone.php?customer=${response.data.customer[0].customerUnique}&employee=${response.data.customer[0].registeredBy}`);
+            const deals = await axios.get(`${baseURL}dealforone.php?customer=${response.data.customer[0].customerUnique}&employee=${response.data.customer[0].registeredBy}`);
             setWorks(deals.data.deals);
             for (let index = 0; index < deals.data.deals.length; index++) {
                 if (index < deals.data.deals.length - 1) {

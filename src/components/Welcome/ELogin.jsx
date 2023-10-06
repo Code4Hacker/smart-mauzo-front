@@ -2,10 +2,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import './style.css';
+import './../../primary/style2.css';
 import jQuery from 'jquery';
 import { baseURL } from '../../baseURL';
 
-const Login = () => {
+const ELogin = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
@@ -37,7 +38,7 @@ const Login = () => {
                     jQuery(".btn button:nth-child(1)").on("click", function () {
                         jQuery(".asking > *").text("Loading ...");
                         setTimeout(() => {
-                            navigate('/admin');
+                            navigate('/employee');
                         }, 2000);
                     });
                     jQuery(".btn button:nth-child(1)").on("click", function () {
@@ -88,11 +89,11 @@ const Login = () => {
             <div className="container">
                 <div className="registration_box login">
                     <div className="reg_items">
-                        <Link className="header active" to={'/'}>Admin</Link>
-                        <Link to={'/e_login'}>Employee</Link>
+                        <Link to={'/'} className="header">Admin</Link>
+                        <Link to={'/e_login'} className='header active'>Employee</Link>
                     </div>
                     <div className="title" style={{ margin: "20px", marginTop: "50px" }}>
-                        <h2><span>Admin Login</span></h2>
+                        <h2><span>Employee Login</span></h2>
                     </div>
                     <div className="grid_items" style={{ "--width": "90%", marginLeft: "30px", marginRight: "30px", padding: "25px", marginBottom: "-10px", marginTop: "-20px" }} onKeyUp={() => handlesubmit}>
                         <input type="text" placeholder="Enter Email" value={email} onChange={(evt) => setEmail(evt.target.value)} name="email" style={{ padding: "25px" }} />
@@ -113,4 +114,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default ELogin

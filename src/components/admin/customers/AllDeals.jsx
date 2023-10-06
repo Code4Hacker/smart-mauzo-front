@@ -8,6 +8,7 @@ import './style.css';
 import { useParams } from 'react-router-dom'
 import CustomerDeals from './CustomerDeals'
 import Mini from '../../widgets/sidebar/Mini'
+import { baseURL } from '../../../baseURL'
 
 const AllDeals = () => {
     const jqueryCodes = () => {
@@ -64,7 +65,7 @@ const AllDeals = () => {
     const [count, setCount] = useState();
     useEffect(() => {
         const getall = async () => {
-            const deals = await axios.get(`https://tailorgemini.000webhostapp.com/tailorwebapp/deals.php`);
+            const deals = await axios.get(`${baseURL}deals.php`);
             // setContents(response.data.deals);
             setWorks(deals.data.deals);
             setCount(deals.data.counter);

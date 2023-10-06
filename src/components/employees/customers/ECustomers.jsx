@@ -4,13 +4,13 @@ import SideBar from '../../widgets/sidebar/SideBar'
 import TopBar from '../../widgets/topbar/TopBar'
 import Card from './Card'
 import './style.css'
-import AddEmployee from './AddEmployee'
 import axios from 'axios'
 import Update from './Update'
 import Mini from '../../widgets/sidebar/Mini'
 import { baseURL } from '../../../baseURL'
+import AddCustomers from './AddCustomer'
 
-const Employees = () => {
+const ECustomers = () => {
 
     const jqueryCodes = () => {
         // jQuery.noConflict();
@@ -84,7 +84,7 @@ const Employees = () => {
                     </div>
                 </div>
                 <div className="dash_grid_items">
-                    <TopBar location={"EMPLOYEES"} />
+                    <TopBar location={"CUSTOMERS"} />
                     <div className=" container " style={{
 
 
@@ -147,7 +147,7 @@ const Employees = () => {
                 </div>
             </div>
             {/* ADDING */}
-            <AddEmployee setEmployee={setContents} />
+            <AddCustomers setCustomers={setContents} />
             <Update setEmployee={setContents} />
             <div className="addnew">
                 <button className='bi bi-person-plus-fill add_open'>
@@ -157,4 +157,4 @@ const Employees = () => {
     )
 }
 
-export default Employees;
+export default ECustomers;
