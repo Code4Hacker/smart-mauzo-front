@@ -43,7 +43,8 @@ const ELogin = () => {
                     });
                     jQuery(".btn button:nth-child(1)").on("click", function () {
                         jQuery(".asking > *").text("Saving ...");
-                        window.localStorage.setItem("adminmail", email);
+                        window.localStorage.clear();
+                        window.localStorage.setItem("emMail", email);
                         setTimeout(() => {
                             jQuery(".asking > *").text("Almost there ...");
                             setTimeout(() => {
@@ -51,8 +52,8 @@ const ELogin = () => {
                                 setTimeout(() => {
                                     jQuery(".asking > *").text("Redirecting ...");
                                     setTimeout(() => {
-                                        navigate('/admin');
-                                    }, 2000);
+                                        navigate('/employee');
+                                    }, 3000);
                                 }, 2000);
                             }, 2000);
                         }, 2000);
@@ -66,8 +67,8 @@ const ELogin = () => {
         }
     }
     useEffect(() => {
-        if (window.localStorage.adminmail !== undefined) {
-            navigate('/admin');
+        if (window.localStorage.emMail !== undefined) {
+            navigate('/employee');
         }
     })
     return (

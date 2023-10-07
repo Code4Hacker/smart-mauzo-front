@@ -3,15 +3,15 @@ import jQuery from 'jquery'
 import SideBar from '../../widgets/sidebar/SideBar'
 import TopBar from '../../widgets/topbar/TopBar'
 import Card from './Card'
-import './style.css'
 import axios from 'axios'
 import Update from './Update'
 import Mini from '../../widgets/sidebar/Mini'
 import { baseURL } from '../../../baseURL'
+import TopBar2 from '../../widgets/topbar/TopBar2'
+import SideBar2 from '../../widgets/sidebar/SideBar2'
 import AddCustomers from './AddCustomer'
 
 const ECustomers = () => {
-
     const jqueryCodes = () => {
         // jQuery.noConflict();
         setTimeout(() => {
@@ -63,8 +63,8 @@ const ECustomers = () => {
     const [contents, setContents] = useState();
     useEffect(() => {
         const getall = async () => {
-            const response = await axios.get(`${baseURL}employee.php`);
-            setContents(response.data.employees);
+            const response = await axios.get(`${baseURL}customers.php`);
+            setContents(response.data.customers);
         }
         getall();
         jqueryCodes();
@@ -80,22 +80,21 @@ const ECustomers = () => {
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar">
                     <div className="row" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="3000">
-                        <SideBar />
+                        <SideBar2 />
                     </div>
                 </div>
                 <div className="dash_grid_items">
-                    <TopBar location={"CUSTOMERS"} />
+                    <TopBar2 location={"CUSTOMERS"} />
                     <div className=" container " style={{
 
 
                     }}>
-
                         {/* Employees */}
                         <div className="card_holder" style={{
                             boxShadow: "0px 10px 10px 0px rgba(0, 0, 0, 0.1)", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px"
                         }}
                             data-aos="fade-right" data-aos-duration="1000" data-aos-delay="3000">
-                            <div className="common-grid-2 " style={{ "--grid-template": "auto auto auto auto auto auto auto", boxShadow: "10px 0px 10px 0px rgba(0, 0, 0, 0.1)", borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}
+                            <div className="common-grid-2" style={{ "--grid-template": "auto auto auto auto auto auto auto", boxShadow: "10px 0px 10px 0px rgba(0, 0, 0, 0.1)", borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}
                                 data-aos="fade-right" data-aos-duration="1000" data-aos-delay="3000">
                                 <div className="grid-item "
                                     style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>
@@ -124,14 +123,14 @@ const ECustomers = () => {
                                 <div className="grid-item "
                                     style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>
                                     <div className="title " style={{ textAlign: 'start' }}>
-                                        <h5><span>Role</span></h5>
+                                        <h5><span>Address</span></h5>
                                     </div>
                                 </div>
 
                                 <div className="grid-item "
                                     style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>
                                     <div className="title ">
-                                        <h5><span>Date Added</span></h5>
+                                        <h5><span>Registered by</span></h5>
                                     </div>
                                 </div>
                                 <div className="grid-item "
@@ -146,6 +145,13 @@ const ECustomers = () => {
                     </div>
                 </div>
             </div>
+            {/* ADDING
+            <AddEmployee setEmployee={setContents} /> */}
+            <Update setEmployee={setContents} />
+            {/* <div className="addnew">
+                <button className='bi bi-person-plus-fill add_open'>
+                </button>
+            </div> */}
             {/* ADDING */}
             <AddCustomers setCustomers={setContents} />
             <Update setEmployee={setContents} />
@@ -156,5 +162,5 @@ const ECustomers = () => {
         </div >
     )
 }
-
 export default ECustomers;
+

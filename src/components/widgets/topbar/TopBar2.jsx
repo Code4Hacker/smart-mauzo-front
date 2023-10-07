@@ -4,7 +4,7 @@ import './style.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { baseURL } from '../../../baseURL';
-const TopBar = ({ location }) => {
+const TopBar2 = ({ location }) => {
     Aos.init({
         duration: 1000,
         easing: 'linear'
@@ -16,7 +16,7 @@ const TopBar = ({ location }) => {
 
     useEffect(() => {
         const getall = async () => {
-            const response = await axios.get(`${baseURL}admin.php?admin_id=${window.localStorage.adminmail}`);
+            const response = await axios.get(`${baseURL}admin.php?admin_id=${window.localStorage.emMail}`);
 
             if (response.data.status === "200") {
                 setAdmin(response.data.admin);
@@ -24,7 +24,7 @@ const TopBar = ({ location }) => {
         }
         getall();
         const counterGet = async () => {
-            const response = await axios.get(`${baseURL}counter.php?admin_id=${window.localStorage.adminmail}`);
+            const response = await axios.get(`${baseURL}counter.php?admin_id=${window.localStorage.emMail}`);
             const deals = await axios.get(`${baseURL}deals.php`);
             for (let index = 0; index < deals.data.deals.length; index++) {
                 if (index < deals.data.deals.length - 1) {
@@ -37,10 +37,11 @@ const TopBar = ({ location }) => {
             }
         }
         counterGet();
-        if (window.localStorage.adminmail !== undefined) {
+
+        if (window.localStorage.emMail !== undefined) {
 
         } else {
-            navigate('/');
+            navigate('/e_login');
         }
         
     }, []);
@@ -129,4 +130,4 @@ const TopBar = ({ location }) => {
     )
 }
 
-export default TopBar
+export default TopBar2

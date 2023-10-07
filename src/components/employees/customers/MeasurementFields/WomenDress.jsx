@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-// import useCustomer from '../../customerHooks/useCustomer';
+import React, { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { baseURL } from '../../../baseURL';
+import { baseURL } from '../../../../baseURL';
 
-const AddCustomers = ({ setCustomers }) => {
+const WomenDress = ({ setCustomers, setTask }) => {
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [address, setAddress] = useState("");
@@ -19,9 +18,7 @@ const AddCustomers = ({ setCustomers }) => {
     const [cVodes, setCVodes] = useState("");
     const [status, setStatus] = useState();
     const navigate = useNavigate();
-    const jqueries = () => {
-        store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
-    }
+
     const addNew = async (PATH) => {
         let formdata = new FormData();
         formdata.append("fname", fname);
@@ -95,49 +92,34 @@ const AddCustomers = ({ setCustomers }) => {
 
     }
     return (
-        <div className="add_box" style={{ display: "none" }}>
-            <div className="update" style={{ padding: "2px" }}>
-                <div className="cancel" onClick={jqueries}>
-                    <button><i className="bi bi-x-lg"></i></button>
-                </div>
-                <div className="container">
-                    <input type="text" placeholder="Customer First Name" name="fname" value={fname}
-                        onChange={(e) => setFname(e.target.value)}
-                        style={{ marginTop: "5px", marginBottom: "5px" }} />
-                    <div className="small text-center">{fVname}</div>
-                    <input type="text" placeholder="Customer Last Name" name="lName" value={lname}
-                        onChange={(e) => setLname(e.target.value)}
-                        style={{ marginTop: "5px", marginBottom: "5px" }} />
-                    <div className="small text-center">{lVname}</div>
-                    <input type="text" placeholder="Customer Email" name="email" value={mail}
-                        onChange={(e) => setMail(e.target.value)}
-                        style={{ marginTop: "5px", marginBottom: "5px" }} />
-                    <div className="small text-center">{mVail}</div>
-                    <input type="text" placeholder="Customer Contact " name="contact" value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        style={{ marginTop: "5px", marginBottom: "5px" }} />
-                    <div className="small text-center">{pVhone}</div>
-                    <input type="text" placeholder="Address " name="address" value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        style={{ marginTop: "5px", marginBottom: "5px" }} />
-                    <div className="small text-center">{aVddress}</div>
+
+        <div className="container">
+            <div className="title">
+                <h3><span>Women Dress</span></h3>
+            </div>
+            <input type="text" placeholder="L" name="fname" value={fname}
+                onChange={(e) => setFname(e.target.value)}
+                style={{ marginTop: "5px", marginBottom: "5px" }} />
+            <div className="small text-center">{fVname}</div>
+            <textarea type="text" placeholder="DW" name="lName" value={lname}
+                onChange={(e) => setLname(e.target.value)}
+                style={{ marginTop: "5px", marginBottom: "5px" }} ></textarea>
+            <div className="small text-center">{lVname}</div>
+
+
+            <input type="text" placeholder="KNEE" name="Quantity" value={mail}
+                onChange={(e) => setMail(e.target.value)}
+                style={{ marginTop: "5px", marginBottom: "5px" }} />
+            <div className="small text-center">{mVail}</div>
 
 
 
-                    <input type="text" placeholder="Customer Unique ID" name="unique" value={codes}
-                        onChange={(e) => setCodes(e.target.value)}
-                        style={{ marginTop: "5px", marginBottom: "5px" }} />
-                    <div className="small text-center">{cVodes}</div>
-
-
-
-                    <div className="button">
-                        <button id="bottonGet" onClick={handleupdate}>Complete</button>
-                    </div>
-                </div>
+            <div className="button">
+                <button id="bottonGet" onClick={() => setTask(1)}><i className="bi bi-chevron-double-left"></i> Back</button>
+                <button id="bottonGet" onClick={handleupdate}><i className="bi bi-chevron-double-up"></i> Complete</button>
             </div>
         </div>
     )
 }
 
-export default AddCustomers;
+export default WomenDress;

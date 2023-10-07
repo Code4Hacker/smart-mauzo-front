@@ -1,45 +1,52 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import Update from './Update';
 import jQuery from 'jquery';
-import { baseURL } from '../../../baseURL';
-
+import { Link } from 'react-router-dom';
 const Card = ({ employee, setEmployee }) => {
-    const { employeeID, employeeFirst, employeeLast, employeeEmail, employeeContact, registedDate, employeeAddress } = employee;
-    const handledel = async () => {
-        const del = await axios.delete(`${baseURL}employee.php`, { data: JSON.stringify({ "id": employeeID }) });
-        // const status = del.data;
-        const getall = async () => {
-            const response = await axios.get(`${baseURL}employee.php`);
-            setEmployee(response.data.employees);
+    const [empname, setEmpname] = useState();
+    const { customerID,
+        customerFirst,
+        customerLast,
+        customerEmail,
+        customerAddress,
+        customerContact,
+        customerProfile,
+        customerUnique,
+        registeredBy,
+        registedDate } = employee;
+        const handledel = async () => {
+            const del = await axios.delete(`${baseURL}customers.php`, { data: JSON.stringify({ "id": customerID }) });
+            // const status = del.data;
+            const getall = async () => {
+                const response = await axios.get(`${baseURL}customers.php`);
+                setEmployee(response.data.customers);
+            }
+            getall();
         }
-        getall();
-    }
-
     useEffect(() => {
-        jQuery(".updateMe").on("click", function () {
-            jQuery(".rename").fadeIn({
-                duration: 1000,
-                easing: 'linear'
-            });
-        });
+        const emp = async () => {
+            const response = await axios.get(`${baseURL}employeeid.php?id=${registeredBy}`);
+            setEmpname(response.data.fullname[0]);
+        }
+        emp();
     }, []);
     const clickhandle = () => {
         let store = window.localStorage;
         
-        store.removeItem("id");
-        store.removeItem("first");
-        store.removeItem("last");
-        store.removeItem("email");
-        store.removeItem("phone");
-        store.removeItem("add");
+        store.removeItem("id2");
+        store.removeItem("first2");
+        store.removeItem("last2");
+        store.removeItem("email2");
+        store.removeItem("phone2");
+        store.removeItem("add2");
 
-        store.setItem("id", employeeID);
-        store.setItem("first", employeeFirst);
-        store.setItem("last", employeeLast);
-        store.setItem("email", employeeEmail);
-        store.setItem("phone", employeeContact);
-        store.setItem("add", employeeAddress);
+        store.setItem("id2", customerID);
+        store.setItem("first2", customerFirst);
+        store.setItem("last2", customerLast);
+        store.setItem("email2", customerEmail);
+        store.setItem("phone2", customerContact);
+        store.setItem("add2", customerAddress);
+        store.setItem("unique", customerUnique);
 
         jQuery(".rename_box").addClass("animate__animated animate_fadeInUp");
         jQuery(".rename_box").fadeIn({
@@ -55,35 +62,35 @@ const Card = ({ employee, setEmployee }) => {
             <div className="grid-item h " style={{ paddingLeft: "10px", paddingRight: "10px " }}>
                 <div className="title ">
                     <h5><span>
-                        {employeeFirst}
+                        {customerFirst}
                     </span></h5>
                 </div>
             </div>
             <div className="grid-item h " style={{ paddingLeft: "10px", paddingRight: "10px " }}>
                 <div className="title ">
                     <h5><span>
-                        {employeeLast}
+                        {customerLast}
                     </span></h5>
                 </div>
             </div>
             <div className="grid-item h " style={{ paddingLeft: "10px", paddingRight: "10px " }}>
                 <div className="title ">
                     <h5><span>
-                        {employeeEmail}
+                        {customerEmail}
                     </span></h5>
                 </div>
             </div>
             <div className="grid-item h " style={{ paddingLeft: "10px", paddingRight: "10px " }}>
                 <div className="title ">
                     <h5><span>
-                        {employeeContact}
+                        {customerContact}
                     </span></h5>
                 </div>
             </div>
             <div className="grid-item h " style={{ paddingLeft: "10px", paddingRight: "10px " }}>
                 <div className="title ">
                     <h5><span>
-                        {"Employee"}
+                        {customerAddress}
                     </span></h5>
                 </div>
             </div>
@@ -91,14 +98,15 @@ const Card = ({ employee, setEmployee }) => {
             <div className="grid-item h " style={{ paddingLeft: "10px", paddingRight: "10px " }}>
                 <div className="title ">
                     <h5><span>
-                        {(new Date(registedDate)).toDateString()}
+                        {empname !== undefined ? empname.employeeFirst + " " + empname.employeeLast : registeredBy}
                     </span></h5>
                 </div>
             </div>
             <div className="grid-item h" style={{ paddingLeft: "10px", paddingRight: "10px " }}>
                 <div className="title">
-                    <i className="bi bi-pen-fill updateMe" style={{ color: "var(--green)", padding: "8px", boxShadow: " inset 0px 0px 10px 0px rgba(0, 0, 0, 0.11)", margin: " 3px", borderRadius: " 10px" }} onClick={clickhandle}></i>
-                    <i className="bi bi-trash3-fill" style={{ color: "red", padding: "8px", boxShadow: " inset 0px 0px 10px 0px rgba(0, 0, 0, 0.11)", margin: " 3px", borderRadius: " 10px" }} value={employeeID} onClick={handledel}></i>
+                    <Link to={`/one_customer/${customerID}`} className="bi bi-folder-fill" style={{ color: "var(--black)",textDecoration:'none', padding: "8px", boxShadow: " inset 0px 0px 10px 0px rgba(0, 0, 0, 0.11)", margin: " 3px", borderRadius: " 10px", backgroundColor: 'var(--top-color)', fontSize: 'small', fontStyle: 'normal !important', cursor: 'pointer' }}> view</Link>
+                    <i className="bi bi-pen-fill" style={{ color: "var(--green)", padding: "8px", boxShadow: " inset 0px 0px 10px 0px rgba(0, 0, 0, 0.11)", margin: " 3px", borderRadius: " 10px" }} onClick={clickhandle}></i>
+                    <i className="bi bi-trash3-fill" style={{ color: "red", padding: "8px", boxShadow: " inset 0px 0px 10px 0px rgba(0, 0, 0, 0.11)", margin: " 3px", borderRadius: " 10px" }} onClick={handledel}></i>
                 </div>
             </div>
         </div>

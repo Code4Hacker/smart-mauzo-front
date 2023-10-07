@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import SideBar from '../widgets/sidebar/SideBar'
-import TopBar from '../widgets/topbar/TopBar'
 import Aos from 'aos'
 import Chart from 'react-google-charts'
 import axios from 'axios'
@@ -9,6 +7,8 @@ import Mini from '../widgets/sidebar/Mini'
 import Loader from '../Loader/Loader'
 import { baseURL } from '../../baseURL'
 import './../../primary/style2.css'
+import SideBar2 from '../widgets/sidebar/SideBar2'
+import TopBar2 from '../widgets/topbar/TopBar2'
 
 const EDashboard = () => {
     Aos.init({
@@ -36,19 +36,18 @@ const EDashboard = () => {
     },[]);
     return (
         <div>
-            {console.log(baseURL)}
             <Loader/>
             <Mini />
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar">
                     <div className="row" data-aos="fade-left" data-aos-duration="1000"
                         data-aos-delay="3000">
-                        <SideBar />
+                        <SideBar2 />
                         
                     </div>
                 </div>
                 <div className="dash_grid_items">
-                    <TopBar location={"DASHBOARD"} />
+                    <TopBar2 location={"DASHBOARD"} />
                     <div className="grid_template_for_two customer">
                         <div className="box_full_template_grid" style={{
                             "--width": "100%",
