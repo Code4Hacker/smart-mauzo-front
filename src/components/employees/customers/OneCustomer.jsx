@@ -162,12 +162,15 @@ const OneCustomer = () => {
                                 </div>
                             </div>
                             <div className="col-xl-10" style={{
-                                marginTop: '50px'
+                                marginTop: '50px',position:'relative'
                             }}>
                                 <div className="title"><h3><span style={{
                                     fontWeight: 100, marginTop: '50px !important', padding: '20px', background: 'var(--milk)', color: 'var(--black)', position: 'relative', minHeight: '30px', marginLeft: '-50px', borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px'
                                 }}>CUSTOMER DEALS</span></h3></div>
-                                <div className="deals">
+                                    <button className="print_deal bi bi-printer-fill"> Print</button>
+                                <div className="deals" style={{
+                                marginTop: '40px',position:'relative'
+                            }}>
                                     {
                                         works !== undefined && works?.length > -1 ? works.map((work, id) => <EC_Deals deals={work} num={id} setDeals={setWorks} setCount={setCount} key={id} />) : "Loading ..."
                                     }

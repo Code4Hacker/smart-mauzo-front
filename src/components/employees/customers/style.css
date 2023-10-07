@@ -54,9 +54,6 @@
     background-color: rgb(0, 0, 0);
     text-align: start;
 }
-.preview > *{
-    /* text-align: start !important; */
-}
 .preview > * .comment{
    color: rgb(202, 202, 202) !important;
 }
@@ -65,4 +62,82 @@
 }
 .preview > * h4 {
     font-size: 16px;
+}
+.noted{
+    display: grid;
+    grid-template-columns: 4px auto;
+    column-gap: 10px;
+    margin-left: 20px;
+}
+.noted .note {
+    position: relative;
+    width: 1.2px;
+    background: linear-gradient(60deg, var(--green), hotpink);
+}
+.noted .note::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 10px;
+    left: -7px;
+    border-radius: 50px;
+    background: var(--black);
+    border: 1px solid rgb(194, 20, 107);
+}
+.req .small{
+    color: rgb(194, 20, 107) !important;
+    font-style: italic;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.print_deal{
+    position: absolute;
+    left:95%;
+    transform: translateX(-95%);
+    top: 10px;
+    z-index:5;
+    padding:10px !important;
+    background-color:var(--top-color);
+    width: 100px;
+}
+.print_deal:hover{
+    position: absolute;
+    left:95%;
+    transform: translateX(-95%);
+    top: 10px;
+    z-index:5;
+    color: var(--black) !important;
+    padding:10px !important;
+    background-color:var(--milk);
+    width: 100px;
+}
+.mrs{
+    width: 100%;
+    justify-self: center;
+    align-self: center;
+    margin-left: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.mrs h4, .mrs h4 span{
+    color: var(--milk) !important;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 500; text-transform: uppercase;
+}
+.measures{
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 1;
+    flex-flow: 1;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;justify-items: center;
+}
+.measures > * {
+    padding: 10px;
+    width: 120px;
+    border-radius: 2px;
+    border: 1px solid var(--green);
 }
