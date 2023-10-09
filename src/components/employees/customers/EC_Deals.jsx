@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 const EC_Deals = ({ deals, num, setWorks, setOnecount, setContents, setCount }) => {
     const params = useParams();
-    const { dealID, dealTitle, dealDescription, dealSummary, dealPicture, registeredBy, CustomerUnique, customerId, price, registedDate, dealRequirements, measurements } = deals;
+    const { dealID, dealTitle, dealDescription, dealSummary, dealPicture, registeredBy, CustomerUnique, customerId, price, registedDate, dealRequirements, measurements, dealStatus, tracking } = deals;
     const handledel = async () => {
         const del = await axios.delete(`${baseURL}deals.php`, { data: JSON.stringify({ "id": dealID }) });
         // const status = del.data;
@@ -25,6 +25,11 @@ const EC_Deals = ({ deals, num, setWorks, setOnecount, setContents, setCount }) 
             setCount(deals.data.counter);
         }
         getall();
+    }
+    const handleStatus = () => {
+        if(dealStatus === "PENDING"){
+            dealStatus = "PAID";
+        }
     }
     return (
         <div className="row deal">
@@ -50,7 +55,10 @@ const EC_Deals = ({ deals, num, setWorks, setOnecount, setContents, setCount }) 
                                         <span className="small desc comment">{dealRequirements}</span>
                                     </div>
                                 </div>
-                                <p style={{color:'var(--green)', marginTop:'10px'}}><i className="bi bi-coin"></i> {price} Tshs.</p>
+                                <p style={{color:'var(--green)', marginTop:'10px'}} className="flex">
+                                    <span className="flex" style={{marginRight:'10px'}}>
+                                    <input type="checkbox" style={{background:'red',width:'14px'}} onClick={handleStatus}/>
+                                    </span><i className="bi bi-coin"></i> {price} Tshs. <span className="comment gray">[{dealStatus === "PENDING" ? dealStatus + "...": dealStatus}]</span></p>
                             </div>
                         </div>
                         <div className="col-1">
