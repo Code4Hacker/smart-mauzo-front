@@ -7,6 +7,7 @@ import Customer from './components/admin/customers/Customer';
 import AllDeals from './components/admin/customers/AllDeals';
 import { ECustomers, EDashboard, ELogin } from './components/employees';
 import OneCustomer from './components/employees/customers/OneCustomer';
+import Pro_form from './components/employees/customers/Printing/Pro_form';
 
 function App() {
 
@@ -43,6 +44,9 @@ function App() {
         } />
         <Route path='/one_customer/:id' element={
           <OneCustomer />
+        } />
+        <Route path='/pro_forma/:id' element={
+          <Pro_form />
         } />
 
 

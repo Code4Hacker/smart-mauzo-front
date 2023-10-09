@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import jQuery from 'jquery';
 import { Link } from 'react-router-dom';
+import { baseURL } from '../../../baseURL';
 const Card = ({ employee, setEmployee }) => {
     const [empname, setEmpname] = useState();
     const { customerID,

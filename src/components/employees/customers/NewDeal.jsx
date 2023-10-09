@@ -5,22 +5,26 @@ import MenTrouser from './MeasurementFields/MenTrouser';
 import WomenBorJ from './MeasurementFields/WomenBorJ';
 import WomenSorT from './MeasurementFields/WomenSorT';
 import WomenDress from './MeasurementFields/WomenDress';
+import raws from '../raws.json';
 
-const NewDeal = ({ setCustomers }) => {
+const NewDeal = ({  setWorks, setOnecount, setContents, setCount }) => {
 
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
-    const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");
     const [mail, setMail] = useState("");
     const [codes, setCodes] = useState("");
+    const [dstatus, setDstatus] = useState("");
+    const [tracking, setTracking] = useState("");
+    const [summary, setSummary] = useState("");
+    const [sVummary, setSVummary] = useState("");
     const [fVname, setFVname] = useState("");
     const [lVname, setLVname] = useState("");
-    const [aVddress, setAVddress] = useState("");
     const [pVhone, setPVhone] = useState("");
     const [mVail, setMVail] = useState("");
     const [cVodes, setCVodes] = useState("");
-    const [status, setStatus] = useState();
+
+
 
     const [next_task, setNext_task] = useState(0);
     const [choice, setChoice] = useState("MenJacket");
@@ -30,46 +34,44 @@ const NewDeal = ({ setCustomers }) => {
             jQuery(this).addClass("choose");
         });
     }
-    const jqueries = () => {
-        store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
-    }
+    // const jqueries = () => {
+    //     store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+    // }
     // useEffect(() => { previewSelect(); }, []);
     previewSelect();
     return (
         <div className="add_box add_deal" style={{ display: "none" }}>
             <div className="update" style={{ padding: "2px" }}>
-                <div className="cancel" onClick={jqueries}>
+                <div className="cancel">
                     <button><i className="bi bi-x-lg"></i></button>
                 </div>
                 {
                     next_task === 0 ?
                         <div className="container">
-                            <input type="text" placeholder="Deal Title" name="fname" value={fname}
+                            <input type="text" placeholder="Deal Title" name="tt" value={fname}
                                 onChange={(e) => setFname(e.target.value)}
                                 style={{ marginTop: "5px", marginBottom: "5px" }} />
                             <div className="small text-center">{fVname}</div>
-                            <textarea type="text" placeholder="Deal Description" name="lName" value={lname}
+                            <textarea type="text" placeholder="Deal Description" name="dd" value={lname}
                                 onChange={(e) => setLname(e.target.value)}
                                 style={{ marginTop: "5px", marginBottom: "5px" }} ></textarea>
                             <div className="small text-center">{lVname}</div>
 
 
-                            <input type="text" placeholder="Quantity" name="Quantity" value={mail}
-                                onChange={(e) => setMail(e.target.value)}
-                                style={{ marginTop: "5px", marginBottom: "5px" }} />
-                            <div className="small text-center">{mVail}</div>
-                            <input type="text" placeholder="Price " name="price" value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                style={{ marginTop: "5px", marginBottom: "5px" }} />
-                            <div className="small text-center">{pVhone}</div>
-                            {/* <input type="text" placeholder="Address " name="address" value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        style={{ marginTop: "5px", marginBottom: "5px" }} />
-                    <div className="small text-center">{aVddress}</div> */}
-                            <textarea type="text" placeholder="Summarization" name="lName" value={lname}
-                                onChange={(e) => setLname(e.target.value)}
+                            <div className="flex">
+                                <input type="text" placeholder="Quantity" name="Quantity" value={mail}
+                                    onChange={(e) => setMail(e.target.value)}
+                                    style={{ marginTop: "5px", marginBottom: "5px" }} />
+                                <div className="small text-center">{mVail}</div>
+                                <input type="text" placeholder="Price " name="price" value={phone}
+                                    onChange={(e) => setPhone(e.target.value)}
+                                    style={{ marginTop: "5px", marginBottom: "5px" }} />
+                                <div className="small text-center">{pVhone}</div>
+                            </div>
+                            <textarea type="text" placeholder="Requirements" name="req" value={summary}
+                                onChange={(e) => setSummary(e.target.value)}
                                 style={{ marginTop: "5px", marginBottom: "5px" }} ></textarea>
-                            <div className="small text-center">{lVname}</div>
+                            <div className="small text-center">{sVummary}</div>
 
 
 
@@ -77,6 +79,23 @@ const NewDeal = ({ setCustomers }) => {
                                 onChange={(e) => setCodes(e.target.value)}
                                 style={{ marginTop: "5px", marginBottom: "5px" }} />
                             <div className="small text-center">{cVodes}</div>
+                            <div className="flex">
+                                <div className="" style={{width:'100%'}}>
+                                    <div className="small text-center">Payment Status</div>
+                                    <select name="" id="" onChange={(evt) => setDstatus(evt.target.value)}>
+                                        <option value={raws.deal_status.PENDING}>{raws.deal_status.PENDING}</option>
+                                        <option value={raws.deal_status.PAID}>{raws.deal_status.PAID}</option>
+                                    </select>
+                                </div>
+                                <div className="" style={{width:'100%'}}>
+                                    <div className="small text-center">Deal Attitude</div>
+                                    <select name="" id="" onChange={(evt) => setTracking(evt.target.value)}>
+                                        <option value={raws.deal_track.ON_PROGRESS_DEAL}>{raws.deal_track.ON_PROGRESS_DEAL}</option>
+                                        <option value={raws.deal_track.TRANSPORTED}>{raws.deal_track.TRANSPORTED}</option>
+                                        <option value={raws.deal_track.DELIVERED}>{raws.deal_track.DELIVERED}</option>
+                                    </select>
+                                </div>
+                            </div>
 
 
 
@@ -140,7 +159,16 @@ const NewDeal = ({ setCustomers }) => {
                                 </div>
                             </div> : next_task === 2 ?
                                 <div className="">
-                                    {choice === "MenJacket" ? <MenJacket setTask={setNext_task} setCustomers={setCustomers} /> : choice === "MenTrouser" ? <MenTrouser setTask={setNext_task} setCustomers={setCustomers} /> : choice === "WomenBorJ" ? <WomenBorJ setTask={setNext_task} setCustomers={setCustomers} /> : choice === "WomenSorT" ? <WomenSorT setTask={setNext_task} setCustomers={setCustomers} /> : choice === "WomenD" ? <WomenDress setTask={setNext_task} setCustomers={setCustomers} /> : "No choice Selected"}
+                                    {choice === "MenJacket" ? 
+                                    <MenJacket setTask={setNext_task}  fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus} setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} /> : 
+                                    choice === "MenTrouser" ? 
+                                    <MenTrouser setTask={setNext_task}  fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus}setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} /> : 
+                                    choice === "WomenBorJ" ? 
+                                    <WomenBorJ setTask={setNext_task}  fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus}setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} /> : 
+                                    choice === "WomenSorT" ? 
+                                    <WomenSorT setTask={setNext_task}  fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus}setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} /> : 
+                                    choice === "WomenD" ? 
+                                    <WomenDress setTask={setNext_task}  fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus}setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} /> : "No choice Selected"}
                                 </div>
                                 :
                                 "Loading ..."

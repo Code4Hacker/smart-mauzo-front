@@ -1,16 +1,28 @@
 import axios from 'axios';
 import React from 'react'
 import { baseURL } from '../../../baseURL';
+import { useParams } from 'react-router-dom';
 
-const EC_Deals = ({ deals, num, setDeals, setCount }) => {
+const EC_Deals = ({ deals, num, setWorks, setOnecount, setContents, setCount }) => {
+    const params = useParams();
     const { dealID, dealTitle, dealDescription, dealSummary, dealPicture, registeredBy, CustomerUnique, customerId, price, registedDate, dealRequirements, measurements } = deals;
     const handledel = async () => {
         const del = await axios.delete(`${baseURL}deals.php`, { data: JSON.stringify({ "id": dealID }) });
         // const status = del.data;
         const getall = async () => {
-            const response = await axios.get(`${baseURL}dealforone.php?customer=${CustomerUnique}&employee=${registeredBy}`);
-            setDeals(response.data.deals);
-            setCount(response.data.counter);
+            const response = await axios.get(`${baseURL}onecustomer.php?id=${params.id}`);
+            setContents(response.data.customer[0]);
+            const deals = await axios.get(`${baseURL}dealforone.php?customer=${response.data.customer[0].customerUnique}&employee=${response.data.customer[0].registeredBy}`);
+            setWorks(deals.data.deals);
+            for (let index = 0; index < deals.data.deals.length; index++) {
+                if (index < deals.data.deals.length - 1) {
+                    setOnecount(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
+                } else if (deals.data.deals.length === 1) {
+                    setOnecount(Number(deals.data.deals[index].price));
+                }
+
+            }
+            setCount(deals.data.counter);
         }
         getall();
     }
@@ -38,7 +50,7 @@ const EC_Deals = ({ deals, num, setDeals, setCount }) => {
                                         <span className="small desc comment">{dealRequirements}</span>
                                     </div>
                                 </div>
-                                <span><i className="bi bi-coin"></i> {price} Tshs.</span>
+                                <p style={{color:'var(--green)', marginTop:'10px'}}><i className="bi bi-coin"></i> {price} Tshs.</p>
                             </div>
                         </div>
                         <div className="col-1">

@@ -9,22 +9,22 @@ const TopBar2 = ({ location }) => {
         duration: 1000,
         easing: 'linear'
     });
-    const [admin, setAdmin] = useState();
+    const [employee, setEmployee] = useState();
     const [count, setCount] = useState();
     const [count2, setCount2] = useState();
     const navigate = useNavigate();
 
     useEffect(() => {
         const getall = async () => {
-            const response = await axios.get(`${baseURL}admin.php?admin_id=${window.localStorage.emMail}`);
+            const response = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
 
             if (response.data.status === "200") {
-                setAdmin(response.data.admin);
+                setEmployee(response.data.employee);
             }
         }
         getall();
         const counterGet = async () => {
-            const response = await axios.get(`${baseURL}counter.php?admin_id=${window.localStorage.emMail}`);
+            const response = await axios.get(`${baseURL}e_counter.php?employee_id=${window.localStorage.emMail}`);
             const deals = await axios.get(`${baseURL}deals.php`);
             for (let index = 0; index < deals.data.deals.length; index++) {
                 if (index < deals.data.deals.length - 1) {
@@ -46,7 +46,7 @@ const TopBar2 = ({ location }) => {
         
     }, []);
     return (
-        <div>
+        <div className=' prt_on'>
             <div className="box_full" style={{ "--width": "100%" }}>
                 <div className="container">
                     <div className="row" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="3000">
@@ -65,10 +65,10 @@ const TopBar2 = ({ location }) => {
                             </div>
                             <div className="grid mt-20 cc">
                                 <span className="white">
-                                    {admin ? admin[0].adminFirst + " " + admin[0].adminLast : "John Doe"}
+                                    {employee ? employee[0].employeeFirst + " " + employee[0].employeeLast : "John Doe"}
                                 </span>
                                 <div className="up">
-                                    <span className="gray small italic">{admin ? admin[0].adminEmail : "fakemail@gmail.com"}</span>
+                                    <span className="gray small italic">{employee ? employee[0].employeeEmail : "fakemail@gmail.com"}</span>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@ const TopBar2 = ({ location }) => {
                     <div className="number">
                         <div className="title text-center mt-2">
                             <h1><span>
-                                {count !== undefined ? count.employees : "0"}
+                                {count !== undefined ? count.customers : "0"}
                             </span></h1>
                         </div>
                     </div>
@@ -97,12 +97,12 @@ const TopBar2 = ({ location }) => {
                     <div className="number">
                         <div className="title text-center mt-2">
                             <h1><span>
-                                {count !== undefined ? count.customers : "0"}
+                                {count !== undefined ? count.your_customers : "0"}
                             </span></h1>
                         </div>
                     </div>
                 </div>
-                <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="flip-up" data-aos-duration="1000"
+                {/* <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="flip-up" data-aos-duration="1000"
                     data-aos-delay="3000">
                     <div className="title text-center mt-2">
                         <h5><span>TOTAL SALES</span></h5>
@@ -113,7 +113,7 @@ const TopBar2 = ({ location }) => {
                             <span className="small">Tshs.</span>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 {/* <div className="box_full_template_grid " style={{"--width":"100%","--h":"150px"}} data-aos="flip-up" data-aos-duration="1000"
                     data-aos-delay="3000">
                     <div className="title text-center mt-2">

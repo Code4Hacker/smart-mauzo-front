@@ -25,7 +25,7 @@ const ELogin = () => {
             formdt.append("Aemail", email);
             formdt.append("Apasscode", pass);
             const checkOut = await axios.request({
-                url: `${baseURL}log.php`,
+                url: `${baseURL}e_log.php`,
                 method: "POST",
                 data: formdt
             });
@@ -97,11 +97,11 @@ const ELogin = () => {
                         <h2><span>Employee Login</span></h2>
                     </div>
                     <div className="grid_items" style={{ "--width": "90%", marginLeft: "30px", marginRight: "30px", padding: "25px", marginBottom: "-10px", marginTop: "-20px" }} onKeyUp={() => handlesubmit}>
-                        <input type="text" placeholder="Enter Email" value={email} onChange={(evt) => setEmail(evt.target.value)} name="email" style={{ padding: "25px" }} />
+                        <input type="text" placeholder="Enter Email" value={email} onChange={(evt) => setEmail(evt.target.value)} name="E_email" style={{ padding: "25px" }} />
                         <div className="small pwd">{vmail}</div>
                     </div>
                     <div className="grid_items" style={{ "--width": "90%", marginLeft: "30px", marginRight: "30px", padding: "25px", marginBottom: "-10px", marginTop: "-20px" }}>
-                        <input type="password" placeholder="Enter Password" value={pass} onChange={(evt) => setPass(evt.target.value)} name="passcode" style={{ padding: "25px" }} />
+                        <input type="password" placeholder="Enter Password" value={pass} onChange={(evt) => setPass(evt.target.value)} name="E_passcode" style={{ padding: "25px" }} />
                         <div className="small pwd">{vpwd}</div>
 
                     </div>

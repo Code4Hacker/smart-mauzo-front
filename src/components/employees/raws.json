@@ -1,0 +1,11 @@
+{
+    "deal_status": {
+            "PENDING":"PENDING",
+            "PAID":"PAID"
+        },
+        "deal_track": {
+            "ON_PROGRESS_DEAL":"ON PROGRESS",
+            "TRANSPORTED":"TRANSPORTED",
+            "DELIVERED":"DELIVERED"
+        }
+}

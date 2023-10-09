@@ -463,7 +463,7 @@ li:hover .list_dropdown {
 }
 
 .update input,textarea,
-.rename input {
+.rename input, select {
     margin: 10px;
     width: 95%;
     border-color: var(--green);

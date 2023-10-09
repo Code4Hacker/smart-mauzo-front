@@ -8,9 +8,11 @@ const AddCustomers = ({ setCustomers }) => {
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [address, setAddress] = useState("");
+    const [photo, setPhoto] = useState("");
     const [phone, setPhone] = useState("");
     const [mail, setMail] = useState("");
     const [codes, setCodes] = useState("");
+    const [regId, setRegId] = useState("");
     const [fVname, setFVname] = useState("");
     const [lVname, setLVname] = useState("");
     const [aVddress, setAVddress] = useState("");
@@ -19,8 +21,9 @@ const AddCustomers = ({ setCustomers }) => {
     const [cVodes, setCVodes] = useState("");
     const [status, setStatus] = useState();
     const navigate = useNavigate();
+
     const jqueries = () => {
-        store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+        // store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
     }
     const addNew = async (PATH) => {
         let formdata = new FormData();
@@ -29,7 +32,9 @@ const AddCustomers = ({ setCustomers }) => {
         formdata.append("address", address);
         formdata.append("phone", phone);
         formdata.append("mail", mail);
-        formdata.append("codes", codes);
+        formdata.append("unique", codes);
+        formdata.append("registered", regId);
+        formdata.append("photo", photo);
 
         let bodyContent = formdata;
 
@@ -41,10 +46,11 @@ const AddCustomers = ({ setCustomers }) => {
 
         let response = await axios.request(reqOptions);
         setStatus(response.data.status);
+        console.log(response.data);
     }
     // useEffect(() => {
     // }, [PATH,fname,lname,address,phone,mail,codes]);    
-    const handleupdate = () => {
+    const handleupdate = async() => {
         fname.length < 4 ?
             setFVname(<span style={{ color: 'red' }}>First Name is Too Small!</span>) :
             setFVname(<span style={{ color: 'orange' }}>Rule Followed Successiful!</span>);
@@ -61,10 +67,15 @@ const AddCustomers = ({ setCustomers }) => {
             setAVddress(<span style={{ color: 'red' }}>Address is not Valid!</span>) :
             setAVddress(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
         !codes.match(/[0-9]/g) || codes.length < 8 ?
-            setCVodes(<span style={{ color: 'red' }}>Unique code is too small!</span>) :
+            setCVodes(<span style={{ color: 'red' }}>Unique code should contain numbers too!</span>) :
             setCVodes(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
         if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && (phone.length >= 10 || phone.match(/[\d+]/g)) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length >= 8)) {
-            addNew(`${baseURL}Customer.php`);
+                const response = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
+    
+                if (response.data.status === "200") {
+                    setRegId(response.data.employee[0].employeeID);
+                }
+            addNew(`${baseURL}customers.php`);
             switch (status) {
                 case '400':
                     setFVname(<span style={{ color: 'red' }}></span>);
@@ -83,16 +94,19 @@ const AddCustomers = ({ setCustomers }) => {
                     setAVddress(<span style={{ color: 'green' }}>New Customer Added!</span>);
                     break;
                 default:
-                    console.log(status);
+                    console.log("NOTHING")
                     break;
             }
             const getall = async () => {
-                const response = await axios.get(`${baseURL}Customer.php`);
-                setCustomers(response.data.Customers);
+                const response = await axios.get(`${baseURL}customers.php`);
+                setCustomers(response.data.customers);
             }
             getall();
         }
 
+    }
+    const getPhoto = () => {
+        document.getElementById("profilePic").click();
     }
     return (
         <div className="add_box" style={{ display: "none" }}>
@@ -101,14 +115,16 @@ const AddCustomers = ({ setCustomers }) => {
                     <button><i className="bi bi-x-lg"></i></button>
                 </div>
                 <div className="container">
-                    <input type="text" placeholder="Customer First Name" name="fname" value={fname}
-                        onChange={(e) => setFname(e.target.value)}
-                        style={{ marginTop: "5px", marginBottom: "5px" }} />
-                    <div className="small text-center">{fVname}</div>
-                    <input type="text" placeholder="Customer Last Name" name="lName" value={lname}
-                        onChange={(e) => setLname(e.target.value)}
-                        style={{ marginTop: "5px", marginBottom: "5px" }} />
-                    <div className="small text-center">{lVname}</div>
+                    <div className="flex">
+                        <input type="text" placeholder="Customer First Name" name="fname" value={fname}
+                            onChange={(e) => setFname(e.target.value)}
+                            style={{ marginTop: "5px", marginBottom: "5px" }} />
+                        <div className="small text-center">{fVname}</div>
+                        <input type="text" placeholder="Customer Last Name" name="lName" value={lname}
+                            onChange={(e) => setLname(e.target.value)}
+                            style={{ marginTop: "5px", marginBottom: "5px" }} />
+                        <div className="small text-center">{lVname}</div>
+                    </div>
                     <input type="text" placeholder="Customer Email" name="email" value={mail}
                         onChange={(e) => setMail(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
@@ -128,7 +144,12 @@ const AddCustomers = ({ setCustomers }) => {
                         onChange={(e) => setCodes(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{cVodes}</div>
-
+                    <div className='preview' onClick={getPhoto}>
+                        <div className="title">
+                            <input type="file" name="" id="profilePic" onChange={(e) => setPhoto(e.target.files[0])} hidden/>
+                            <h4><span>SELECT IMAGE</span></h4>
+                        </div>
+                    </div>
 
 
                     <div className="button">

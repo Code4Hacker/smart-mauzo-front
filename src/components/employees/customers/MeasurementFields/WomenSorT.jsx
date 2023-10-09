@@ -1,95 +1,87 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { baseURL } from '../../../../baseURL';
+import jQuery from 'jquery';
 
-const WomenSorT = ({ setCustomers, setTask }) => {
-    const [fname, setFname] = useState("");
-    const [lname, setLname] = useState("");
-    const [address, setAddress] = useState("");
-    const [phone, setPhone] = useState("");
-    const [mail, setMail] = useState("");
-    const [codes, setCodes] = useState("");
-    const [fVname, setFVname] = useState("");
-    const [lVname, setLVname] = useState("");
-    const [aVddress, setAVddress] = useState("");
-    const [pVhone, setPVhone] = useState("");
-    const [mVail, setMVail] = useState("");
-    const [cVodes, setCVodes] = useState("");
-    const [status, setStatus] = useState();
-    const navigate = useNavigate();
+const WomenSorT = ({ setTask, fname, lname, mail, phone, requirements, unique, dstatus, tracks, setWorks, setOnecount, setContents, setCount }) => {
 
-    const addNew = async (PATH) => {
-        let formdata = new FormData();
-        formdata.append("fname", fname);
-        formdata.append("lname", lname);
-        formdata.append("address", address);
-        formdata.append("phone", phone);
-        formdata.append("mail", mail);
-        formdata.append("codes", codes);
+    const [measures, setMeasures] = useState("");
+    const [len, setLen] = useState("");
+    const [w, setW] = useState("");
+    const [hps, setHps] = useState("");
+    const [knee, setKnee] = useState("");
+    const [ankle, setAnkle] = useState("");
+    const [thigh, setThigh] = useState("");
+    const [flys, setFlys] = useState("");
+    const [cty, setCty] = useState("");
+    const [bywho, setBywho] = useState("");
+    const nav = useNavigate();
+    const params = useParams();
 
-        let bodyContent = formdata;
+    const handlepost = async () => {
+        const response = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
 
-        let reqOptions = {
-            url: PATH,
-            method: "POST",
-            data: bodyContent,
-        }
+        if (response.data.status === "200") {
+            // console.log(response.data.employee[0].employeeID);
 
-        let response = await axios.request(reqOptions);
-        setStatus(response.data.status);
-    }
-    // useEffect(() => {
-    // }, [PATH,fname,lname,address,phone,mail,codes]);    
-    const handleupdate = () => {
-        fname.length < 4 ?
-            setFVname(<span style={{ color: 'red' }}>First Name is Too Small!</span>) :
-            setFVname(<span style={{ color: 'orange' }}>Rule Followed Successiful!</span>);
-        lname.length < 4 ?
-            setLVname(<span style={{ color: 'red' }}>Last Name is Too Small!</span>) :
-            setLVname(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
-        mail.length < 10 ?
-            setMVail(<span style={{ color: 'red' }}>Email is Invalid!</span>) :
-            setMVail(<span style={{ color: 'orange' }}>Rule Followed Successiful!</span>);
-        phone.length < 10 || phone.match(/[a-z]/g) ?
-            setPVhone(<span style={{ color: 'red' }}>Phone Number Not Valid!</span>) :
-            setPVhone(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
-        address.length < 10 ?
-            setAVddress(<span style={{ color: 'red' }}>Address is not Valid!</span>) :
-            setAVddress(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
-        !codes.match(/[0-9]/g) || codes.length < 8 ?
-            setCVodes(<span style={{ color: 'red' }}>Unique code is too small!</span>) :
-            setCVodes(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
-        if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && (phone.length >= 10 || phone.match(/[\d+]/g)) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length >= 8)) {
-            addNew(`${baseURL}Customer.php`);
-            switch (status) {
-                case '400':
-                    setFVname(<span style={{ color: 'red' }}></span>);
-                    setLVname(<span style={{ color: 'orange' }}></span>);
-                    setMVail(<span style={{ color: 'orange' }}></span>);
-                    setPVhone(<span style={{ color: 'orange' }}></span>);
-                    setCVodes(<span style={{ color: 'orange' }}></span>);
-                    setAVddress(<span style={{ color: 'blue' }}>Sorry, Customer with this Email Exist!</span>);
-                    break;
-                case '200':
-                    setFVname(<span style={{ color: 'red' }}></span>);
-                    setLVname(<span style={{ color: 'orange' }}></span>);
-                    setMVail(<span style={{ color: 'orange' }}></span>);
-                    setPVhone(<span style={{ color: 'orange' }}></span>);
-                    setCVodes(<span style={{ color: 'orange' }}></span>);
-                    setAVddress(<span style={{ color: 'green' }}>New Customer Added!</span>);
-                    break;
-                default:
-                    console.log(status);
-                    break;
+            let mrs_connector = `L - ${len}, W - ${w}, HPS - ${hps}, THIGH - ${thigh}, KNEE - ${knee}, ANKLE - ${ankle}, FLYS - ${flys}`;
+
+            setBywho(response.data.employee[0].employeeID);
+            setMeasures(mrs_connector);
+            setCty("Women SorT");
+
+            let formdata = new FormData();
+            formdata.append("title", fname);
+            formdata.append("description", lname);
+            formdata.append("requires", requirements);
+            formdata.append("price", phone);
+            formdata.append("quantity", mail);
+            formdata.append("cId", unique);
+            formdata.append("bywho", bywho);
+            formdata.append("measures", measures);
+            formdata.append("category", cty);
+            formdata.append("status", dstatus);
+            formdata.append("track", tracks);
+
+            let bodyContent = formdata;
+
+            let reqOptions = {
+                url: `${baseURL}dealforone.php`,
+                method: "POST",
+                data: bodyContent,
             }
-            const getall = async () => {
-                const response = await axios.get(`${baseURL}Customer.php`);
-                setCustomers(response.data.Customers);
-            }
-            getall();
-        }
 
+            let response2 = await axios.request(reqOptions);
+            if (response2.data.status === "200") {
+                const response = await axios.get(`${baseURL}onecustomer.php?id=${params.id}`);
+                setContents(response.data.customer[0]);
+                const deals = await axios.get(`${baseURL}dealforone.php?customer=${response.data.customer[0].customerUnique}&employee=${response.data.customer[0].registeredBy}`);
+                setWorks(deals.data.deals);
+                for (let index = 0; index < deals.data.deals.length; index++) {
+                    if (index < deals.data.deals.length - 1) {
+                        setOnecount(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
+                    } else if (deals.data.deals.length === 1) {
+                        setOnecount(Number(deals.data.deals[index].price));
+                    }
+
+                }
+                setCount(deals.data.counter);
+                jQuery(".add_box.add_deal").fadeOut({duration:500});
+                setTimeout(() => {
+                    nav(`/pro_forma/${unique}`);
+                }, 3000);
+            } else {
+                // handlepost();
+                alert("please click again to confirm !");
+                // console.log(response2.data);
+            }
+            // const response2 = await axios.get(`${baseURL}onecustomer.php?id=${params.id}`);
+
+
+        } else {
+            alert("ID for Employee is Invalid!");
+        }
     }
     return (
 
@@ -98,42 +90,44 @@ const WomenSorT = ({ setCustomers, setTask }) => {
                 <h3><span>Women Skirt/Trouser</span></h3>
             </div>
             <div className="flex">
-                <input type="text" placeholder="L" name="fname" value={fname}
-                    onChange={(e) => setFname(e.target.value)}
-                    style={{ marginTop: "5px", marginBottom: "5px", width:'150px' }} />
-                <div className="small text-center">{fVname}</div>
-                <input type="text" placeholder="W" name="lName" value={lname}
-                    onChange={(e) => setLname(e.target.value)}
+                <input type="text" placeholder="L" name="l" value={len}
+                    onChange={(e) => setLen(e.target.value)}
+                    style={{ marginTop: "5px", marginBottom: "5px", width: '150px' }} />
+                <div className="small text-center">{len?.length < 1 ? "Fill this field" : ""}</div>
+                <input type="text" placeholder="W" name="w" value={w}
+                    onChange={(e) => setW(e.target.value)}
                     style={{ marginTop: "5px", marginBottom: "5px" }} />
-                <div className="small text-center">{lVname}</div>
+                <div className="small text-center">{w?.length < 1 ? "Fill this field" : ""}</div>
             </div>
             <div className="flex">
-                <input type="text" placeholder="HPS" name="lName" value={lname}
-                    onChange={(e) => setLname(e.target.value)}
+                <input type="text" placeholder="HPS" name="hps" value={hps}
+                    onChange={(e) => setHps(e.target.value)}
                     style={{ marginTop: "5px", marginBottom: "5px" }} />
-                <div className="small text-center">{lVname}</div>
-                <input type="text" placeholder="THIGH" name="fname" value={fname}
-                    onChange={(e) => setFname(e.target.value)}
-                    style={{ marginTop: "5px", marginBottom: "5px", width:'160px' }} />
-                <div className="small text-center">{fVname}</div>
+                <div className="small text-center">{hps?.length < 1 ? "Fill this field" : ""}</div>
+                <input type="text" placeholder="THIGH" name="thigh" value={thigh}
+                    onChange={(e) => setThigh(e.target.value)}
+                    style={{ marginTop: "5px", marginBottom: "5px", width: '160px' }} />
+                <div className="small text-center">{thigh?.length < 1 ? "Fill this field" : ""}</div>
             </div>
             <div className="flex">
-                <input type="text" placeholder="KNEE" name="fname" value={fname}
-                    onChange={(e) => setFname(e.target.value)}
-                    style={{ marginTop: "5px", marginBottom: "5px", width:'170px' }} />
-                <div className="small text-center">{fVname}</div>
-                <input type="text" placeholder="ANKLE" name="lName" value={lname}
-                    onChange={(e) => setLname(e.target.value)}
+                <input type="text" placeholder="KNEE" name="knee" value={knee}
+                    onChange={(e) => setKnee(e.target.value)}
+                    style={{ marginTop: "5px", marginBottom: "5px", width: '170px' }} />
+                <div className="small text-center">{knee?.length < 1 ? "Fill this field" : ""}</div>
+                <input type="text" placeholder="ANKLE" name="ankle" value={ankle}
+                    onChange={(e) => setAnkle(e.target.value)}
                     style={{ marginTop: "5px", marginBottom: "5px" }} />
-                <div className="small text-center">{lVname}</div>
+                <div className="small text-center">{ankle?.length < 1 ? "Fill this field" : ""}</div>
             </div>
-            <input type="text" placeholder="FLYS" name="Quantity" value={mail}
-                onChange={(e) => setMail(e.target.value)}
-                style={{ marginTop: "5px", marginBottom: "5px" }} />
-            <div className="small text-center">{mVail}</div>
+            <input type="text" placeholder="FLYS" name="flys" value={flys}
+                onChange={(e) => setFlys(e.target.value)}
+                style={{ marginTop: "5px", marginBottom: "5px"}} />
+            <div className="small text-center">{flys?.length < 1 ? "Fill this field" : ""}</div>
+
+
             <div className="button">
                 <button id="bottonGet" onClick={() => setTask(1)}><i className="bi bi-chevron-double-left"></i> Back</button>
-                <button id="bottonGet" onClick={handleupdate}><i className="bi bi-chevron-double-up"></i> Complete</button>
+                <button onClick={handlepost}><i className="bi bi-chevron-double-up"></i> Complete</button>
             </div>
         </div>
     )

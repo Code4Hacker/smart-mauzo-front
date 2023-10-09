@@ -1,29 +1,19 @@
 import axios from 'axios';
 import React from 'react'
 import { baseURL } from '../../../baseURL';
-import { useParams } from 'react-router-dom';
 
-const CustomerDeals = ({ deals, num, setWorks, setOnecount, setContents, setCount }) => {
-    const params = useParams();
+const AllDeal = ({ deals, num, setDeals, setCount }) => {
     const {dealID, dealTitle, dealDescription, dealSummary, dealPicture, registeredBy, CustomerUnique, customerId, price, registedDate, dealRequirements, measurements} = deals;
     const handledel = async () => {
         const del = await axios.delete(`${baseURL}deals.php`, { data: JSON.stringify({ "id": dealID }) });
         // const status = del.data;
         const getall = async () => {
-            const response = await axios.get(`${baseURL}onecustomer.php?id=${params.id}`);
-            setContents(response.data.customer[0]);
-            const deals = await axios.get(`${baseURL}dealforone.php?customer=${response.data.customer[0].customerUnique}&employee=${response.data.customer[0].registeredBy}`);
-            setWorks(deals.data.deals);
-            for (let index = 0; index < deals.data.deals.length; index++) {
-                if (index < deals.data.deals.length - 1) {
-                    setOnecount(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
-                }else if(deals.data.deals.length === 1){
-                    setOnecount(Number(deals.data.deals[index].price));
-                }
-
-            }
+            const deals = await axios.get(`${baseURL}deals.php`);
+            // setContents(response.data.deals);
+            setDeals(deals.data.deals);
             setCount(deals.data.counter);
         }
+        
         getall();
     }
     return (
@@ -80,4 +70,4 @@ const CustomerDeals = ({ deals, num, setWorks, setOnecount, setContents, setCoun
     )
 }
 
-export default CustomerDeals
+export default AllDeal

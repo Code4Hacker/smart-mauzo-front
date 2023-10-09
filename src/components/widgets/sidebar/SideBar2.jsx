@@ -18,7 +18,7 @@ const SideBar2 = () => {
     }
     useEffect(() => { queries() }, []);
     return (
-        <div>
+        <div className='prt_on'>
             <div className="col-xl-12 flex navtab">
                 <div className="row">
                     <div className="col-10">

@@ -73,7 +73,7 @@ const OneCustomer = () => {
             for (let index = 0; index < deals.data.deals.length; index++) {
                 if (index < deals.data.deals.length - 1) {
                     setOnecount(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
-                }else if(deals.data.deals.length === 1){
+                } else if (deals.data.deals.length === 1) {
                     setOnecount(Number(deals.data.deals[index].price));
                 }
 
@@ -84,6 +84,34 @@ const OneCustomer = () => {
         getall();
         jqueryCodes();
     }, []);
+    const printing = () => {
+        jQuery(".prt_on").hide();
+        jQuery(".pdeal").css({
+            "position": "absolute",
+            "width": "90%",
+            "left": "50%",
+            "transform": "translateX(-50%)"
+        });
+        window.print();
+        window.onended = function(){
+            jQuery(".prt_on").show();
+            jQuery(".pdeal").css({
+                "position": "auto",
+                "width": "auto",
+                "left": "auto",
+                "transform": "none"
+            });
+        }
+    }
+    window.onpointercancel = function(){
+        jQuery(".prt_on").show();
+        jQuery(".pdeal").css({
+            "position": "auto",
+            "width": "auto",
+            "left": "auto",
+            "transform": "none"
+        });
+    }
     return (
         <div>
             {/* <div className="pre_loader">
@@ -93,7 +121,7 @@ const OneCustomer = () => {
             </div> */}
             <Mini />
             <div className="dashboard_grid_container">
-                <div className="dash_grid_items sidebar">
+                <div className="dash_grid_items sidebar prt_on">
                     <div className="row" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="3000">
                         <SideBar2 />
                     </div>
@@ -104,14 +132,14 @@ const OneCustomer = () => {
 
                     }}>
                         <div className="row customer">
-                            <div className="col-md-6">
+                            <div className="col-md-6 prt_on">
                                 <div className="contents">
                                     <div className="title"><h3><span style={{
                                         fontWeight: 100, marginTop: '50px !important', padding: '20px', background: 'var(--milk)', color: 'var(--black)', position: 'relative', minHeight: '30px', marginLeft: '-50px', borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px'
                                     }}>CUSTOMER PROFILE</span></h3></div>
-                                    <div className="grid2" style={{ "--template": "150px auto" }}>
+                                    <div className="grid2 prt_on" style={{ "--template": "150px auto" }}>
                                         <div className="photo">
-                                            <img src={contents !== undefined ? baseURL+contents.customerProfile : ""} alt="" />
+                                            <img src={contents !== undefined ? baseURL + contents.customerProfile : ""} alt="" />
                                         </div>
                                         <div className="content">
                                             <div className="container">
@@ -147,10 +175,10 @@ const OneCustomer = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4 process">
-                            <div className="title"><h3><span style={{
-                                        fontWeight: 100, marginTop: '50px !important', padding: '20px', background: 'var(--milk)', color: 'var(--black)', position: 'relative', minHeight: '30px', marginLeft: '-50px', borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px'
-                                    }}>ACTIVITIES</span></h3></div>
+                            <div className="col-md-4 process prt_on">
+                                <div className="title"><h3><span style={{
+                                    fontWeight: 100, marginTop: '50px !important', padding: '20px', background: 'var(--milk)', color: 'var(--black)', position: 'relative', minHeight: '30px', marginLeft: '-50px', borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px'
+                                }}>ACTIVITIES</span></h3></div>
                                 <div className="contents">
                                     <div className="processor">
                                         <div className="processor2">
@@ -161,18 +189,18 @@ const OneCustomer = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-xl-10" style={{
-                                marginTop: '50px',position:'relative'
+                            <div className="col-xl-10 pdeal" style={{
+                                marginTop: '50px', position: 'relative'
                             }}>
                                 <div className="title"><h3><span style={{
                                     fontWeight: 100, marginTop: '50px !important', padding: '20px', background: 'var(--milk)', color: 'var(--black)', position: 'relative', minHeight: '30px', marginLeft: '-50px', borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px'
                                 }}>CUSTOMER DEALS</span></h3></div>
-                                    <button className="print_deal bi bi-printer-fill"> Print</button>
+                                <button className="print_deal bi bi-printer-fill prt_on" onClick={printing}> Print</button>
                                 <div className="deals" style={{
-                                marginTop: '40px',position:'relative'
-                            }}>
+                                    marginTop: '40px', position: 'relative'
+                                }}>
                                     {
-                                        works !== undefined && works?.length > -1 ? works.map((work, id) => <EC_Deals deals={work} num={id} setDeals={setWorks} setCount={setCount} key={id} />) : "Loading ..."
+                                        works !== undefined && works?.length > -1 ? works.map((work, id) => <EC_Deals  setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} deals={work} num={id}  setCount={setCount} key={id} />) : "Loading ..."
                                     }
                                 </div>
                             </div>
@@ -182,8 +210,8 @@ const OneCustomer = () => {
             </div>
             {/* ADDING
             <AddEmployee setEmployee={setContents} /> */}
-            <NewDeal setEmployee={setContents} />
-            <div className="addnew">
+            <NewDeal setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} />
+            <div className="addnew prt_on">
                 <button className='bi bi-plus add_open dealnew'>
                     <span>New Deal</span>
                 </button>
