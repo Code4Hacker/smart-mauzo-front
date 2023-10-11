@@ -8,6 +8,7 @@ import AllDeals from './components/admin/customers/AllDeals';
 import { ECustomers, EDashboard, ELogin } from './components/employees';
 import OneCustomer from './components/employees/customers/OneCustomer';
 import Pro_form from './components/employees/customers/Printing/Pro_form';
+import Stocks from './components/employees/report/Stocks';
 
 function App() {
 
@@ -47,6 +48,9 @@ function App() {
         } />
         <Route path='/pro_forma/:id' element={
           <Pro_form />
+        } />
+        <Route path='/repo' element={
+          <Stocks />
         } />
 
 

@@ -8,12 +8,12 @@
 :root {
     --green: rgb(0, 7, 107);
     --blue: rgb(0, 26, 255);
-    --milk: rgb(17, 17, 17);
+    --milk: rgb(51, 51, 51);
     --shadow: rgb(221, 202, 245);
     --gray_color: rgb(228, 225, 225);
-    --black: rgb(255, 255, 255);
+    --black: rgb(252, 225, 231);
     --top-color:rgb(0, 8, 39);
-    --green-slim: rgb(4, 18, 212);
+    --green-slim: rgba(0, 119, 255, 0.267);
     --banner-color:rgb(29, 29, 29);
 }
 *{

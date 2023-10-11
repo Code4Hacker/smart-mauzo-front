@@ -141,3 +141,44 @@
     border-radius: 2px;
     border: 1px solid var(--green);
 }
+.deal .tracking>*{
+    width:100%;
+}
+.deal .tracking>*:nth-child(2){
+    width:200px;
+}
+.deal .tracking>*:nth-child(2) select{
+    padding: 10px !important;
+    margin-top: -10px;
+    border: none;
+    font-size: small;
+    box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.212);
+    background-color: var(--green-slim);
+}
+.options{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.26);
+    top: 0px;
+    z-index: 5;
+    left: 0px;
+    backdrop-filter: blur(40px);
+    height: 100vh;
+    width: 100%;
+}
+.options > *{
+    position: absolute;
+    background-color: var(--black);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+.options i{
+    /* color: var(--black); */
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: large;
+    /* background-color: red; */
+}

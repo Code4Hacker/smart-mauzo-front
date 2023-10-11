@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { baseURL } from '../../../baseURL';
 import { useParams } from 'react-router-dom';
 
 const CustomerDeals = ({ deals, num, setWorks, setOnecount, setContents, setCount }) => {
     const params = useParams();
-    const {dealID, dealTitle, dealDescription, dealSummary, dealPicture, registeredBy, CustomerUnique, customerId, price, registedDate, dealRequirements, measurements} = deals;
+    const [payed, setPayed] = useState();
+
+    const {dealID, dealTitle, dealDescription, dealSummary, dealPicture, registeredBy, CustomerUnique, customerId, price, registedDate, dealRequirements, measurements, dealStatus, tracking} = deals;
     const handledel = async () => {
         const del = await axios.delete(`${baseURL}deals.php`, { data: JSON.stringify({ "id": dealID }) });
         // const status = del.data;
@@ -26,6 +28,14 @@ const CustomerDeals = ({ deals, num, setWorks, setOnecount, setContents, setCoun
         }
         getall();
     }
+    const handleStatus = () => {
+        if(payed === "PENDING"){
+           setPayed("PAYED");
+        } else {
+            setPayed("PENDING");
+        }
+    }
+    useEffect(() => { setPayed(dealStatus)},[]);
     return (
         <div className="row deal">
             <div className="noted">
@@ -50,7 +60,10 @@ const CustomerDeals = ({ deals, num, setWorks, setOnecount, setContents, setCoun
                                         <span className="small desc comment">{dealRequirements}</span>
                                     </div>
                                 </div>
-                                <p style={{color:'var(--green)', marginTop:'10px'}}><i className="bi bi-coin"></i> {price} Tshs.</p>
+                                <p style={{color:'var(--green)', marginTop:'10px'}} className="flex">
+                                    <span className="flex" style={{marginRight:'10px'}}>
+                                    <input type="checkbox" style={{background:'red',width:'14px'}} onClick={handleStatus}/>
+                                    </span><i className="bi bi-coin"></i> {price} Tshs. <span className="comment gray">[{payed === "PENDING" ? payed + "...": payed}]</span></p>
                             </div>
                         </div>
                         <div className="col-1">
