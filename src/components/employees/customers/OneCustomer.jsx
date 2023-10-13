@@ -86,6 +86,9 @@ const OneCustomer = () => {
     }, []);
     const printing = () => {
         jQuery(".prt_on").hide();
+        jQuery(".prt_on").css({
+            "display": "none"
+        });
         jQuery(".pdeal").css({
             "position": "absolute",
             "width": "90%",
@@ -93,8 +96,11 @@ const OneCustomer = () => {
             "transform": "translateX(-50%)"
         });
         window.print();
-        window.onended = function(){
+        window.onafterprint = function(){
             jQuery(".prt_on").show();
+            jQuery(".prt_on").css({
+                "display": "block !important"
+            });
             jQuery(".pdeal").css({
                 "position": "auto",
                 "width": "auto",
@@ -103,15 +109,15 @@ const OneCustomer = () => {
             });
         }
     }
-    window.onpointercancel = function(){
-        jQuery(".prt_on").show();
-        jQuery(".pdeal").css({
-            "position": "auto",
-            "width": "auto",
-            "left": "auto",
-            "transform": "none"
-        });
-    }
+    // window.print = function(){
+    //     jQuery(".prt_on").show();
+    //     jQuery(".pdeal").css({
+    //         "position": "auto",
+    //         "width": "auto",
+    //         "left": "auto",
+    //         "transform": "none"
+    //     });
+    // }
     return (
         <div>
             {/* <div className="pre_loader">

@@ -41,7 +41,7 @@ const SideBar2 = () => {
                     </li>
                     <li className="nested_list">
                         <Link to={"/e_customers"} className="dropdown">
-                            <i className="bi bi-collection-fill"></i>
+                            <i className="bi bi-collection"></i>
                             <span> All Customers
                                 {/* <i className="bi bi-arrow-right-circle-fill drop"></i> */}
                             </span>
@@ -53,23 +53,29 @@ const SideBar2 = () => {
                     </li>
                     <li className="nested_list">
                         <Link to={"/customers"} className="dropdown">
-                            <i className="bi bi-people-fill"></i>
+                            <i className="bi bi-people"></i>
                             <span> Your Customers
                             </span>
                         </Link>
                     </li>
                     <li className="nested_list">
                         <Link to={"/customers"} className="dropdown">
-                            <i className="bi bi-people-fill"></i>
+                            <i className="bi bi-person-plus"></i>
                             <span> New Customers
                             </span>
                         </Link>
                     </li>
-
                     <li className="nested_list">
                         <Link to={"/deals"} className="dropdown">
-                            <i className="bi bi-cart-fill"></i>
+                            <i className="bi bi-cart"></i>
                             <span> Your Works
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="nested_list">
+                        <Link to={"/repo"} className="dropdown">
+                            <i className="bi bi-building"></i>
+                            <span> Stocks and Report
                             </span>
                         </Link>
                     </li>

@@ -37,3 +37,6 @@
     left: 50%;
     transform: translateX(-50%);
 }
+.receipt span:nth-child(2){
+    border-bottom: 1px solid var(--milk);
+}

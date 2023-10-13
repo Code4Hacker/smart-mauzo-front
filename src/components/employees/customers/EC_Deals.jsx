@@ -1,15 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { baseURL } from '../../../baseURL';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import raws from './../raws.json';
 import jQuery from 'jquery';
 
 const EC_Deals = ({ deals, num, setWorks, setOnecount, setContents, setCount }) => {
     const params = useParams();
+    const navigate = useNavigate();
     const [payed, setPayed] = useState();
-    const [trackin, setTrackin] = useState();
     const { dealID, dealTitle, dealDescription, dealSummary, dealPicture, registeredBy, CustomerUnique, customerId, price, registedDate, dealRequirements, measurements, dealStatus, tracking } = deals;
+    const [trackin, setTrackin] = useState(tracking);
     const handledel = async () => {
         const del = await axios.delete(`${baseURL}deals.php`, { data: JSON.stringify({ "id": dealID }) });
         // const status = del.data;
@@ -30,28 +31,75 @@ const EC_Deals = ({ deals, num, setWorks, setOnecount, setContents, setCount }) 
         }
         getall();
     }
-    const handleStatus = () => {
+    const handleStatus = async () => {
+        let formDATA = new FormData();
+        formDATA.append("dealnum", dealID);
         if (payed === "PENDING") {
             setPayed("PAYED");
+            formDATA.append("status", "PAYED");
+            let bodydata = formDATA;
+            const update = await axios.request({
+                url:`${baseURL}updatedeal.php`,
+                method:'POST',
+                data:bodydata
+            });
+            if (update.data.status !== "200") {
+                alert("Error");
+            } else {
+                alert("Updated Successiful");
+            }
         } else {
             setPayed("PENDING");
+            formDATA.append("status", "PENDING");
+            let bodydata = formDATA;
+            const update = await axios.request({
+                url:`${baseURL}updatedeal.php`,
+                method:'POST',
+                data:bodydata
+            });
+            if (update.data.status !== "200") {
+                alert("Error");
+            } else {
+                alert("Updated Successiful");
+            }
         }
     }
     const query = () => {
-        jQuery(".options .bi-x").on("click", function(){
-            jQuery(".options").fadeOut({duration:500});
+        jQuery(".options .bi-x").on("click", function () {
+            jQuery(".options").fadeOut({ duration: 500 });
         });
-        jQuery(".print-opt").on("click", function(){
-            jQuery(".options").fadeIn({duration:1000});
+        jQuery(".print-opt").on("click", function () {
+            jQuery(".options").fadeIn({ duration: 1000 });
         });
     }
-    useEffect(() => { 
+    useEffect(() => {
         setPayed(dealStatus);
-        
+
         query();
-     }, []);
+    }, []);
+    const invoice = () => {
+        navigate(`/invoice/${window.localStorage.dealC !== undefined ? window.localStorage.dealC : dealID}`);
+    }
+    const delivery = () => {
+        navigate(`/delivery/${window.localStorage.dealC !== undefined ? window.localStorage.dealC : dealID}`);
+    }
+    const receipt = () => {
+        navigate(`/receipt/${window.localStorage.dealC !== undefined ? window.localStorage.dealC : dealID}`);
+    }
+    const pro_forma = () => {
+        navigate(`/pro_forma2/${window.localStorage.dealC !== undefined ? window.localStorage.dealC : dealID}`);
+    }
+    const handleTracking = async (evt) => {
+        setTrackin(evt.target.value);
+        const update = await axios.get(`${baseURL}updatedeal.php?dealnum=${dealID}&tracks=${evt.target.value}`);
+        if (update.data.status !== "200") {
+            alert("Error");
+        } else {
+            alert("Updated Successiful");
+        }
+    }
     return (
-        <div className="row deal">
+        <div className="row deal" onClick={() => window.localStorage.setItem("dealC", dealID)}>
             <div className="noted">
                 <div className="note">
 
@@ -69,7 +117,7 @@ const EC_Deals = ({ deals, num, setWorks, setOnecount, setContents, setCount }) 
                                     <h4>{dealTitle}</h4>
                                 </div>
                                 <div className="">
-                                    <select name="" id="" onChange={(evt) => setTrackin(evt.target.value)}>
+                                    <select name="" id="" value={trackin} onChange={handleTracking}>
                                         <option value={raws.deal_track.ON_PROGRESS_DEAL}>{raws.deal_track.ON_PROGRESS_DEAL}</option>
                                         <option value={raws.deal_track.TRANSPORTED}>{raws.deal_track.TRANSPORTED}</option>
                                         <option value={raws.deal_track.DELIVERED}>{raws.deal_track.DELIVERED}</option>
@@ -116,11 +164,11 @@ const EC_Deals = ({ deals, num, setWorks, setOnecount, setContents, setCount }) 
                     </div>
                 </div>
             </div>
-            <div className="options">
+            <div className="options" style={{ display: 'none' }}>
                 <div className="dialog">
                     <i className="bi bi-x"></i>
                     <h3 className='text-center '>What need to Print ?</h3>
-                    <div className="preview">
+                    <div className="preview" onClick={invoice}>
                         <div className="title">
                             <h4><span>Invoice</span></h4>
                             <span className="small comment desc">
@@ -128,7 +176,7 @@ const EC_Deals = ({ deals, num, setWorks, setOnecount, setContents, setCount }) 
                             </span>
                         </div>
                     </div>
-                    <div className="preview">
+                    <div className="preview" onClick={receipt}>
                         <div className="title">
                             <h4><span>Receipt</span></h4>
                             <span className="small comment desc">
@@ -136,7 +184,15 @@ const EC_Deals = ({ deals, num, setWorks, setOnecount, setContents, setCount }) 
                             </span>
                         </div>
                     </div>
-                    <div className="preview">
+                    <div className="preview" onClick={delivery}>
+                        <div className="title">
+                            <h4><span>Delivery</span></h4>
+                            <span className="small comment desc">
+                                Delivery Form
+                            </span>
+                        </div>
+                    </div>
+                    <div className="preview" onClick={pro_forma}>
                         <div className="title">
                             <h4><span>Pro-forma</span></h4>
                             <span className="small comment desc">

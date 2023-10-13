@@ -102,29 +102,6 @@ const TopBar2 = ({ location }) => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="flip-up" data-aos-duration="1000"
-                    data-aos-delay="3000">
-                    <div className="title text-center mt-2">
-                        <h5><span>TOTAL SALES</span></h5>
-                    </div>
-                    <div className="number">
-                        <div className="title text-center mt-2">
-                            <h1><span> {count2} </span></h1>
-                            <span className="small">Tshs.</span>
-                        </div>
-                    </div>
-                </div> */}
-                {/* <div className="box_full_template_grid " style={{"--width":"100%","--h":"150px"}} data-aos="flip-up" data-aos-duration="1000"
-                    data-aos-delay="3000">
-                    <div className="title text-center mt-2">
-                        <h5><span>ITEMS SOLD</span></h5>
-                    </div>
-                    <div className="number">
-                        <div className="title text-center mt-2">
-                            <h1><span> 1000 </span></h1>
-                        </div>
-                    </div>
-                </div> */}
             </div>
         </div>
     )
