@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import jQuery from 'jquery';
 import { Link } from 'react-router-dom';
 import { baseURL } from '../../../baseURL';
-const Card = ({ employee, setEmployee }) => {
+const Card2 = ({ employee, setEmployee }) => {
     const [empname, setEmpname] = useState();
     const { customerID,
         customerFirst,
@@ -19,14 +19,14 @@ const Card = ({ employee, setEmployee }) => {
             const del = await axios.delete(`${baseURL}customers.php`, { data: JSON.stringify({ "id": customerID }) });
             // const status = del.data;
             const getall = async () => {
-                const response = await axios.get(`${baseURL}customers.php`);
+                const response = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail :0}`);
                 setEmployee(response.data.customers);
             }
             getall();
         }
     useEffect(() => {
         const emp = async () => {
-            const response = await axios.get(`${baseURL}Ename.php?id=${registeredBy}`);
+            const response = await axios.get(`${baseURL}employeeid.php?id=${registeredBy}`);
             setEmpname(response.data.fullname[0]);
         }
         emp();
@@ -59,7 +59,7 @@ const Card = ({ employee, setEmployee }) => {
         });
     }
     return (
-        <div className="common-grid-2 " style={{ "--grid-template": "auto auto auto auto auto auto auto" }}>
+        <div className="common-grid-2 " style={{ "--grid-template": "auto auto auto auto auto auto" }}>
             <div className="grid-item h " style={{ paddingLeft: "10px", paddingRight: "10px " }}>
                 <div className="title ">
                     <h5><span>
@@ -95,14 +95,6 @@ const Card = ({ employee, setEmployee }) => {
                     </span></h5>
                 </div>
             </div>
-
-            <div className="grid-item h " style={{ paddingLeft: "10px", paddingRight: "10px " }}>
-                <div className="title ">
-                    <h5><span>
-                        {empname !== undefined ? empname.employeeFirst + " " + empname.employeeLast : registeredBy}
-                    </span></h5>
-                </div>
-            </div>
             <div className="grid-item h" style={{ paddingLeft: "10px", paddingRight: "10px " }}>
                 <div className="title">
                     <Link to={`/one_customer/${customerID}`} className="bi bi-folder-fill" style={{ color: "var(--black)",textDecoration:'none', padding: "8px", boxShadow: " inset 0px 0px 10px 0px rgba(0, 0, 0, 0.11)", margin: " 3px", borderRadius: " 10px", backgroundColor: 'var(--top-color)', fontSize: 'small', fontStyle: 'normal !important', cursor: 'pointer' }}> view</Link>
@@ -114,4 +106,4 @@ const Card = ({ employee, setEmployee }) => {
     )
 }
 
-export default Card;
+export default Card2;

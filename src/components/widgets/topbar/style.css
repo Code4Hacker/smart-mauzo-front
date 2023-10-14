@@ -76,7 +76,7 @@
     text-transform: uppercase;
 }
 .box_stock{
-    width: 300px;
+    width: 310px;
     min-height: 100px;
     padding: 10px;
     border-radius: 10px;
@@ -90,6 +90,7 @@
 .flex.bx{
     flex-wrap: wrap;
     gap: 10px;
+    justify-content: center;
     margin-top: 50px;
 }
 .price_holder i{
@@ -108,6 +109,9 @@
     padding: 10px;
     color: var(--black);
     border-radius: 10px;
+}
+.showcas > * {
+    min-width: 300px !important;
 }
 @media screen and (max-width:500px) {
     .showcase>div {

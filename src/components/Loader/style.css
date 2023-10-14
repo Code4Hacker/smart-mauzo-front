@@ -21,6 +21,27 @@
     animation: 1s rotateme linear infinite;
 
 }
+.loadingme{
+    position: relative;
+    width: 100%;
+}
+.loadingme>* {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 3px solid black;
+    border-bottom-color: orange;
+    border-top-color: var(--milk);
+    border-left-color: var(--green);
+    border-right-color: red;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: 1s rotatem linear infinite;
+
+}
 
 @keyframes rotateme {
     from {
@@ -28,6 +49,20 @@
     }
 
     to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+@keyframes rotatem {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 10%;
+    }
+
+    50% {
+        opacity: 100%;
+    }
+    100% {
+        opacity: 10%;
         transform: translate(-50%, -50%) rotate(360deg);
     }
 }

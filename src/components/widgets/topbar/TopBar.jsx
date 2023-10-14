@@ -78,7 +78,7 @@ const TopBar = ({ location }) => {
                 <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="flip-up" data-aos-duration="1000"
                     data-aos-delay="3000">
                     <div className="title text-center mt-2">
-                        <h5><span>All Customers</span></h5>
+                        <h5><span>Employees</span></h5>
                     </div>
                     <div className="number">
                         <div className="title text-center mt-2">
@@ -91,7 +91,7 @@ const TopBar = ({ location }) => {
                 <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="flip-up" data-aos-duration="1000"
                     data-aos-delay="3000">
                     <div className="title text-center mt-2">
-                        <h5><span>Your Customers</span></h5>
+                        <h5><span>Customers</span></h5>
                     </div>
                     <div className="number">
                         <div className="title text-center mt-2">

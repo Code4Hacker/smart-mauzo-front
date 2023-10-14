@@ -12,6 +12,8 @@ import Stocks from './components/employees/report/Stocks';
 import Invoice from './components/employees/customers/Printing/Invoice';
 import Receipt from './components/employees/customers/Printing/Receipt';
 import Pro_form2 from './components/employees/customers/Printing/Pro_forma2';
+import ICustomer from './components/employees/customers/IndividualCustomers';
+import AStocks from './components/admin/report/Stocks';
 
 function App() {
 
@@ -25,19 +27,20 @@ function App() {
         <Route path='/deals' element={  <AllDeals />} />
         <Route path='/customers/:id' element={  <Customer />} />
         <Route path='/' element={  <Login />} />
+        <Route path='/report' element={  <AStocks />} />
+
         {/* Employee */}
         <Route path='/e_login' element={  <ELogin />} />
         <Route path='/employee' element={  <EDashboard />} />
         <Route path='/e_customers' element={  <ECustomers />} />
         <Route path='/one_customer/:id' element={  <OneCustomer />} />
         <Route path='/repo' element={  <Stocks />} />
+        <Route path='/userEmp' element={  <ICustomer />} />
         {/* GENERAL */}
         <Route path='/pro_forma/:id' element={  <Pro_form />} />
         <Route path='/pro_forma2/:id' element={  <Pro_form2 />} />
         <Route path='/invoice/:id' element={  <Invoice />} />
         <Route path='/receipt/:id' element={  <Receipt />} />
-
-
       </Routes>
     </BrowserRouter>
   )

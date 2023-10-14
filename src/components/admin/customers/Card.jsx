@@ -26,7 +26,7 @@ const Card = ({ employee, setEmployee }) => {
         }
     useEffect(() => {
         const emp = async () => {
-            const response = await axios.get(`${baseURL}employeeid.php?id=${registeredBy}`);
+            const response = await axios.get(`${baseURL}Ename.php?id=${registeredBy}`);
             setEmpname(response.data.fullname[0]);
         }
         emp();

@@ -29,8 +29,8 @@ const EDashboard = () => {
     const [contents, setContents] = useState();
     useEffect(() => {
         const getall = async() => {
-            const response = await axios.get(`${baseURL}employee.php`);
-            setContents(response.data.employees.splice(0,3));
+            const response = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail :0}`);
+            setContents(response.data.customers.splice(0,3));
         }
         getall();
     },[]);
@@ -94,10 +94,10 @@ const EDashboard = () => {
                                                     fontSize: "small",
                                                     fontWeight: 100,
                                                     textTransform: "uppercase"
-                                                }}>{employee.employeeFirst + " " + employee.employeeLast}</span>
+                                                }}>{ employee.customerLast}</span>
                                                 <div style={{ marginTop: " -7px" }}>
                                                     <span style={{ color: "rgb(102, 102, 102)" }}
-                                                        className="gray small">{(employee.employeeEmail).substring(0,12)}...</span>
+                                                        className="gray small">{(employee.customerEmail).substring(0,12)}...</span>
                                                 </div>
                                             </div>
                                         </div>):"Loading ..."}
@@ -110,7 +110,7 @@ const EDashboard = () => {
                                             margin: "10px",
                                             marginTop: "-10px"
                                         }}>
-                                        <Link to={"/e_customers"} className="small" style={{ color: "var(--orange)" }}>View
+                                        <Link to={"/userEmp"} className="small" style={{ color: "var(--orange)" }}>View
                                             All</Link>
                                     </div>
                                 </div>

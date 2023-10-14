@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './sidebar.css'
 import Aos from 'aos'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import jQuery from 'jquery';
 
 const SideBar = () => {
@@ -17,13 +17,18 @@ const SideBar = () => {
         });
     }
     useEffect(() => {queries()},[]);
+    const navigate = useNavigate();
+    const handleLog = () => {
+        window.localStorage.clear();
+        navigate('/');
+    }
     return (
         <div>
             <div className="col-xl-12 flex navtab">
                 <div className="row">
                     <div className="col-10">
                         <div className="title">
-                            <h5>Tailor<span>2023</span></h5>
+                            <h5>CAREN<span>ITHO</span></h5>
                         </div>
                     </div>
                     <div className="col-2">
@@ -65,11 +70,23 @@ const SideBar = () => {
                             </span>
                         </Link>
                     </li>
+                    <li className="nested_list">
+                        <Link to={"/report"} className="dropdown">
+                            <i className="bi bi-building"></i>
+                            <span> Stocks and Report
+                            </span>
+                        </Link>
+                    </li>
                     <li>
-                        <a href="logout.jsp" className="dropdown">
+                        <span className="dropdown" onClick={handleLog} style={{
+                            color:'white',
+                            padding:'10px',
+                            borderRadius:'10px',
+                            backgroundColor:'royalblue'
+                            }}>
                             <i className="bi bi-shield-fill"></i>
                             <span> Log Out</span>
-                        </a>
+                        </span>
                     </li>
                 </ul>
             </div>
