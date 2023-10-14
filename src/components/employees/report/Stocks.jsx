@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Aos from 'aos'
-import Chart from 'react-google-charts'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import Loader from '../../Loader/Loader'
@@ -12,6 +11,7 @@ import Stock_card from './Stock_card'
 import NewStock from './NewStock'
 import jQuery from 'jquery'
 import Loading from '../../Loader/Loading'
+import Mini2 from '../../widgets/sidebar/Mini2'
 
 const Stocks = () => {
     Aos.init({
@@ -84,7 +84,7 @@ const Stocks = () => {
     return (
         <div>
             <Loader />
-            <Mini />
+            <Mini2 />
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar">
                     <div className="row" data-aos="fade-left" data-aos-duration="1000"

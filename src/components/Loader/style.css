@@ -12,8 +12,11 @@
     width: 50px;
     height: 50px;
     border-radius: 50px;
-    border: 1.5px solid black;
-    border-bottom-color: var(--black);
+    border: 3px solid black;
+    border-bottom-color: rgb(0, 202, 158);
+    border-top-color: var(--milk);
+    border-left-color: var(--green);
+    border-right-color: red;
     position: absolute;
     top: 50%;
     left: 50%;

@@ -3,12 +3,13 @@ import jQuery from 'jquery'
 import axios from 'axios'
 import './style.css';
 import { useParams } from 'react-router-dom'
-import Mini from '../../widgets/sidebar/Mini'
-import { baseURL } from '../../../baseURL'
+import { baseURL, baseURL2 } from '../../../baseURL'
 import SideBar2 from '../../widgets/sidebar/SideBar2';
 import TopBar2 from '../../widgets/topbar/TopBar2';
 import EC_Deals from './EC_Deals';
 import NewDeal from './NewDeal';
+import Mini2 from '../../widgets/sidebar/Mini2';
+import Loading from '../../Loader/Loading';
 
 const OneCustomer = () => {
     const jqueryCodes = () => {
@@ -125,7 +126,7 @@ const OneCustomer = () => {
                     <div className="loader"></div>
                 </div>
             </div> */}
-            <Mini />
+            <Mini2 />
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar prt_on">
                     <div className="row" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="3000">
@@ -145,7 +146,7 @@ const OneCustomer = () => {
                                     }}>CUSTOMER PROFILE</span></h3></div>
                                     <div className="grid2 prt_on" style={{ "--template": "150px auto" }}>
                                         <div className="photo">
-                                            <img src={contents !== undefined ? baseURL + contents.customerProfile : ""} alt="" />
+                                            <img src={contents !== undefined ? baseURL2 + contents.customerProfile : ""} alt="" />
                                         </div>
                                         <div className="content">
                                             <div className="container">
@@ -175,7 +176,9 @@ const OneCustomer = () => {
                                         </div>
                                         <div className="">
                                             <h5>Total Price</h5>
-                                            <p>{onecount} <span className="small">Tsh</span></p>
+                                            {
+                                                onecount !== 0 ? <p>{onecount} <span className="small">Tsh</span></p>:"Cash is Empty"
+                                            }
                                         </div>
 
                                     </div>
@@ -206,7 +209,7 @@ const OneCustomer = () => {
                                     marginTop: '40px', position: 'relative'
                                 }}>
                                     {
-                                        works !== undefined && works?.length > -1 ? works.map((work, id) => <EC_Deals  setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} deals={work} num={id}  setCount={setCount} key={id} />) : "Loading ..."
+                                        works !== undefined && works?.length > -1 ? works.map((work, id) => <EC_Deals  setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} deals={work} num={id}  setCount={setCount} key={id} />) : <Loading/>
                                     }
                                 </div>
                             </div>

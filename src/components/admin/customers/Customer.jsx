@@ -8,7 +8,7 @@ import './style.css';
 import { useParams } from 'react-router-dom'
 import CustomerDeals from './CustomerDeals'
 import Mini from '../../widgets/sidebar/Mini'
-import { baseURL } from '../../../baseURL'
+import { baseURL, baseURL2 } from '../../../baseURL'
 
 const Customer = () => {
     const jqueryCodes = () => {
@@ -111,7 +111,7 @@ const Customer = () => {
                                     }}>CUSTOMER PROFILE</span></h3></div>
                                     <div className="grid2" style={{ "--template": "150px auto" }}>
                                         <div className="photo">
-                                            <img src={contents !== undefined ? "https://tailorgemini.000webhostapp.com/tailorwebapp" + contents.customerProfile : ""} alt="" />
+                                            <img src={contents !== undefined ? baseURL2 + contents.customerProfile : ""} alt="" />
                                         </div>
                                         <div className="content">
                                             <div className="container">

@@ -3,12 +3,12 @@ import Aos from 'aos'
 import Chart from 'react-google-charts'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Mini from '../widgets/sidebar/Mini'
 import Loader from '../Loader/Loader'
 import { baseURL } from '../../baseURL'
 import './../../primary/style2.css'
 import SideBar2 from '../widgets/sidebar/SideBar2'
 import TopBar2 from '../widgets/topbar/TopBar2'
+import Mini2 from '../widgets/sidebar/Mini2'
 
 const EDashboard = () => {
     Aos.init({
@@ -37,7 +37,7 @@ const EDashboard = () => {
     return (
         <div>
             <Loader/>
-            <Mini />
+            <Mini2 />
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar">
                     <div className="row" data-aos="fade-left" data-aos-duration="1000"
@@ -116,7 +116,7 @@ const EDashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="box_full_template_grid " style={{ "--width": "100%", "--h": "270px", position: 'relative' }}
+                        {/* <div className="box_full_template_grid " style={{ "--width": "100%", "--h": "270px", position: 'relative' }}
                             id="donutchart" data-aos="fade-left" data-aos-duration="1000"
                             data-aos-delay="3000">
                             <div className="title"><h3><span style={{
@@ -133,7 +133,7 @@ const EDashboard = () => {
                                 /> : <div className="loader"></div>
                             }
 
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>
