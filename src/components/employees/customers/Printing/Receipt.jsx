@@ -12,7 +12,7 @@ const Receipt = () => {
     const [printingdt, setPrintingdt] = useState();
     const params = useParams();
     const getdata = async () => {
-        const responses = await axios.get(`${baseURL}recentone.php?dealnum=${params.id}`);
+        const responses = await axios.post(`${baseURL}recentone.php?dealnum=${params.id}`);
         setPrintingdt(responses.data);
 
     }
@@ -22,7 +22,7 @@ const Receipt = () => {
         setTimeout(() => {
             jQuery(".log_see").fadeOut({ duration: 100 });
             setTimeout(() => {
-                // window.print();
+                window.print();
             }, 2000);
         }, 6000);
     }, []);
@@ -70,7 +70,7 @@ const Receipt = () => {
                             }}>
                                 <div className="col-6">
                                     <div className="col-12">
-                                        <span style={{ fontWeight: 900 }}>Client: </span><span style={{ fontWeight: 900 }}> {printingdt !== undefined ? <span>{printingdt.user.customerFirst + " " + printingdt.user.customerLast} <i style={{ fontSize: '11px', fontWeight: 100 }}>[{printingdt.user.customerEmail}]</i></span> : "Wait ..."}</span>
+                                        <span style={{ fontWeight: 900 }}>Client: </span><span style={{ fontWeight: 900 }}> {printingdt !== undefined ? <span>{printingdt.user.customerFirst + " " + printingdt.user.customerLast} <i style={{ fontSize: '11px' }}>[{printingdt.user.customerEmail}]</i></span> : "Wait ..."}</span>
                                     </div>
                                     <div className="col-12">
                                         <span style={{ fontWeight: 900 }}>Date: </span><span style={{ fontWeight: 900 }}> {printingdt !== undefined ? date : "Wait ..."}</span>
@@ -136,7 +136,7 @@ const Receipt = () => {
                             </div>
                             <div className="mt-4">
                                 <span>
-                                    Date In..........................................................................................Date Out...............................................................................................
+                                    Date In <span style={{borderBottom:'1px solid black',fontStyle:'italic',fontWeight:'900'}}>{printingdt !== undefined ? printingdt.deal.registedDate : "Wait ..."}</span> Date Out <span style={{borderBottom:'1px solid black',fontStyle:'italic',fontWeight:'900'}}>{printingdt !== undefined ? date : "Wait ..."}</span>
                                 </span>
                             </div>
                         </div>

@@ -14,6 +14,7 @@ import Receipt from './components/employees/customers/Printing/Receipt';
 import Pro_form2 from './components/employees/customers/Printing/Pro_forma2';
 import ICustomer from './components/employees/customers/IndividualCustomers';
 import AStocks from './components/admin/report/Stocks';
+import Delivery from './components/employees/customers/Printing/Delivery';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
         <Route path='/pro_forma2/:id' element={  <Pro_form2 />} />
         <Route path='/invoice/:id' element={  <Invoice />} />
         <Route path='/receipt/:id' element={  <Receipt />} />
+        <Route path='/delivery/:id' element={  <Delivery />} />
       </Routes>
     </BrowserRouter>
   )

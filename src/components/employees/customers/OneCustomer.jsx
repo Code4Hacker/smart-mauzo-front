@@ -170,10 +170,10 @@ const OneCustomer = () => {
                                             <h5>Address</h5>
                                             <p>{contents !== undefined ? contents.customerAddress : "Wait ..."}</p>
                                         </div>
-                                        <div className="">
+                                        {/* <div className="">
                                             <h5>Registered By</h5>
                                             <p>{contents !== undefined ? contents.customerUnique : "Wait ..."}</p>
-                                        </div>
+                                        </div> */}
                                         <div className="">
                                             <h5>Total Price</h5>
                                             {

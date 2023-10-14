@@ -12,7 +12,7 @@ const Delivery = () => {
     const [printingdt, setPrintingdt] = useState();
     const params = useParams();
     const getdata = async () => {
-        const responses = await axios.get(`${baseURL}recentone.php?dealnum=${params.id}`);
+        const responses = await axios.post(`${baseURL}recentone.php?dealnum=${params.id}`);
         setPrintingdt(responses.data);
 
     }
@@ -32,7 +32,7 @@ const Delivery = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-10 pr-f">
-                        <h3>Pro - forma Invoice </h3>
+                        <h3>DELIVERY </h3>
                     </div>
                     <div className="col-2">
                         {/* <div className="logoB" style={{overflow:'hidden',position:'relative',borderRadius:'10px'}}>

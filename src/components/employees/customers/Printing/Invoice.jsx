@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
-import imagelogo from './../../../../assets/20231009_145646.jpg';
+// import imagelogo from './../../../../assets/20231009_145646.jpg';
 import axios from 'axios';
 import { baseURL } from '../../../../baseURL';
 import { useParams } from 'react-router-dom';
@@ -14,7 +14,6 @@ const Invoice = () => {
     const getdata = async () => {
         const responses = await axios.post(`${baseURL}recentone.php?dealnum=${params.id}`);
         setPrintingdt(responses.data);
-        console.log(responses);
 
     }
     useEffect(() => {
@@ -23,7 +22,7 @@ const Invoice = () => {
         setTimeout(() => {
             jQuery(".log_see").fadeOut({ duration: 100 });
             setTimeout(() => {
-                // window.print();
+                window.print();
             }, 2000);
         }, 6000);
     }, []);

@@ -12,7 +12,7 @@ const Pro_form2 = () => {
     const [printingdt, setPrintingdt] = useState();
     const params = useParams();
     const getdata = async () => {
-        const responses = await axios.get(`${baseURL}recentone.php?dealnum=${params.id}`);
+        const responses = await axios.post(`${baseURL}recentone.php?dealnum=${params.id}`);
         setPrintingdt(responses.data);
 
     }
