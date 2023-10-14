@@ -16,7 +16,7 @@ const Card2 = ({ employee, setEmployee }) => {
         registeredBy,
         registedDate } = employee;
         const handledel = async () => {
-            const del = await axios.delete(`${baseURL}customers.php`, { data: JSON.stringify({ "id": customerID }) });
+            const del = await axios.get(`${baseURL}updtodelc.php?id=${customerID}`);
             // const status = del.data;
             const getall = async () => {
                 const response = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail :0}`);
@@ -26,7 +26,7 @@ const Card2 = ({ employee, setEmployee }) => {
         }
     useEffect(() => {
         const emp = async () => {
-            const response = await axios.get(`${baseURL}employeeid.php?id=${registeredBy}`);
+            const response = await axios.get(`${baseURL}Ename.php?id=${registeredBy}`);
             setEmpname(response.data.fullname[0]);
         }
         emp();
@@ -54,7 +54,6 @@ const Card2 = ({ employee, setEmployee }) => {
             duration: 500,
             easing: 'linear',
             done: function () {
-                console.log("sds CANCELED!");
             }
         });
     }

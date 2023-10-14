@@ -12,7 +12,7 @@ const AllDeal = ({ deals, num, setDeals, setCount }) => {
     const navigate = useNavigate();
     const [payed, setPayed] = useState();
     const handledel = async () => {
-        const del = await axios.delete(`${baseURL}deals.php`, { data: JSON.stringify({ "id": dealID }) });
+        const del = await axios.get(`${baseURL}dealdel.php?id=${dealID}`);
         // const status = del.data;
         const getall = async () => {
             const deals = await axios.get(`${baseURL}deals.php`);

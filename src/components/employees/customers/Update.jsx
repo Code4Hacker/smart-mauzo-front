@@ -21,21 +21,20 @@ const Update = ({ setEmployee }) => {
     const [cVodes, setCVodes] = useState("");
     const [status, setStatus] = useState();
     const addNew = async (PATH) => {
-        let jsonpatch = JSON.stringify({
-            "fname": fname === "" && store.first ? store.first : fname,
-            "lname": lname === "" && store.last ? store.last : lname,
-            "address": address === "" && store.add ? store.add : address,
-            "phone": phone === "" && store.phone ? store.phone : phone,
-            "mail": mail === "" && store.email ? store.email : mail,
-            "codes": codes,
-            "id": store.id ? store.id : 0
-        });
+        let formdata = new FormData();
+            formdata.append("fname", fname === "" && store.first2 ? store.first2 : fname);
+            formdata.append("lname", lname === "" && store.last2 ? store.last2 : lname);
+            formdata.append("address", address === "" && store.add2 ? store.add2 : address);
+            formdata.append("phone", phone === "" && store.phone2 ? store.phone2 : phone);
+            formdata.append("mail", mail === "" && store.email2 ? store.email2 : mail);
+            formdata.append("codes", codes);
+            formdata.append("id", store.id2 ? store.id2 : 0);
 
-        let bodyContent = jsonpatch;
+        let bodyContent = formdata;
 
         let reqOptions = {
             url: PATH,
-            method: "PATCH",
+            method: "POST",
             data: bodyContent,
         }
 
@@ -45,31 +44,30 @@ const Update = ({ setEmployee }) => {
     // useEffect(() => {
     // }, [PATH,fname,lname,address,phone,mail,codes]);
 
-    const jqueries = () => {
-        store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+    const jqueries = () => { setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
     }
 
     const handleupdate = () => {
-        fname.length < 4 ?
+        fname.length < 3 ?
             setFVname(<span style={{ color: 'red' }}>First Name is Too Small!</span>) :
-            setFVname(<span style={{ color: 'orange' }}>Rule Followed Successiful!</span>);
-        lname.length < 4 ?
+            setFVname(<span style={{ color: 'orange' }}></span>);
+        lname.length < 3 ?
             setLVname(<span style={{ color: 'red' }}>Last Name is Too Small!</span>) :
-            setLVname(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
+            setLVname(<span style={{ color: 'orange' }}></span>);
         mail.length < 10 ?
             setMVail(<span style={{ color: 'red' }}>Email is Invalid!</span>) :
-            setMVail(<span style={{ color: 'orange' }}>Rule Followed Successiful!</span>);
-        phone.match(/[a-z]/g) ?
+            setMVail(<span style={{ color: 'orange' }}></span>);
+        phone.length < 10 || phone.match(/[a-z]/g) ?
             setPVhone(<span style={{ color: 'red' }}>Phone Number Not Valid!</span>) :
-            setPVhone(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
+            setPVhone(<span style={{ color: 'orange' }}></span>);
         address.length < 10 ?
             setAVddress(<span style={{ color: 'red' }}>Address is not Valid!</span>) :
-            setAVddress(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
+            setAVddress(<span style={{ color: 'orange' }}></span>);
         !codes.match(/[0-9]/g) || codes.length < 8 ?
             setCVodes(<span style={{ color: 'red' }}>Strong Password Required!</span>) :
-            setCVodes(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
-        if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length < 8)) {
-            addNew(`${baseURL}employee.php`);
+            setCVodes(<span style={{ color: 'orange' }}></span>);
+        if (fname.length >= 3 && lname.length >= 3 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length >= 8)) {
+            addNew(`${baseURL}updtodelc.php`);
             switch (status) {
                 case '404':
                     setFVname(<span style={{ color: 'red' }}></span>);
@@ -86,7 +84,10 @@ const Update = ({ setEmployee }) => {
                     setPVhone(<span style={{ color: 'orange' }}></span>);
                     setCVodes(<span style={{ color: 'orange' }}></span>);
                     setAVddress(<span style={{ color: 'blue' }}>New Employee Added!</span>);
-                    store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+
+                   
+
+                    setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
                     jQuery(".rename_box").fadeOut({
                         duration: 1000
                     });
@@ -96,8 +97,8 @@ const Update = ({ setEmployee }) => {
                     break;
             }
             const getall = async () => {
-                const response = await axios.get(`${baseURL}employee.php`);
-                setEmployee(response.data.employees);
+                const response = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail :0}`);
+                setEmployee(response.data.customers);
             }
             getall();
         }
@@ -110,33 +111,33 @@ const Update = ({ setEmployee }) => {
                     <button><i className="bi bi-x-lg"></i></button>
                 </div>
                 <div className="container">
-                    <input type="text" placeholder="Employee First Name" name="fname" value={fname === "" && store.first ? store.first : fname}
+                    <input type="text" placeholder="Customer First Name" name="fname" value={fname === "" && store.first2 ? store.first2 : fname}
                         onChange={(e) => setFname(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{fVname}</div>
-                    <input type="text" placeholder="Employee Last Name" name="lName" value={lname === "" && store.last ? store.last : lname}
+                    <input type="text" placeholder="Customer Last Name" name="lName" value={lname === "" && store.last2 ? store.last2 : lname}
                         onChange={(e) => setLname(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{lVname}</div>
-                    <input type="text" placeholder="Employee Email" name="email" value={mail === "" && store.email ? store.email : mail}
+                    <input type="text" placeholder="Customer Email" name="email" value={mail === "" && store.email2 ? store.email2 : mail}
                         onChange={(e) => setMail(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{mVail}</div>
-                    <input type="text" placeholder="Employee Contact " name="contact" value={phone === "" && store.phone ? store.phone : phone}
+                    <input type="text" placeholder="Customer Contact " name="contact" value={phone === "" && store.phone2 ? store.phone2 : phone}
                         onChange={(e) => setPhone(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{pVhone}</div>
-                    <input type="text" placeholder="Employee Passcode " name="expire" value={codes}
+                    <input type="text" placeholder="Customer Passcode " name="expire" value={codes}
                         onChange={(e) => setCodes(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{cVodes}</div>
-                    <input type="text" placeholder="Address " name="selling" value={address === "" && store.add ? store.add : address}
+                    <input type="text" placeholder="Address " name="selling" value={address === "" && store.add2 ? store.add2 : address}
                         onChange={(e) => setAddress(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{aVddress}</div>
 
                     <div className="button">
-                        <button id="bottonGet" onClick={handleupdate}>Complete</button>
+                        <button id="bottonGe" onClick={handleupdate}>Complete</button>
                     </div>
                 </div>
             </div>

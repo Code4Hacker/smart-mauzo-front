@@ -18,7 +18,7 @@ const AddEmployee = ({ setEmployee }) => {
     const [mVail, setMVail] = useState("");
     const [cVodes, setCVodes] = useState("");
     const [status, setStatus] = useState();
-    const navigate = useNavigate();
+    
     const jqueries = () => {
         store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
     }

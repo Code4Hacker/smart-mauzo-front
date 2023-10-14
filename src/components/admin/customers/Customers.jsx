@@ -22,7 +22,6 @@ const Customers = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("ADD CANCELED!");
                 }
             })
         });
@@ -32,7 +31,6 @@ const Customers = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("ADD CANCELED!");
                 }
             });
         });
@@ -42,7 +40,6 @@ const Customers = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("UPDATE CANCELED!");
                 }
             })
         });
@@ -52,7 +49,6 @@ const Customers = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("SELL CANCELED!");
                 }
             });
         });

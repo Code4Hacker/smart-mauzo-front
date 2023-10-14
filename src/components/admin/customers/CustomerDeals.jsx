@@ -13,7 +13,7 @@ const CustomerDeals = ({ deals, num, setWorks, setOnecount, setContents, setCoun
     const { dealID, dealTitle, dealDescription, dealSummary, dealPicture, registeredBy, CustomerUnique, customerId, price, registedDate, dealRequirements, measurements, dealStatus, tracking } = deals;
     const [trackin, setTrackin] = useState(tracking);
     const handledel = async () => {
-        const del = await axios.delete(`${baseURL}deals.php`, { data: JSON.stringify({ "id": dealID }) });
+        const del = await axios.get(`${baseURL}dealdel.php?id=${dealID}`);
         // const status = del.data;
         const getall = async () => {
             const response = await axios.get(`${baseURL}onecustomer.php?id=${params.id}`);

@@ -16,7 +16,7 @@ const Card = ({ employee, setEmployee }) => {
         registeredBy,
         registedDate } = employee;
         const handledel = async () => {
-            const del = await axios.delete(`${baseURL}customers.php`, { data: JSON.stringify({ "id": customerID }) });
+            const del = await axios.get(`${baseURL}updtodelc.php?id=${customerID}`);
             // const status = del.data;
             const getall = async () => {
                 const response = await axios.get(`${baseURL}customers.php`);

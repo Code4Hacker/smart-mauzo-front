@@ -8,6 +8,7 @@ import SideBar2 from '../../widgets/sidebar/SideBar2'
 import AddCustomers from './AddCustomer'
 import Card2 from './Card2'
 import Mini2 from '../../widgets/sidebar/Mini2'
+import Loading from '../../Loader/Loading'
 
 const ICustomer = () => {
     const jqueryCodes = () => {
@@ -127,7 +128,7 @@ const ICustomer = () => {
                                     </div>
                                 </div>
                             </div>
-                            {contents !== undefined ? contents.map((people, i) => <Card2 key={i} employee={people} setEmployee={setContents} />) : 'ue'}
+                            {contents !== undefined && contents?.length > 0 ? contents.map((people, i) => <Card2 key={i} employee={people} setEmployee={setContents} />) : <Loading/>}
                         </div>
                     </div>
                 </div>

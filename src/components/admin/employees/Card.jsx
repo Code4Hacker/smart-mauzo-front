@@ -1,13 +1,12 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import Update from './Update';
+import React, { useEffect } from 'react'
 import jQuery from 'jquery';
 import { baseURL } from '../../../baseURL';
 
 const Card = ({ employee, setEmployee }) => {
     const { employeeID, employeeFirst, employeeLast, employeeEmail, employeeContact, registedDate, employeeAddress } = employee;
     const handledel = async () => {
-        const del = await axios.delete(`${baseURL}employee.php`, { data: JSON.stringify({ "id": employeeID }) });
+        const del = await axios.get(`${baseURL}upordelEmp.php?id=${employeeID}`);
         // const status = del.data;
         const getall = async () => {
             const response = await axios.get(`${baseURL}employee.php`);
@@ -46,7 +45,6 @@ const Card = ({ employee, setEmployee }) => {
             duration: 500,
             easing: 'linear',
             done: function () {
-                console.log("sds CANCELED!");
             }
         });
     }

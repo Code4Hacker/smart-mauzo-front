@@ -21,21 +21,20 @@ const Update = ({ setEmployee }) => {
     const [status, setStatus] = useState();
 
     const addNew = async (PATH) => {
-        let jsonpatch = JSON.stringify({
-            "fname": fname === "" && store.first2 ? store.first2 : fname,
-            "lname": lname === "" && store.last2 ? store.last2 : lname,
-            "address": address === "" && store.add2 ? store.add2 : address,
-            "phone": phone === "" && store.phone2 ? store.phone2 : phone,
-            "mail": mail === "" && store.email2 ? store.email2 : mail,
-            "codes": codes,
-            "id": store.id2 ? store.id2 : 0
-        });
+        let formdata = new FormData();
+            formdata.append("fname", fname === "" && store.first2 ? store.first2 : fname);
+            formdata.append("lname", lname === "" && store.last2 ? store.last2 : lname);
+            formdata.append("address", address === "" && store.add2 ? store.add2 : address);
+            formdata.append("phone", phone === "" && store.phone2 ? store.phone2 : phone);
+            formdata.append("mail", mail === "" && store.email2 ? store.email2 : mail);
+            formdata.append("codes", codes);
+            formdata.append("id", store.id2 ? store.id2 : 0);
 
-        let bodyContent = jsonpatch;
+        let bodyContent = formdata;
 
         let reqOptions = {
             url: PATH,
-            method: "PATCH",
+            method: "POST",
             data: bodyContent,
         }
 
@@ -62,7 +61,7 @@ const Update = ({ setEmployee }) => {
             setAVddress(<span style={{ color: 'red' }}>Address is not Valid!</span>) :
             setAVddress(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
         if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10) {
-            addNew(`${baseURL}customers.php`);
+            addNew(`${baseURL}updtodelc.php`);
             switch (status) {
                 case '404':
                     setFVname(<span style={{ color: 'red' }}></span>);

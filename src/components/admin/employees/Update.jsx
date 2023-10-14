@@ -21,21 +21,20 @@ const Update = ({ setEmployee }) => {
     const [cVodes, setCVodes] = useState("");
     const [status, setStatus] = useState();
     const addNew = async (PATH) => {
-        let jsonpatch = JSON.stringify({
-            "fname": fname === "" && store.first ? store.first : fname,
-            "lname": lname === "" && store.last ? store.last : lname,
-            "address": address === "" && store.add ? store.add : address,
-            "phone": phone === "" && store.phone ? store.phone : phone,
-            "mail": mail === "" && store.email ? store.email : mail,
-            "codes": codes,
-            "id": store.id ? store.id : 0
-        });
+        let formdata = new FormData();
+            formdata.append("fname", fname === "" && store.first ? store.first : fname);
+            formdata.append("lname", lname === "" && store.last ? store.last : lname);
+            formdata.append("address", address === "" && store.add ? store.add : address);
+            formdata.append("phone", phone === "" && store.phone ? store.phone : phone);
+            formdata.append("mail", mail === "" && store.email ? store.email : mail);
+            formdata.append("codes", codes);
+            formdata.append("id", store.id ? store.id : 0);
 
-        let bodyContent = jsonpatch;
+        let bodyContent = formdata;
 
         let reqOptions = {
             url: PATH,
-            method: "PATCH",
+            method: "POST",
             data: bodyContent,
         }
 
@@ -69,7 +68,7 @@ const Update = ({ setEmployee }) => {
             setCVodes(<span style={{ color: 'red' }}>Strong Password Required!</span>) :
             setCVodes(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
         if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length < 8)) {
-            addNew(`${baseURL}employee.php`);
+            addNew(`${baseURL}upordelEmp.php`);
             switch (status) {
                 case '404':
                     setFVname(<span style={{ color: 'red' }}></span>);
