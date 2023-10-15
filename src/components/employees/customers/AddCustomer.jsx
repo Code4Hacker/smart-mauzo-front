@@ -69,10 +69,10 @@ const AddCustomers = ({ setCustomers }) => {
         address.length < 10 ?
             setAVddress(<span style={{ color: 'red' }}>Address is not Valid!</span>) :
             setAVddress(<span style={{ color: 'orange' }}></span>);
-        !codes.match(/[0-9]/g) || codes.length < 8 ?
+        !codes.match(/[0-9]/g)  ?
             setCVodes(<span style={{ color: 'red' }}>Unique code should contain numbers too!</span>) :
             setCVodes(<span style={{ color: 'orange' }}></span>);
-        if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && (phone.length >= 10 || phone.match(/[\d+]/g)) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length >= 8)) {
+        if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && (phone.length >= 10 || phone.match(/[\d+]/g)) && address.length >= 10 && (!codes.match(/[0-9]/g))) {
             const response = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
 
             if (response.data.status === "200") {
@@ -105,7 +105,6 @@ const AddCustomers = ({ setCustomers }) => {
 
                     break;
                 default:
-                    console.log("NOTHING")
                     break;
             }
             getall();

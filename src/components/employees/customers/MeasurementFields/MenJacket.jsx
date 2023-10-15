@@ -73,14 +73,10 @@ const MenJacket = ({ setTask, fname, lname, mail, phone, requirements, unique, d
                 setTimeout(() => {
                     nav(`/pro_forma/${unique}`);
                 }, 3000);
-
-
             } else {
                 // handlepost();
                 alert("please click again to confirm !");
-                // console.log(response2.data);
             }
-            // const response2 = await axios.get(`${baseURL}onecustomer.php?id=${params.id}`);
 
 
         } else {
