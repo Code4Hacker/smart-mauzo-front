@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { baseURL } from '../../../baseURL';
+import jQuery from 'jquery';
 
 const AddEmployee = ({ setEmployee }) => {
     const [fname, setFname] = useState("");
@@ -20,7 +21,8 @@ const AddEmployee = ({ setEmployee }) => {
     const [status, setStatus] = useState();
     
     const jqueries = () => {
-        store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+        jQuery(".add_box.adduser").fadeOut({duration:500});
+         setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
     }
     const addNew = async (PATH) => {
         let formdata = new FormData();
@@ -42,27 +44,30 @@ const AddEmployee = ({ setEmployee }) => {
         let response = await axios.request(reqOptions);
         setStatus(response.data.status);
     }
-    // useEffect(() => {
-    // }, [PATH,fname,lname,address,phone,mail,codes]);    
+    
+    const getall = async () => {
+        const response = await axios.get(`${baseURL}employee.php`);
+        setEmployee(response.data.employees);
+    }   
     const handleupdate = () => {
         fname.length < 4 ?
             setFVname(<span style={{ color: 'red' }}>First Name is Too Small!</span>) :
-            setFVname(<span style={{ color: 'orange' }}>Rule Followed Successiful!</span>);
+            setFVname(<span style={{ color: 'orange' }}></span>);
         lname.length < 4 ?
             setLVname(<span style={{ color: 'red' }}>Last Name is Too Small!</span>) :
-            setLVname(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
+            setLVname(<span style={{ color: 'orange' }}></span>);
         mail.length < 10 ?
             setMVail(<span style={{ color: 'red' }}>Email is Invalid!</span>) :
-            setMVail(<span style={{ color: 'orange' }}>Rule Followed Successiful!</span>);
+            setMVail(<span style={{ color: 'orange' }}></span>);
         phone.match(/[a-z]/g) ?
             setPVhone(<span style={{ color: 'red' }}>Phone Number Not Valid!</span>) :
-            setPVhone(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
+            setPVhone(<span style={{ color: 'orange' }}></span>);
         address.length < 10 ?
             setAVddress(<span style={{ color: 'red' }}>Address is not Valid!</span>) :
-            setAVddress(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
+            setAVddress(<span style={{ color: 'orange' }}></span>);
         !codes.match(/[0-9]/g) || codes.length < 8?
             setCVodes(<span style={{ color: 'red' }}>Strong Password Required!</span>) :
-            setCVodes(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
+            setCVodes(<span style={{ color: 'orange' }}></span>);
         if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length >= 8)) {
             addNew(`${baseURL}employee.php`);
             switch (status) {
@@ -73,6 +78,8 @@ const AddEmployee = ({ setEmployee }) => {
                     setPVhone(<span style={{ color: 'orange' }}></span>);
                     setCVodes(<span style={{ color: 'orange' }}></span>);
                     setAVddress(<span style={{ color: 'blue' }}>Sorry, User with this Email Exist!</span>);
+                    getall();
+                    jqueries();
                     break;
                 case '200':
                     setFVname(<span style={{ color: 'red' }}></span>);
@@ -81,21 +88,19 @@ const AddEmployee = ({ setEmployee }) => {
                     setPVhone(<span style={{ color: 'orange' }}></span>);
                     setCVodes(<span style={{ color: 'orange' }}></span>);
                     setAVddress(<span style={{ color: 'green' }}>New Employee Added!</span>);
+                    getall();
+                    jqueries();
                     break;
                 default:
                     console.log(status);
                     break;
-            }
-            const getall = async () => {
-                const response = await axios.get(`${baseURL}employee.php`);
-                setEmployee(response.data.employees);
             }
             getall();
         }
 
     }
     return (
-        <div className="add_box" style={{ display: "none" }}>
+        <div className="add_box adduser" style={{ display: "none" }}>
             <div className="update" style={{ padding: "2px" }}>
                 <div className="cancel" onClick={jqueries}>
                     <button><i className="bi bi-x-lg"></i></button>

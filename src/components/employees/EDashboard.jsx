@@ -41,7 +41,7 @@ const EDashboard = () => {
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar">
                     <div className="row" data-aos="fade-left" data-aos-duration="1000"
-                        data-aos-delay="3000">
+                        >
                         <SideBar2 />
                         
                     </div>
@@ -54,7 +54,7 @@ const EDashboard = () => {
                             "--h": "250px"
                         }}
                             data-aos="fade-right" data-aos-duration="1000"
-                            data-aos-delay="3000">
+                            >
                             <div className="number">
                                 <div className="title text-center" style={{ marginTop: "10px" }}>
                                     {/* <div className="loader"></div> */}
@@ -78,7 +78,7 @@ const EDashboard = () => {
                                                 borderRadius: "10px"
                                             }}
                                             data-aos="fade-up" data-aos-duration="1000"
-                                            data-aos-delay="3000" key={i}>
+                                             key={i}>
                                             <div className="profile">
                                                 <img src="https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"
                                                     alt="" />
@@ -118,7 +118,7 @@ const EDashboard = () => {
                         </div>
                         {/* <div className="box_full_template_grid " style={{ "--width": "100%", "--h": "270px", position: 'relative' }}
                             id="donutchart" data-aos="fade-left" data-aos-duration="1000"
-                            data-aos-delay="3000">
+                            >
                             <div className="title"><h3><span style={{
                                 fontWeight:100,marginTop:'20px !important',padding:'20px',background:'var(--milk)',color:'var(--black)',position:'relative',minHeight:'30px',marginLeft:'-50px',borderBottomLeftRadius:'30px',borderBottomRightRadius:'30px'
                             }}>SHOWCASE</span></h3></div>

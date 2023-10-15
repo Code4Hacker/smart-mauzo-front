@@ -49,7 +49,7 @@ const TopBar2 = ({ location }) => {
         <div className=' prt_on'>
             <div className="box_full" style={{ "--width": "100%" }}>
                 <div className="container">
-                    <div className="row" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="3000">
+                    <div className="row" data-aos="fade-left" data-aos-duration="1000" >
                         <div className="col-9 flex">
                             <div className="Input Search">
                                 {/* <input type="text" placeholder="Search Package Name"/> */}
@@ -77,7 +77,7 @@ const TopBar2 = ({ location }) => {
             </div>
             <div className="grid_templated showcase">
                 <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="flip-up" data-aos-duration="1000"
-                    data-aos-delay="3000">
+                    >
                     <div className="title text-center mt-2">
                         <h5><span>All Customers</span></h5>
                     </div>
@@ -90,7 +90,7 @@ const TopBar2 = ({ location }) => {
                     </div>
                 </div>
                 <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="flip-up" data-aos-duration="1000"
-                    data-aos-delay="3000">
+                    >
                     <div className="title text-center mt-2">
                         <h5><span>Your Customers</span></h5>
                     </div>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { baseURL } from '../../../baseURL';
+import jQuery from 'jquery';
 
 const AddCustomers = ({ setCustomers }) => {
     const [fname, setFname] = useState("");
@@ -23,7 +24,8 @@ const AddCustomers = ({ setCustomers }) => {
     const navigate = useNavigate();
 
     const jqueries = () => {
-        // store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+        jQuery(".add_box.cmt").fadeOut({ duration: 500 });
+        setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
     }
     const addNew = async (PATH) => {
         let formdata = new FormData();
@@ -46,35 +48,36 @@ const AddCustomers = ({ setCustomers }) => {
 
         let response = await axios.request(reqOptions);
         setStatus(response.data.status);
-        console.log(response.data);
+    } 
+    const getall = async () => {
+        const response = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail :0}`);
+        setCustomers(response.data.customers);
     }
-    // useEffect(() => {
-    // }, [PATH,fname,lname,address,phone,mail,codes]);    
-    const handleupdate = async() => {
+    const handleupdate = async () => {
         fname.length < 4 ?
             setFVname(<span style={{ color: 'red' }}>First Name is Too Small!</span>) :
-            setFVname(<span style={{ color: 'orange' }}>Rule Followed Successiful!</span>);
+            setFVname(<span style={{ color: 'orange' }}></span>);
         lname.length < 4 ?
             setLVname(<span style={{ color: 'red' }}>Last Name is Too Small!</span>) :
-            setLVname(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
+            setLVname(<span style={{ color: 'orange' }}></span>);
         mail.length < 10 ?
             setMVail(<span style={{ color: 'red' }}>Email is Invalid!</span>) :
-            setMVail(<span style={{ color: 'orange' }}>Rule Followed Successiful!</span>);
+            setMVail(<span style={{ color: 'orange' }}></span>);
         phone.length < 10 || phone.match(/[a-z]/g) ?
             setPVhone(<span style={{ color: 'red' }}>Phone Number Not Valid!</span>) :
-            setPVhone(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
+            setPVhone(<span style={{ color: 'orange' }}></span>);
         address.length < 10 ?
             setAVddress(<span style={{ color: 'red' }}>Address is not Valid!</span>) :
-            setAVddress(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
+            setAVddress(<span style={{ color: 'orange' }}></span>);
         !codes.match(/[0-9]/g) || codes.length < 8 ?
             setCVodes(<span style={{ color: 'red' }}>Unique code should contain numbers too!</span>) :
-            setCVodes(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
+            setCVodes(<span style={{ color: 'orange' }}></span>);
         if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && (phone.length >= 10 || phone.match(/[\d+]/g)) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length >= 8)) {
-                const response = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
-    
-                if (response.data.status === "200") {
-                    setRegId(response.data.employee[0].employeeID);
-                }
+            const response = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
+
+            if (response.data.status === "200") {
+                setRegId(response.data.employee[0].employeeID);
+            }
             addNew(`${baseURL}customers.php`);
             switch (status) {
                 case '400':
@@ -84,6 +87,10 @@ const AddCustomers = ({ setCustomers }) => {
                     setPVhone(<span style={{ color: 'orange' }}></span>);
                     setCVodes(<span style={{ color: 'orange' }}></span>);
                     setAVddress(<span style={{ color: 'blue' }}>Sorry, Customer with this Email Exist!</span>);
+                    getall();
+                    jqueries();
+                    getall();
+
                     break;
                 case '200':
                     setFVname(<span style={{ color: 'red' }}></span>);
@@ -92,14 +99,14 @@ const AddCustomers = ({ setCustomers }) => {
                     setPVhone(<span style={{ color: 'orange' }}></span>);
                     setCVodes(<span style={{ color: 'orange' }}></span>);
                     setAVddress(<span style={{ color: 'green' }}>New Customer Added!</span>);
+                    getall();
+                    jqueries();
+                    getall();
+
                     break;
                 default:
                     console.log("NOTHING")
                     break;
-            }
-            const getall = async () => {
-                const response = await axios.get(`${baseURL}customers.php`);
-                setCustomers(response.data.customers);
             }
             getall();
         }
@@ -109,7 +116,7 @@ const AddCustomers = ({ setCustomers }) => {
         document.getElementById("profilePic").click();
     }
     return (
-        <div className="add_box" style={{ display: "none" }}>
+        <div className="add_box cmt" style={{ display: "none" }}>
             <div className="update" style={{ padding: "2px" }}>
                 <div className="cancel" onClick={jqueries}>
                     <button><i className="bi bi-x-lg"></i></button>
@@ -146,7 +153,7 @@ const AddCustomers = ({ setCustomers }) => {
                     <div className="small text-center">{cVodes}</div>
                     <div className='preview' onClick={getPhoto}>
                         <div className="title">
-                            <input type="file" name="" id="profilePic" onChange={(e) => setPhoto(e.target.files[0])} hidden/>
+                            <input type="file" name="" id="profilePic" onChange={(e) => setPhoto(e.target.files[0])} hidden />
                             <h4><span>SELECT IMAGE</span></h4>
                         </div>
                     </div>

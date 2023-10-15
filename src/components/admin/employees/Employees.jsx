@@ -9,6 +9,7 @@ import axios from 'axios'
 import Update from './Update'
 import Mini from '../../widgets/sidebar/Mini'
 import { baseURL } from '../../../baseURL'
+import Loading from '../../Loader/Loading'
 
 const Employees = () => {
 
@@ -79,7 +80,7 @@ const Employees = () => {
             <Mini />
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar">
-                    <div className="row" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="3000">
+                    <div className="row" data-aos="fade-left" data-aos-duration="1000" >
                         <SideBar />
                     </div>
                 </div>
@@ -94,9 +95,9 @@ const Employees = () => {
                         <div className="card_holder" style={{
                             boxShadow: "0px 10px 10px 0px rgba(0, 0, 0, 0.1)", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px"
                         }}
-                            data-aos="fade-right" data-aos-duration="1000" data-aos-delay="3000">
+                            data-aos="fade-right" data-aos-duration="1000" >
                             <div className="common-grid-2 " style={{ "--grid-template": "auto auto auto auto auto auto auto", boxShadow: "10px 0px 10px 0px rgba(0, 0, 0, 0.1)", borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}
-                                data-aos="fade-right" data-aos-duration="1000" data-aos-delay="3000">
+                                data-aos="fade-right" data-aos-duration="1000" >
                                 <div className="grid-item "
                                     style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>
                                     <div className="title ">
@@ -141,7 +142,7 @@ const Employees = () => {
                                     </div>
                                 </div>
                             </div>
-                            {contents !== undefined ? contents.map((people, i) => <Card key={i} employee={people} setEmployee={setContents} />) : 'ue'}
+                            {contents !== undefined ? contents.map((people, i) => <Card key={i} employee={people} setEmployee={setContents} />) : <Loading/>}
                         </div>
                     </div>
                 </div>

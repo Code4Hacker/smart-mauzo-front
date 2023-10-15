@@ -129,7 +129,7 @@ const OneCustomer = () => {
             <Mini2 />
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar prt_on">
-                    <div className="row" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="3000">
+                    <div className="row" data-aos="fade-left" data-aos-duration="1000" >
                         <SideBar2 />
                     </div>
                 </div>

@@ -84,7 +84,7 @@ const AllDeals = () => {
             <Mini />
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar">
-                    <div className="row" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="3000">
+                    <div className="row" data-aos="fade-left" data-aos-duration="1000" >
                         <SideBar />
                     </div>
                 </div>

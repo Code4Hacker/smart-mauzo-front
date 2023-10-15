@@ -87,9 +87,9 @@ const Login = () => {
             </div>
             <div className="container">
                 <div className="registration_box login">
-                    <div className="reg_items">
-                        <Link className="header active" to={'/'}>Admin</Link>
-                        <Link to={'/e_login'}>Employee</Link>
+                <div className="reg_items">
+                        <Link to={'/'} className="header active">Admin</Link>
+                        <Link to={'/e_login'} className='header'>Employee</Link>
                     </div>
                     <div className="title" style={{ margin: "20px", marginTop: "50px" }}>
                         <h2><span>Admin Login</span></h2>

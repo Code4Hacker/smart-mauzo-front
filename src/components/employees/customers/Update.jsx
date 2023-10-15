@@ -64,7 +64,7 @@ const Update = ({ setEmployee }) => {
             setAVddress(<span style={{ color: 'red' }}>Address is not Valid!</span>) :
             setAVddress(<span style={{ color: 'orange' }}></span>);
         !codes.match(/[0-9]/g) || codes.length < 8 ?
-            setCVodes(<span style={{ color: 'red' }}>Strong Password Required!</span>) :
+            setCVodes(<span style={{ color: 'red' }}>Unique Required!</span>) :
             setCVodes(<span style={{ color: 'orange' }}></span>);
         if (fname.length >= 3 && lname.length >= 3 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length >= 8)) {
             addNew(`${baseURL}updtodelc.php`);
@@ -75,7 +75,7 @@ const Update = ({ setEmployee }) => {
                     setMVail(<span style={{ color: 'orange' }}></span>);
                     setPVhone(<span style={{ color: 'orange' }}></span>);
                     setCVodes(<span style={{ color: 'orange' }}></span>);
-                    setAVddress(<span style={{ color: 'blue' }}>No Existing User!</span>);
+                    setAVddress(<span style={{ color: 'blue' }}>Existing Customer!</span>);
                     break;
                 case '200':
                     setFVname(<span style={{ color: 'red' }}></span>);
@@ -93,7 +93,6 @@ const Update = ({ setEmployee }) => {
                     });
                     break;
                 default:
-                    console.log(status);
                     break;
             }
             const getall = async () => {
@@ -127,7 +126,7 @@ const Update = ({ setEmployee }) => {
                         onChange={(e) => setPhone(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{pVhone}</div>
-                    <input type="text" placeholder="Customer Passcode " name="expire" value={codes}
+                    <input type="text" placeholder="Customer Unique " name="expire" value={codes}
                         onChange={(e) => setCodes(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{cVodes}</div>
