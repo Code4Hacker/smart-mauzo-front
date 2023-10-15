@@ -22,13 +22,13 @@ const Update = ({ setEmployee }) => {
     const [status, setStatus] = useState();
     const addNew = async (PATH) => {
         let formdata = new FormData();
-            formdata.append("fname", fname === "" && store.first ? store.first : fname);
-            formdata.append("lname", lname === "" && store.last ? store.last : lname);
-            formdata.append("address", address === "" && store.add ? store.add : address);
-            formdata.append("phone", phone === "" && store.phone ? store.phone : phone);
-            formdata.append("mail", mail === "" && store.email ? store.email : mail);
-            formdata.append("codes", codes);
-            formdata.append("id", store.id ? store.id : 0);
+        formdata.append("fname", fname === "" && store.first ? store.first : fname);
+        formdata.append("lname", lname === "" && store.last ? store.last : lname);
+        formdata.append("address", address === "" && store.add ? store.add : address);
+        formdata.append("phone", phone === "" && store.phone ? store.phone : phone);
+        formdata.append("mail", mail === "" && store.email ? store.email : mail);
+        formdata.append("codes", codes);
+        formdata.append("id", store.id ? store.id : 0);
 
         let bodyContent = formdata;
 
@@ -45,7 +45,7 @@ const Update = ({ setEmployee }) => {
     // }, [PATH,fname,lname,address,phone,mail,codes]);
 
     const jqueries = () => {
-        store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+        setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
     }
 
     const handleupdate = () => {
@@ -67,10 +67,18 @@ const Update = ({ setEmployee }) => {
         !codes.match(/[0-9]/g) || codes.length < 8 ?
             setCVodes(<span style={{ color: 'red' }}>Strong Password Required!</span>) :
             setCVodes(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
-        if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length < 8)) {
+        if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length >= 8)) {
             addNew(`${baseURL}upordelEmp.php`);
             switch (status) {
                 case '404':
+                    setFVname(<span style={{ color: 'red' }}></span>);
+                    setLVname(<span style={{ color: 'orange' }}></span>);
+                    setMVail(<span style={{ color: 'orange' }}></span>);
+                    setPVhone(<span style={{ color: 'orange' }}></span>);
+                    setCVodes(<span style={{ color: 'orange' }}></span>);
+                    setAVddress(<span style={{ color: 'blue' }}>No Existing User!</span>);
+                    break;
+                case '400':
                     setFVname(<span style={{ color: 'red' }}></span>);
                     setLVname(<span style={{ color: 'orange' }}></span>);
                     setMVail(<span style={{ color: 'orange' }}></span>);
@@ -85,13 +93,12 @@ const Update = ({ setEmployee }) => {
                     setPVhone(<span style={{ color: 'orange' }}></span>);
                     setCVodes(<span style={{ color: 'orange' }}></span>);
                     setAVddress(<span style={{ color: 'blue' }}>New Employee Added!</span>);
-                    store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+                    setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
                     jQuery(".rename_box").fadeOut({
                         duration: 1000
                     });
                     break;
                 default:
-                    console.log(status);
                     break;
             }
             const getall = async () => {
