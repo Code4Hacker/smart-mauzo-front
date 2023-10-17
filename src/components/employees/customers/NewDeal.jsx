@@ -7,7 +7,7 @@ import WomenSorT from './MeasurementFields/WomenSorT';
 import WomenDress from './MeasurementFields/WomenDress';
 import raws from '../raws.json';
 
-const NewDeal = ({  setWorks, setOnecount, setContents, setCount }) => {
+const NewDeal = ({  setWorks, setOnecount, setContents, setCount, unique }) => {
 
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
@@ -22,7 +22,7 @@ const NewDeal = ({  setWorks, setOnecount, setContents, setCount }) => {
     const [lVname, setLVname] = useState("");
     const [pVhone, setPVhone] = useState("");
     const [mVail, setMVail] = useState("");
-    const [cVodes, setCVodes] = useState("");
+    const [cVodes, setCVodes] = useState(unique);
 
 
 

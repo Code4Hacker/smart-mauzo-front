@@ -110,22 +110,8 @@ const OneCustomer = () => {
             });
         }
     }
-    // window.print = function(){
-    //     jQuery(".prt_on").show();
-    //     jQuery(".pdeal").css({
-    //         "position": "auto",
-    //         "width": "auto",
-    //         "left": "auto",
-    //         "transform": "none"
-    //     });
-    // }
     return (
         <div>
-            {/* <div className="pre_loader">
-                <div className="loading">
-                    <div className="loader"></div>
-                </div>
-            </div> */}
             <Mini2 />
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar prt_on">
@@ -219,7 +205,7 @@ const OneCustomer = () => {
             </div>
             {/* ADDING
             <AddEmployee setEmployee={setContents} /> */}
-            <NewDeal setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} />
+            <NewDeal setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} unique={contents !== undefined ? contents.customerUnique : "Wait ..."} />
             <div className="addnew prt_on">
                 <button className='bi bi-plus add_open dealnew'>
                     <span>New Deal</span>

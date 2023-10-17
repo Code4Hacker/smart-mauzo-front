@@ -48,6 +48,7 @@ const AddCustomers = ({ setCustomers }) => {
 
         let response = await axios.request(reqOptions);
         setStatus(response.data.status);
+        console.log(response);
     } 
     const getall = async () => {
         const response = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail :0}`);
@@ -72,7 +73,7 @@ const AddCustomers = ({ setCustomers }) => {
         !codes.match(/[0-9]/g)  ?
             setCVodes(<span style={{ color: 'red' }}>Unique code should contain numbers too!</span>) :
             setCVodes(<span style={{ color: 'orange' }}></span>);
-        if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && (phone.length >= 10 || phone.match(/[\d+]/g)) && address.length >= 10 && (!codes.match(/[0-9]/g))) {
+        if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && (phone.length >= 10 || phone.match(/[\d+]/g)) && address.length >= 10 && codes.match(/[0-9]/g)) {
             const response = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
 
             if (response.data.status === "200") {
@@ -159,7 +160,7 @@ const AddCustomers = ({ setCustomers }) => {
 
 
                     <div className="button">
-                        <button id="bottonGet" onClick={handleupdate}>Complete</button>
+                        <button id="bottonGt" onClick={handleupdate}>Complete</button>
                     </div>
                 </div>
             </div>
