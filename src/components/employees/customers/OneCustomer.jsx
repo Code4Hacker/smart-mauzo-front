@@ -70,6 +70,7 @@ const OneCustomer = () => {
             const response = await axios.get(`${baseURL}onecustomer.php?id=${params.id}`);
             setContents(response.data.customer[0]);
             const deals = await axios.get(`${baseURL}dealforone.php?customer=${response.data.customer[0].customerUnique}&employee=${response.data.customer[0].registeredBy}`);
+            window.localStorage.setItem("UNIQUE_ID", response.data.customer[0].customerUnique);
             setWorks(deals.data.deals);
             for (let index = 0; index < deals.data.deals.length; index++) {
                 if (index < deals.data.deals.length - 1) {
@@ -205,7 +206,7 @@ const OneCustomer = () => {
             </div>
             {/* ADDING
             <AddEmployee setEmployee={setContents} /> */}
-            <NewDeal setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} unique={contents !== undefined ? contents.customerUnique : "Wait ..."} />
+            <NewDeal setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} unique={window.localStorage.UNIQUE_ID? window.localStorage.UNIQUE_ID : "EOP"} />
             <div className="addnew prt_on">
                 <button className='bi bi-plus add_open dealnew'>
                     <span>New Deal</span>

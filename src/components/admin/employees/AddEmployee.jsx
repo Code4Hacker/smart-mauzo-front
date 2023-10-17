@@ -92,7 +92,6 @@ const AddEmployee = ({ setEmployee }) => {
                     jqueries();
                     break;
                 default:
-                    console.log(status);
                     break;
             }
             getall();

@@ -22,7 +22,8 @@ const NewDeal = ({  setWorks, setOnecount, setContents, setCount, unique }) => {
     const [lVname, setLVname] = useState("");
     const [pVhone, setPVhone] = useState("");
     const [mVail, setMVail] = useState("");
-    const [cVodes, setCVodes] = useState(unique);
+    const STORE = window.localStorage.UNIQUE_ID;
+    const [cVodes, setCVodes] = useState();
 
 
 
@@ -37,7 +38,9 @@ const NewDeal = ({  setWorks, setOnecount, setContents, setCount, unique }) => {
     // const jqueries = () => {
     //     store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
     // }
-    // useEffect(() => { previewSelect(); }, []);
+    useEffect(() => {setTimeout(() => {
+        // console.log(unique)
+    }, 4000);}, []);
     previewSelect();
     return (
         <div className="add_box add_deal" style={{ display: "none" }}>

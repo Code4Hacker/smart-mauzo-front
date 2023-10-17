@@ -48,7 +48,6 @@ const AddCustomers = ({ setCustomers }) => {
 
         let response = await axios.request(reqOptions);
         setStatus(response.data.status);
-        console.log(response);
     } 
     const getall = async () => {
         const response = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail :0}`);
@@ -81,25 +80,29 @@ const AddCustomers = ({ setCustomers }) => {
             }
             addNew(`${baseURL}customers.php`);
             switch (status) {
-                case '400':
+                case "400":
                     setFVname(<span style={{ color: 'red' }}></span>);
                     setLVname(<span style={{ color: 'orange' }}></span>);
                     setMVail(<span style={{ color: 'orange' }}></span>);
                     setPVhone(<span style={{ color: 'orange' }}></span>);
                     setCVodes(<span style={{ color: 'orange' }}></span>);
                     setAVddress(<span style={{ color: 'blue' }}>Sorry, Customer with this Email Exist!</span>);
+                    const respons = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail :0}`);
+                    setCustomers(respons.data.customers);
                     getall();
                     jqueries();
                     getall();
 
                     break;
-                case '200':
+                case "200":
                     setFVname(<span style={{ color: 'red' }}></span>);
                     setLVname(<span style={{ color: 'orange' }}></span>);
                     setMVail(<span style={{ color: 'orange' }}></span>);
                     setPVhone(<span style={{ color: 'orange' }}></span>);
                     setCVodes(<span style={{ color: 'orange' }}></span>);
                     setAVddress(<span style={{ color: 'green' }}>New Customer Added!</span>);
+                    const respone = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail :0}`);
+                    setCustomers(respone.data.customers);
                     getall();
                     jqueries();
                     getall();
