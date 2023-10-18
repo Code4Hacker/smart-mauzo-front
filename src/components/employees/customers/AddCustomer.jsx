@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { baseURL } from '../../../baseURL';
 import jQuery from 'jquery';
+import { GeminiNotification } from '../../Notification';
 
 const AddCustomers = ({ setCustomers }) => {
     const [fname, setFname] = useState("");
@@ -23,6 +24,7 @@ const AddCustomers = ({ setCustomers }) => {
     const [status, setStatus] = useState();
     const navigate = useNavigate();
 
+    
     const jqueries = () => {
         jQuery(".add_box.cmt").fadeOut({ duration: 500 });
         setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
@@ -48,6 +50,12 @@ const AddCustomers = ({ setCustomers }) => {
 
         let response = await axios.request(reqOptions);
         setStatus(response.data.status);
+        let file = photo;
+        let filereader = new FileReader();
+        filereader.onload = function(){
+            GeminiNotification("New Customer Uploaded!", `\nThanks for contribution Customer ${fname+" "+ lname}, Added Successful!`, this.result);
+        }
+        filereader.readAsDataURL(file);
     } 
     const getall = async () => {
         const response = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail :0}`);
