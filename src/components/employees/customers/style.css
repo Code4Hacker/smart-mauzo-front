@@ -165,10 +165,10 @@
     height: 200px;
     background-color: rgba(0, 0, 0, 0.103);
     overflow-y: scroll;
-    position: relative !important;
     overflow-x: hidden !important;
     scroll-snap-type: y mandatory;
 }
+
 .for_single .mrs {
     height: 170px;
 }

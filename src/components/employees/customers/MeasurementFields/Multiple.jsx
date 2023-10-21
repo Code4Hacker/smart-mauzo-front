@@ -162,16 +162,38 @@ const Multiple = ({ setTask, fname, lname, mail, phone, requirements, unique, ds
                         title: fname,
                         description: lname,
                         requirements: requirements,
-                        pay_status: dstatus,
-                        deal_tracking: tracks,
+                        pay_status: dstatus !== "" ? dstatus : "PENDING",
+                        deal_tracking: tracks !== ""? tracks : "ON PROGRESS",
                         registered_by: employee.data.employee[0].employeeID,
                         customer: unique
                     },
                     "resp": bodydata
                 }
 
-                const response = await axios.post(`${baseURL}manydeal.php`, deal_assets);
-                console.log(response.data);
+                const respn = await axios.post(`${baseURL}manydeal.php`, deal_assets);
+                console.log(deal_assets);
+                console.log(respn.data);
+                if(respn.data.status === "200"){
+                    const getall = async () => {
+                        const response = await axios.get(`${baseURL}onecustomer.php?id=${params.id}`);
+                        setContents(response.data.customer[0]);
+                        const deals = await axios.get(`${baseURL}dealforone.php?customer=${response.data.customer[0].customerUnique}&employee=${response.data.customer[0].registeredBy}`);
+                        window.localStorage.setItem("UNIQUE_ID", response.data.customer[0].customerUnique);
+                        setWorks(deals.data.deals);
+                        for (let index = 0; index < deals.data.deals.length; index++) {
+                            if (index < deals.data.deals.length - 1) {
+                                setOnecount(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
+                            } else if (deals.data.deals.length === 1) {
+                                setOnecount(Number(deals.data.deals[index].price));
+                            }
+            
+                        }
+                        setCount(deals.data.counter);
+                        jQuery(".add_box.add_deal").fadeOut();
+                    }
+            
+                    getall();
+                }
             }
         } catch (error) {
             console.error(error);
