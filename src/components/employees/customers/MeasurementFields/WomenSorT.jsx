@@ -68,9 +68,9 @@ const WomenSorT = ({ setTask, fname, lname, mail, phone, requirements, unique, d
                 }
                 setCount(deals.data.counter);
                 jQuery(".add_box.add_deal").fadeOut({duration:500});
-                setTimeout(() => {
-                    nav(`/pro_forma/${unique}`);
-                }, 3000);
+                // setTimeout(() => {
+                //     nav(`/pro_forma/${unique}`);
+                // }, 3000);
             } else {
                 // handlepost();
                 alert("please click again to confirm !");

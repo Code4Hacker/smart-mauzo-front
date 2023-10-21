@@ -4,13 +4,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { baseURL } from '../../../baseURL';
 import raws from "../../employees/raws.json"
 import jQuery from 'jquery';
+import Loading from '../../Loader/Loading';
 
 const AllDeal = ({ deals, num, setDeals, setCount }) => {
-    const { dealID, dealTitle, dealDescription, dealSummary, dealPicture, registeredBy, CustomerUnique, customerId, price, registedDate, dealRequirements, measurements, dealStatus, tracking } = deals;
+    const { dealID, dealTitle, dealDescription, dealSummary, dealPicture, registeredBy, CustomerUnique, customerId, price, registedDate, dealRequirements, measurements, dealStatus, tracking, quantity } = deals;
     const [trackin, setTrackin] = useState(tracking);
     const params = useParams();
     const navigate = useNavigate();
     const [payed, setPayed] = useState();
+    const [count3, setCount3] = useState(0);
     const handledel = async () => {
         const del = await axios.get(`${baseURL}dealdel.php?id=${dealID}`);
         // const status = del.data;
@@ -27,8 +29,8 @@ const AllDeal = ({ deals, num, setDeals, setCount }) => {
         let formDATA = new FormData();
         formDATA.append("dealnum", dealID);
         if (payed === "PENDING") {
-            setPayed("PAYED");
-            formDATA.append("status", "PAYED");
+            setPayed("PAID");
+            formDATA.append("status", "PAID");
             let bodydata = formDATA;
             const update = await axios.request({
                 url: `${baseURL}updatedeal.php`,
@@ -63,9 +65,34 @@ const AllDeal = ({ deals, num, setDeals, setCount }) => {
         jQuery(".print-opt").on("click", function () {
             jQuery(".options").fadeIn({ duration: 1000 });
         });
+        jQuery(`.filter.f-${dealID} > *:nth-child(2) > *`).on("click", function () {
+            jQuery(`.filter.f-${dealID} > *:nth-child(2) > *`).removeClass("hover");
+            jQuery(this).addClass("hover");
+        });
     }
+    const deal_picks = async () => {
+        const getdata_for = await axios.get(`${baseURL}contentfor1d.php?id=${dealID}`);
+        setSplittled_deal(getdata_for.data.deals);
+        let fdt = new FormData();
+        fdt.append("id", dealID);
+        let bodydat = fdt;
+        const deal = await axios.request({
+            method: 'POST',
+            url: `${baseURL}dealtotal.php`,
+            data: bodydat
+        });
+
+        // if (deal.data.status === "200") {
+        setCount3(Number(deal.data.ONE_TOTAL).toLocaleString())
+        // console.log(deal);
+        // }
+    }
+    const [splitted_deal, setSplittled_deal] = useState();
     useEffect(() => {
         setPayed(dealStatus);
+        // contentfor1d.php?id=2
+
+        deal_picks();
 
         query();
     }, []);
@@ -90,6 +117,18 @@ const AllDeal = ({ deals, num, setDeals, setCount }) => {
             alert("Updated Successiful");
         }
     }
+    const deal_pick = async (PATH) => {
+        const getdata_for = await axios.get(`${baseURL}filterAll.php?id=${dealID}&ctg=${PATH}`);
+        setSplittled_deal(getdata_for.data.deals);
+    }
+    
+    const all = () => deal_picks();
+    const menj = () => deal_pick('MEN JACKET');
+    const ment = () => deal_pick('MEN TROUSER');
+    const wej = () => deal_pick('WOMEN JACKET');
+    const wet = () => deal_pick('WOMEN TROUSER');
+    const wed = () => deal_pick('WOMEN DRESS');
+
     return (
         <div className="row deal" onClick={() => window.localStorage.setItem("dealC", dealID)}>
             <div className="noted">
@@ -122,13 +161,13 @@ const AllDeal = ({ deals, num, setDeals, setCount }) => {
                                     <div className="note"></div>
                                     <div className="req">
 
-                                        <span className="small desc comment">{dealRequirements}</span>
+                                        <span className="small desc comment">{dealRequirements.split('\n')?.length > 0 ? dealRequirements.split('\n').map((note, i) => <li key={i}>{note}</li>) : "Wait is Splitting ..."}</span>
                                     </div>
                                 </div>
-                                <p style={{ color: 'var(--green)', marginTop: '10px' }} className="flex">
-                                    <span className="flex" style={{ marginRight: '10px' }}>
-                                        <input type="checkbox" style={{ background: 'red', width: '14px' }} onClick={handleStatus} />
-                                    </span><i className="bi bi-coin"></i> {price} Tshs. <span className="comment gray">[{payed === "PENDING" ? payed + "..." : payed}]</span></p>
+                                {/* <p style={{ color: 'var(--green)', marginTop: '10px' }} className="flex"> */}
+                                {/* <span className="flex" style={{ marginRight: '10px' }}> */}
+                                {/* <input type="checkbox" style={{ background: 'red', width: '14px' }} onClick={handleStatus} /> */}
+                                {/* </span> {Number(price*quantity).toLocaleString()} Tshs. <i style={{color:'red !important', fontSize:'x-small', fontWeight:900,padding:'3px'}}className='small'>({quantity}) </i>  <span className="comment gray">[{payed === "PENDING" ? payed + "..." : payed}]</span></p> */}
                             </div>
                         </div>
                         <div className="col-1">
@@ -138,20 +177,86 @@ const AllDeal = ({ deals, num, setDeals, setCount }) => {
                                 {/* <i className="bi bi-pen-fill" style={{ color: "var(--green)", padding: "8px", boxShadow: " inset 0px 0px 10px 0px rgba(0, 0, 0, 0.11)", margin: " 5px", borderRadius: " 10px" }} ></i> */}
                                 <i className="bi bi-trash3-fill" style={{ color: "red", padding: "8px", boxShadow: " inset 0px 0px 10px 0px rgba(0, 0, 0, 0.11)", margin: " 5px", borderRadius: " 10px" }} onClick={handledel} ></i>
 
-                                <i className="bi bi-printer-fill print-opt" style={{ color: "var(--black)", textDecoration: 'none', padding: "8px", boxShadow: " inset 0px 0px 10px 0px rgba(0, 0, 0, 0.11)", margin: " 3px", borderRadius: " 10px", backgroundColor: 'var(--top-color)', fontSize: 'small', fontStyle: 'normal !important', cursor: 'pointer' }}></i>
+                                {/* <i className="bi bi-printer-fill print-opt" style={{ color: "var(--black)", textDecoration: 'none', padding: "8px", boxShadow: " inset 0px 0px 10px 0px rgba(0, 0, 0, 0.11)", margin: " 3px", borderRadius: " 10px", backgroundColor: 'var(--top-color)', fontSize: 'small', fontStyle: 'normal !important', cursor: 'pointer' }}></i> */}
                             </div>
                         </div>
-                        <div className="col-xl-11 mrs">
-                            <div className="text-center">
-                                <div className="titl">
-                                    <h4><span>Measurements</span></h4>
-                                    <div className="measures">
-                                        {
-                                            measurements.split(",")?.length > 0 ? measurements.split(",").map((m, i) => <div className='measure' key={i}>{m}</div>) : "Loading ..."
-                                        }
-                                    </div>
+                        <div className="mrs">
+                            <div className={`filter f-${dealID} flex`}>
+                                <span>Filter By </span>
+                                <div className="filters flex">
+                                    <div className="" onClick={all}>{raws.filters.ALL}</div>
+                                    <div className="" onClick={menj}>{raws.filters.MEN_JACKET}</div>
+                                    <div className="" onClick={ment}>{raws.filters.MEN_TROUSER}</div>
+                                    <div className="" onClick={wej}>{raws.filters.WOMEN_JACKET}</div>
+                                    <div className="" onClick={wet}>{raws.filters.WOMEN_TROUSER}</div>
+                                    <div className="" onClick={wed}>{raws.filters.WOMEN_DRESS}</div>
                                 </div>
                             </div>
+                            {
+                                splitted_deal !== undefined ? splitted_deal.map((d, i) =>
+                                    <div className="sna_container" key={i}>
+                                        <div className="text-center" >
+                                            <div className="titl">
+                                                {/* {console.log(d, "DDDD")} */}
+                                                <h4><span>{d.categories}</span></h4>
+                                                <p style={{ color: 'var(--green)', marginTop: '10px' }} className="flex">
+                                                    <span className="flex" style={{ marginRight: '10px' }}>
+                                                    </span> {Number(d.price * d.quantity).toLocaleString()} Tshs. <i style={{ color: 'red !important', fontSize: 'x-small', fontWeight: 900, padding: '3px' }} className='small'>({d.quantity} per {d.price}/=) </i>  </p>
+                                                <div className="measures">
+
+                                                    {
+                                                        d.measurements.split(",")?.length > 0 ? d.measurements.split(",").map((m, i) => <div className='measure' key={i}>{m}</div>) : <Loading />
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : <Loading />
+                            }
+
+                        </div>
+                        <p style={{ color: 'var(--green)', marginTop: '10px' }} className="flex">
+                            <span className="flex" style={{ marginRight: '10px' }}>
+                                <input type="checkbox" style={{ background: 'red', width: '14px' }} onClick={handleStatus} />
+                            </span> <span className="comment gray">TOTAL: {count3} Tshs. | STATUS: [{payed === "PENDING" ? payed + "..." : payed}]</span></p>
+                    </div>
+                </div>
+            </div>
+            <div className="options" style={{ display: 'none' }}>
+                <div className="dialog">
+                    <i className="bi bi-x"></i>
+                    <h3 className='text-center '>What need to Print ?</h3>
+                    <div className="preview" onClick={invoice}>
+                        <div className="title">
+                            <h4><span>Invoice</span></h4>
+                            <span className="small comment desc">
+                                Invoice Card
+                            </span>
+                        </div>
+                    </div>
+                    <div className="preview" onClick={receipt}>
+                        <div className="title">
+                            <h4><span>Receipt</span></h4>
+                            <span className="small comment desc">
+                                Receipt Card
+                            </span>
+                        </div>
+                    </div>
+                    <div className="preview" onClick={delivery}>
+                        <div className="title">
+                            <h4><span>Delivery</span></h4>
+                            <span className="small comment desc">
+                                Delivery Form
+                            </span>
+                        </div>
+                    </div>
+                    <div className="preview" onClick={pro_forma}>
+                        <div className="title">
+                            <h4><span>Pro-forma</span></h4>
+                            <span className="small comment desc">
+                                Primary Form Card
+                            </span>
                         </div>
                     </div>
                 </div>

@@ -1,11 +1,19 @@
 {
     "deal_status": {
-            "PENDING":"PENDING",
-            "PAID":"PAID"
-        },
-        "deal_track": {
-            "ON_PROGRESS_DEAL":"ON PROGRESS",
-            "TRANSPORTED":"TRANSPORTED",
-            "DELIVERED":"DELIVERED"
-        }
+        "PENDING": "PENDING",
+        "PAID": "PAID"
+    },
+    "deal_track": {
+        "ON_PROGRESS_DEAL": "ON PROGRESS",
+        "TRANSPORTED": "TRANSPORTED",
+        "DELIVERED": "DELIVERED"
+    },
+    "filters": {
+        "ALL": "ALL",
+        "MEN_JACKET": "MEN JACKET",
+        "WOMEN_JACKET": "WOMEN JACKET",
+        "MEN_TROUSER": "MEN TROUSER",
+        "WOMEN_TROUSER": "WOMEN TROUSER",
+        "WOMEN_DRESS": "WOMEN DRESS"
+    }
 }

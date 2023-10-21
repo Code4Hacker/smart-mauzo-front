@@ -58,7 +58,7 @@ const Card2 = ({ employee, setEmployee }) => {
         });
     }
     return (
-        <div className="common-grid-2 " style={{ "--grid-template": "auto auto auto auto auto auto" }}>
+        <div className="common-grid-2 " style={{ "--grid-template": "auto auto auto auto auto" }}>
             <div className="grid-item h " style={{ paddingLeft: "10px", paddingRight: "10px " }}>
                 <div className="title ">
                     <h5><span>
@@ -73,13 +73,13 @@ const Card2 = ({ employee, setEmployee }) => {
                     </span></h5>
                 </div>
             </div>
-            <div className="grid-item h " style={{ paddingLeft: "10px", paddingRight: "10px " }}>
+            {/* <div className="grid-item h " style={{ paddingLeft: "10px", paddingRight: "10px " }}>
                 <div className="title ">
                     <h5><span>
                         {customerEmail}
                     </span></h5>
                 </div>
-            </div>
+            </div> */}
             <div className="grid-item h " style={{ paddingLeft: "10px", paddingRight: "10px " }}>
                 <div className="title ">
                     <h5><span>

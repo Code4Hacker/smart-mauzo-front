@@ -75,7 +75,7 @@ const Pro_form = () => {
                                     <span>Date: </span><span> {printingdt !== undefined ? date : "Wait ..."}</span>
                                 </div>
                                 <div className="col-12">
-                                    <span>Client: </span><span> {printingdt !== undefined ? <span>{printingdt.user.customerFirst + " " + printingdt.user.customerLast} <i style={{ fontSize: '11px' }}>[{printingdt.user.customerEmail}]</i></span> : "Wait ..."}</span>
+                                    <span>Client: </span><span> {printingdt !== undefined ? <span>{printingdt.user.customerFirst + " " + printingdt.user.customerLast} </span> : "Wait ..."}</span>
                                 </div>
                                 <div className="col-12">
                                     <span>Address: </span>  <span style={{ fontWeight: 300 }}>{printingdt !== undefined ? printingdt.user.customerAddress : "Wait ..."}</span>

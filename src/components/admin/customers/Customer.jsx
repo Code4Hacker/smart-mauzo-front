@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import CustomerDeals from './CustomerDeals'
 import Mini from '../../widgets/sidebar/Mini'
 import { baseURL, baseURL2 } from '../../../baseURL'
+import Search from '../../widgets/Search/Search'
 
 const Customer = () => {
     const jqueryCodes = () => {
@@ -141,7 +142,9 @@ const Customer = () => {
                                         </div> */}
                                         <div className="">
                                             <h5>Total Price</h5>
-                                            <p>{onecount} <span className="small">Tsh</span></p>
+                                            {
+                                                onecount !== undefined ? <p>{onecount} <span className="small">Tsh</span></p>:"Cash is Empty"
+                                            }
                                         </div>
 
                                     </div>
@@ -184,6 +187,7 @@ const Customer = () => {
                 <button className='bi bi-person-plus-fill add_open'>
                 </button>
             </div> */}
+            <Search setDeals={setWorks} setCount={setCount} uri={"searchbyInd.php"} id={"YES"} />
         </div >
     )
 }

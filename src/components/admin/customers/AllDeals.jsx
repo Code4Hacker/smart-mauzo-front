@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import Mini from '../../widgets/sidebar/Mini'
 import { baseURL } from '../../../baseURL'
 import AllDeal from './AllDeal'
+import Search from '../../widgets/Search/Search'
 
 const AllDeals = () => {
     const jqueryCodes = () => {
@@ -54,7 +55,6 @@ const AllDeals = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("SELL CANCELED!");
                 }
             });
         });
@@ -97,9 +97,9 @@ const AllDeals = () => {
                             <div className="col-xl-8" style={{
                                 marginTop: '50px'
                             }} data-aos="fade-right" data-aos-duration="1000" data-aos-delay="1000">
-                                <div className="title"><h3><span style={{
-                                    fontWeight: 100, marginTop: '50px !important', padding: '20px', background: 'var(--milk)', color: 'var(--black)', position: 'relative', minHeight: '30px', marginLeft: '-50px', borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px'
-                                }}>CUSTOMERS DEAL</span></h3></div>
+                                {/* <div className="title"><h3><span style={{
+                                    fontWeight: 100, marginTop: '0px !important', padding: '20px', background: 'var(--milk)', color: 'var(--black)', position: 'relative', minHeight: '30px', marginLeft: '-50px', borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px'
+                                }}>CUSTOMERS DEAL</span></h3></div> */}
                                 <div className="deals" style={{marginTop:'40px'}}>
                                     {
                                         works !== undefined && works?.length > -1 ? works.map((work, id) => <AllDeal deals={work} num={id} setDeals={setWorks} setCount={setCount} key={id} />):"Loading ..."
@@ -128,6 +128,7 @@ const AllDeals = () => {
                 <button className='bi bi-person-plus-fill add_open'>
                 </button>
             </div> */}
+            <Search setDeals={setWorks} setCount={setCount} uri={"searchdeals.php"} id={"NO"}/>
         </div >
     )
 }

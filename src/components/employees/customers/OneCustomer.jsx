@@ -10,6 +10,7 @@ import EC_Deals from './EC_Deals';
 import NewDeal from './NewDeal';
 import Mini2 from '../../widgets/sidebar/Mini2';
 import Loading from '../../Loader/Loading';
+import Search from '../../widgets/Search/Search';
 
 const OneCustomer = () => {
     const jqueryCodes = () => {
@@ -164,7 +165,7 @@ const OneCustomer = () => {
                                         <div className="">
                                             <h5>Total Price</h5>
                                             {
-                                                onecount !== 0 ? <p>{onecount} <span className="small">Tsh</span></p>:"Cash is Empty"
+                                                onecount !== undefined ? <p>{onecount} <span className="small">Tsh</span></p>:"Cash is Empty"
                                             }
                                         </div>
 
@@ -206,7 +207,8 @@ const OneCustomer = () => {
             </div>
             {/* ADDING
             <AddEmployee setEmployee={setContents} /> */}
-            <NewDeal setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} unique={window.localStorage.UNIQUE_ID? window.localStorage.UNIQUE_ID : "EOP"} />
+            <NewDeal setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} />
+            <Search setDeals={setWorks} setCount={setCount} uri={"searchbyInd.php"} id={"YES"} />
             <div className="addnew prt_on">
                 <button className='bi bi-plus add_open dealnew'>
                     <span>New Deal</span>

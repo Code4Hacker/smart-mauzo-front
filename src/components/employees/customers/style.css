@@ -1,3 +1,7 @@
+.deal {
+    margin-bottom: 10px;
+}
+
 .addnew {
     position: fixed;
     top: 98%;
@@ -46,7 +50,7 @@
 
 .preview {
     padding: 10px;
-    margin: 10px;
+    margin: 5px;
     border-radius: 10px;
     background: linear-gradient(-60deg, var(--green) 10%, transparent 80%, var(--green) 10%);
     cursor: pointer;
@@ -54,9 +58,31 @@
     text-align: start;
 }
 
-.choose.preview {
+.preview.p2 {
     padding: 10px;
-    margin: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    background: linear-gradient(-60deg, rgb(0, 78, 74) 10%, transparent 80%, rgb(0, 82, 78) 10%);
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.164);
+    background-color: rgb(83, 0, 32);
+    text-align: start;
+}
+
+.choose.preview.p2 {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    background: linear-gradient(-60deg, rgb(0, 78, 74) 10%, transparent 80%, rgb(0, 82, 78) 10%);
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 0px rgb(0, 78, 74);
+    background-color: rgb(228, 18, 99);
+    text-align: start;
+}
+
+.choose.preview {
+    padding: 20px;
+    margin: 5px;
     border-radius: 10px;
     background: linear-gradient(-60deg, var(--green) 10%, transparent 80%, var(--green) 10%);
     background-color: rgb(0, 0, 0);
@@ -72,7 +98,8 @@
 }
 
 .preview>* h4 {
-    font-size: 16px;
+    font-size: 15px;
+    margin-bottom: 0px;
 }
 
 .noted {
@@ -128,14 +155,50 @@
 }
 
 .mrs {
-    width: 100%;
+    width: 95% !important;
     justify-self: center;
     align-self: center;
     margin-left: 20px;
-    border-radius: 10px;
+    border-radius: 10px !important;
     margin-bottom: 10px;
+    display: grid;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.103);
+    overflow-y: scroll;
+    position: relative !important;
+    overflow-x: hidden !important;
+    scroll-snap-type: y mandatory;
+}
+.for_single .mrs {
+    height: 170px;
 }
 
+.sna_container {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-top: 60px;
+    border-bottom: 1px solid var(--milk);
+    scroll-snap-align: center;
+    min-height: 200px;
+}
+
+.sna_container>*>* {
+    display: flex !important;
+}
+
+.sna_container h4 {
+    writing-mode: vertical-lr;
+    padding-bottom: 10px;
+}
+.for_single 
+.sna_container {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-top: 20px;
+    border-bottom: 1px solid var(--milk);
+    scroll-snap-align: center;
+    min-height: 170px;
+}
 .mrs h4,
 .mrs h4 span {
     color: var(--milk) !important;
@@ -157,11 +220,23 @@
     justify-items: center;
 }
 
+/* 
 .measures>* {
     padding: 10px;
     min-width: 120px;
     border-radius: 2px;
     border: 1px solid var(--green);
+} */
+
+.measures>* {
+    padding: 8px;
+    min-width: 80px;
+    font-size: 11px;
+    border-radius: 10px;
+    background: linear-gradient(60deg, transparent, rgb(1, 110, 105));
+    background-color: var(--milk);
+    border: 0px solid var(--green);
+    color: white;
 }
 
 .deal .tracking>* {
@@ -211,6 +286,18 @@
     /* background-color: red; */
 }
 
+.multi_bx {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.multi_bx>* {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-radius: 20px;
+}
+
 @media screen and (max-width:500px) {
     .mrs {
         width: 100%;
@@ -220,7 +307,7 @@
         border-radius: 10px;
         margin-bottom: 10px;
     }
-    
+
     .mrs h4,
     .mrs h4 span {
         color: var(--milk) !important;
@@ -228,7 +315,7 @@
         font-weight: 500;
         text-transform: uppercase;
     }
-    
+
     .measures {
         margin: 4px;
         display: flex;
@@ -263,7 +350,7 @@
         width: 80px;
         font-size: small;
     }
-    
+
     .print_deal:hover {
         position: absolute;
         left: 90%;

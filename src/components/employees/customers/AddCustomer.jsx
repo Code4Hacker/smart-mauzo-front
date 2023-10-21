@@ -13,21 +13,22 @@ const AddCustomers = ({ setCustomers }) => {
     const [photo, setPhoto] = useState("");
     const [phone, setPhone] = useState("");
     const [mail, setMail] = useState("");
-    const [codes, setCodes] = useState("");
     const [regId, setRegId] = useState("");
     const [fVname, setFVname] = useState("");
     const [lVname, setLVname] = useState("");
     const [aVddress, setAVddress] = useState("");
     const [pVhone, setPVhone] = useState("");
     const [mVail, setMVail] = useState("");
-    const [cVodes, setCVodes] = useState("");
     const [status, setStatus] = useState();
-    const navigate = useNavigate();
 
-    
+
     const jqueries = () => {
         jQuery(".add_box.cmt").fadeOut({ duration: 500 });
-        setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+        setAddress(""); setFname(""); setMail(""); setPhone(""); setLname("");
+    }
+    const getall = async () => {
+        const response = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail : 0}`);
+        setCustomers(response.data.customers);
     }
     const addNew = async (PATH) => {
         let formdata = new FormData();
@@ -36,7 +37,6 @@ const AddCustomers = ({ setCustomers }) => {
         formdata.append("address", address);
         formdata.append("phone", phone);
         formdata.append("mail", mail);
-        formdata.append("unique", codes);
         formdata.append("registered", regId);
         formdata.append("photo", photo);
 
@@ -49,38 +49,40 @@ const AddCustomers = ({ setCustomers }) => {
         }
 
         let response = await axios.request(reqOptions);
+        // console.log(response.data);
         setStatus(response.data.status);
-        let file = photo;
-        let filereader = new FileReader();
-        filereader.onload = function(){
-            GeminiNotification("New Customer Uploaded!", `\nThanks for contribution Customer ${fname+" "+ lname}, Added Successful!`, this.result);
+        if (response.data.status === "200") {
+            let file = photo;
+            if (file !== "") {
+                let filereader = new FileReader();
+                filereader.onload = function () {
+                    GeminiNotification("New Customer Uploaded!", `\nThanks for contribution Customer ${fname + " " + lname}, Added Successful!`, this.result);
+                }
+                filereader.readAsDataURL(file);
+            } else {
+                GeminiNotification("New Customer Uploaded!", `\nThanks for contribution Customer ${fname + " " + lname}, Added Successful!`, "");
+            }
+            jqueries();
+            getall();
         }
-        filereader.readAsDataURL(file);
-    } 
-    const getall = async () => {
-        const response = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail :0}`);
-        setCustomers(response.data.customers);
     }
     const handleupdate = async () => {
-        fname.length < 4 ?
-            setFVname(<span style={{ color: 'red' }}>First Name is Too Small!</span>) :
+        fname.length < 1 ?
+            setFVname(<span style={{ color: 'red' }}>Too Small!</span>) :
             setFVname(<span style={{ color: 'orange' }}></span>);
-        lname.length < 4 ?
-            setLVname(<span style={{ color: 'red' }}>Last Name is Too Small!</span>) :
+        lname.length < 1 ?
+            setLVname(<span style={{ color: 'red' }}>Too Small!</span>) :
             setLVname(<span style={{ color: 'orange' }}></span>);
-        mail.length < 10 ?
-            setMVail(<span style={{ color: 'red' }}>Email is Invalid!</span>) :
-            setMVail(<span style={{ color: 'orange' }}></span>);
         phone.length < 10 || phone.match(/[a-z]/g) ?
             setPVhone(<span style={{ color: 'red' }}>Phone Number Not Valid!</span>) :
             setPVhone(<span style={{ color: 'orange' }}></span>);
-        address.length < 10 ?
+        address.length < 1 ?
             setAVddress(<span style={{ color: 'red' }}>Address is not Valid!</span>) :
             setAVddress(<span style={{ color: 'orange' }}></span>);
-        !codes.match(/[0-9]/g)  ?
-            setCVodes(<span style={{ color: 'red' }}>Unique code should contain numbers too!</span>) :
-            setCVodes(<span style={{ color: 'orange' }}></span>);
-        if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && (phone.length >= 10 || phone.match(/[\d+]/g)) && address.length >= 10 && codes.match(/[0-9]/g)) {
+        // !codes.match(/[0-9]/g) ?
+        //     setCVodes(<span style={{ color: 'red' }}>Unique code should contain numbers too!</span>) :
+        //     setCVodes(<span style={{ color: 'orange' }}></span>);
+        if (fname.length >= 1 && lname.length >= 1 && (phone.length >= 10 || phone.match(/[\d+]/g)) && address.length >= 1) {
             const response = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
 
             if (response.data.status === "200") {
@@ -93,10 +95,10 @@ const AddCustomers = ({ setCustomers }) => {
                     setLVname(<span style={{ color: 'orange' }}></span>);
                     setMVail(<span style={{ color: 'orange' }}></span>);
                     setPVhone(<span style={{ color: 'orange' }}></span>);
-                    setCVodes(<span style={{ color: 'orange' }}></span>);
-                    setAVddress(<span style={{ color: 'blue' }}>Sorry, Customer with this Email Exist!</span>);
-                    const respons = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail :0}`);
+                    setAVddress(<span style={{ color: 'blue' }}>Please Try to Resubmit if no Data on the table!</span>);
+                    const respons = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail : 0}`);
                     setCustomers(respons.data.customers);
+                    alert("Please, Submit again to Confirm!");
                     getall();
                     jqueries();
                     getall();
@@ -107,9 +109,8 @@ const AddCustomers = ({ setCustomers }) => {
                     setLVname(<span style={{ color: 'orange' }}></span>);
                     setMVail(<span style={{ color: 'orange' }}></span>);
                     setPVhone(<span style={{ color: 'orange' }}></span>);
-                    setCVodes(<span style={{ color: 'orange' }}></span>);
                     setAVddress(<span style={{ color: 'green' }}>New Customer Added!</span>);
-                    const respone = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail :0}`);
+                    const respone = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail : 0}`);
                     setCustomers(respone.data.customers);
                     getall();
                     jqueries();
@@ -143,10 +144,9 @@ const AddCustomers = ({ setCustomers }) => {
                             style={{ marginTop: "5px", marginBottom: "5px" }} />
                         <div className="small text-center">{lVname}</div>
                     </div>
-                    <input type="text" placeholder="Customer Email" name="email" value={mail}
+                    <input type="text" placeholder="Email, OPTIONAL" name="email" value={mail}
                         onChange={(e) => setMail(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
-                    <div className="small text-center">{mVail}</div>
                     <input type="text" placeholder="Customer Contact " name="contact" value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
@@ -156,12 +156,6 @@ const AddCustomers = ({ setCustomers }) => {
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{aVddress}</div>
 
-
-
-                    <input type="text" placeholder="Customer Unique ID" name="unique" value={codes}
-                        onChange={(e) => setCodes(e.target.value)}
-                        style={{ marginTop: "5px", marginBottom: "5px" }} />
-                    <div className="small text-center">{cVodes}</div>
                     <div className='preview' onClick={getPhoto}>
                         <div className="title">
                             <input type="file" name="" id="profilePic" onChange={(e) => setPhoto(e.target.files[0])} hidden />

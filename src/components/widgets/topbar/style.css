@@ -114,6 +114,10 @@
 .showcas > * {
     min-width: 300px !important;
 }
+.number .title h4, .number .title h4 span{
+    color: #000;
+    margin-bottom: 40px;
+}
 @media screen and (max-width:500px) {
     .showcase>div {
         min-width: 120px;
