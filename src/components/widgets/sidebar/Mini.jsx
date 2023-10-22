@@ -22,6 +22,7 @@ const Mini = () => {
             <Link to={'/employees'}> <h3 className="bi bi-collection"></h3></Link>
             <Link to={'/customers'}> <h3 className="bi bi-people"></h3></Link>
             <Link to={'/deals'}> <h3 className="bi bi-cart"></h3></Link>
+            <Link to={'/stuff'}> <h3 className="bi bi-personal-workspace"></h3></Link>
             <Link to={'/report'}> <h3 className="bi bi-building"></h3></Link>
             <div onClick={handleLog}> <h3 className="bi bi-shield"></h3></div>
             <i className="bi bi-x main-bar"></i>

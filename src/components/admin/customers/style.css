@@ -259,6 +259,18 @@
     cursor: pointer !important;
     text-align: center;
 }
+.flex.date_flex{
+    column-gap: 10px;
+}
+.flex.date_flex > *{
+    width: 100%;
+}
+.flex.date_flex > * label{
+    width: 100%;
+    /* background-color: red; */
+    font-size: small;
+    margin-left: 10px;
+}
 @media screen and (max-width:500px) {
     .customer {
         margin: 10px;

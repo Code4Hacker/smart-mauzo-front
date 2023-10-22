@@ -15,6 +15,8 @@ import Pro_form2 from './components/employees/customers/Printing/Pro_forma2';
 import ICustomer from './components/employees/customers/IndividualCustomers';
 import AStocks from './components/admin/report/Stocks';
 import Delivery from './components/employees/customers/Printing/Delivery';
+import StuffMember from './components/employees/customers/StuffMember';
+import Stuffs from './components/employees/customers/Stuffs';
 
 function App() {
 
@@ -37,6 +39,9 @@ function App() {
         <Route path='/one_customer/:id' element={  <OneCustomer />} />
         <Route path='/repo' element={  <Stocks />} />
         <Route path='/userEmp' element={  <ICustomer />} />
+
+        <Route path='/stuff_members' element={  <Stuffs />} />
+        <Route path='/stuff_member/:id' element={  <StuffMember />} />
         {/* GENERAL */}
         <Route path='/pro_forma/:id' element={  <Pro_form />} />
         <Route path='/pro_forma2/:id' element={  <Pro_form2 />} />

@@ -1,0 +1,61 @@
+.grid.works{
+    display: grid;
+    grid-template-columns: 80px 1px auto;
+    column-gap: 10px;
+}
+.grid.works > * {
+    position: relative;
+    min-height: 100px;
+}
+.grid.works > *:nth-child(2){
+    position: relative;
+    background: linear-gradient(70deg, transparent, rgb(0, 126, 158));
+    background-color: var(--green);
+}
+.grid.works > *:nth-child(1){
+    text-align: center;
+}
+.grid.works > *:nth-child(2)::before{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    transform: rotate(45deg);
+    margin-left: -6.8px;
+    margin-top: 5px;
+    border-radius: 2px;
+    background: linear-gradient(70deg, transparent, rgb(0, 126, 158));
+    background-color: var(--green);
+}
+.week_jb_gemini{
+    font-size: small;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.082);
+    padding: 10px;
+}
+.x-small{
+    font-size: x-small;
+}
+.week_jb_gemini .x-small{
+    color: var(--blue);
+    font-style: italic;
+}
+.grid.works > *:nth-child(1) > *{
+    writing-mode: vertical-lr;
+    -ms-writing-mode: lr-bt;
+}
+.date_flex button{
+    width: 100px !important;
+    border-radius: 50px;
+    padding:10px !important;
+    background-color: rgba(1, 29, 80, 0.863);
+    color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.164);
+    /* border: 2px solid rgb(243, 243, 243); */
+    height: 50px !important;
+    margin-top: 28px;
+
+}
+.date_flex button:hover{
+    margin-top: 24px;
+
+}

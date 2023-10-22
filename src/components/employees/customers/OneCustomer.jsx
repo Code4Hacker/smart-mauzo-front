@@ -46,7 +46,6 @@ const OneCustomer = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("UPDATE CANCELED!");
                 }
             })
         });
@@ -56,7 +55,6 @@ const OneCustomer = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("SELL CANCELED!");
                 }
             });
         });
