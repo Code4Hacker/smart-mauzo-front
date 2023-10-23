@@ -128,6 +128,7 @@ const AllDeal = ({ deals, num, setDeals, setCount }) => {
     const wej = () => deal_pick('WOMEN JACKET');
     const wet = () => deal_pick('WOMEN TROUSER');
     const wed = () => deal_pick('WOMEN DRESS');
+    const shoes = () => deal_pick('SHOES');
 
     return (
         <div className="row deal" onClick={() => window.localStorage.setItem("dealC", dealID)}>
@@ -149,9 +150,10 @@ const AllDeal = ({ deals, num, setDeals, setCount }) => {
                                 </div>
                                 <div className="">
                                     <select name="" id="" value={trackin} onChange={handleTracking}>
-                                        <option value={raws.deal_track.ON_PROGRESS_DEAL}>{raws.deal_track.ON_PROGRESS_DEAL}</option>
-                                        <option value={raws.deal_track.TRANSPORTED}>{raws.deal_track.TRANSPORTED}</option>
-                                        <option value={raws.deal_track.DELIVERED}>{raws.deal_track.DELIVERED}</option>
+                                        <option value={raws.deal_track.FIRST_CHOICE}>{raws.deal_track.FIRST_CHOICE}</option>
+                                        <option value={raws.deal_track.SECOND_CHOICE}>{raws.deal_track.SECOND_CHOICE}</option>
+                                        <option value={raws.deal_track.THIRD_CHOICE}>{raws.deal_track.THIRD_CHOICE}</option>
+                                        <option value={raws.deal_track.FORTH_CHOICE}>{raws.deal_track.FORTH_CHOICE}</option>
                                     </select>
                                 </div>
                             </div>
@@ -190,6 +192,7 @@ const AllDeal = ({ deals, num, setDeals, setCount }) => {
                                     <div className="" onClick={wej}>{raws.filters.WOMEN_JACKET}</div>
                                     <div className="" onClick={wet}>{raws.filters.WOMEN_TROUSER}</div>
                                     <div className="" onClick={wed}>{raws.filters.WOMEN_DRESS}</div>
+                                    <div className="" onClick={shoes}>{raws.filters.SHOES}</div>
                                 </div>
                             </div>
                             {

@@ -61,13 +61,12 @@ const AStocks = () => {
         getall();
         const counterGet = async () => {
             const response = await axios.get(`${baseURL}counter.php?admin_id=${window.localStorage.adminmail}`);
-            const deals = await axios.get(`${baseURL}deals.php`);
-            for (let index = 0; index < deals.data.deals.length; index++) {
-                if (index < deals.data.deals.length - 1) {
-                    setCount2(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
-                }
+            const deals = await axios.get(`${baseURL}dealtotal.php?admin_id=${window.localStorage.adminmail}`);
 
+            if (deals.data.status === "200") {
+                setCount2(Number(deals.data.TOTAL).toLocaleString())
             }
+            
             if (response.data.status === "200") {
                 setCount(response.data.counts);
             }
@@ -160,7 +159,7 @@ const AStocks = () => {
                                     </div>
                                     <div className="col-2">
                                         <div className="button">
-                                            <button className="bi bi-pen addstockBtn"> Add New</button>
+                                            {/* <button className="bi bi-pen addstockBtn"> Add New</button> */}
                                         </div>
                                     </div>
                                 </div>

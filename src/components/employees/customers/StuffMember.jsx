@@ -23,25 +23,9 @@ const StuffMember = () => {
     const [datefrom1, setDatefrom1] = useState(`${(thedate.getFullYear())}-${(thedate.getMonth()+1)}-${(thedate.getDate() - 7)}`);    
     const [dateto1, setDateto1] = useState(`${(thedate.getFullYear())}-${(thedate.getMonth()+1)}-${(thedate.getDate())}`);
 
-    let gem_data = new FormData();
-    gem_data.append("name_worker", params.id);
-    gem_data.append("start", `${(thedate.getFullYear())}/${(thedate.getMonth()+1)}/${(thedate.getDate())}`);
-    gem_data.append("to_end", throwback_days);
-    let newdata = gem_data;
-    const getall = async () => {
-        const money = await axios.get(`${baseURL}contents.php?id=${params.id}`);
-        setMoney(money.data.TOTAL);
-        const response = await axios.request({
-            method:'POST',
-            url:`${baseURL}worker.php`,
-            data:newdata
-        });
-        setContents(response.data);
-        // console.log(response.data);
-    }
     useEffect(() => {
-        // console.log("Start: ",datefrom," , To: ",dateto);
-        getall();
+
+        handleFilter();
         // jqueryCodes();
     }, []);
     const handleFilter = async() => {
@@ -59,7 +43,7 @@ const StuffMember = () => {
                 data:newdata
             });
             setContents(response.data);
-            console.log(response.data);
+            // console.log(response.data);
         }
         const start = new Date(dateto1) - new Date(datefrom1);
         const deff = Math.floor(start/ (1000 * 60 * 60 * 24))
@@ -103,7 +87,7 @@ const StuffMember = () => {
                                         </div>
                                         <div className="">
                                             <h5>Total Price</h5>
-                                            {money} Tsh.
+                                            {Number(money).toLocaleString()} Tsh.
                                         </div>
 
                                     </div>
@@ -159,11 +143,11 @@ const StuffMember = () => {
             <AddEmployee setEmployee={setContents} /> */}
             {/* <NewDeal setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} /> */}
             {/* <Search setDeals={setWorks} setCount={setCount} uri={"searchbyInd.php"} id={"YES"} /> */}
-            <div className="addnew prt_on">
+            {/* <div className="addnew prt_on">
                 <button className='bi bi-plus add_open dealnew'>
                     <span>New Deal</span>
                 </button>
-            </div>
+            </div> */}
         </div >
     )
 }

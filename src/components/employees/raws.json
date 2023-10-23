@@ -4,9 +4,10 @@
         "PAID": "PAID"
     },
     "deal_track": {
-        "ON_PROGRESS_DEAL": "ON PROGRESS",
-        "TRANSPORTED": "TRANSPORTED",
-        "DELIVERED": "DELIVERED"
+        "FIRST_CHOICE": "WAITING",
+        "SECOND_CHOICE": "WORKSHOP",
+        "THIRD_CHOICE": "DONE",
+        "FORTH_CHOICE": "TAKEN"
     },
     "filters": {
         "ALL": "ALL",
@@ -14,6 +15,7 @@
         "WOMEN_JACKET": "WOMEN JACKET",
         "MEN_TROUSER": "MEN TROUSER",
         "WOMEN_TROUSER": "WOMEN TROUSER",
-        "WOMEN_DRESS": "WOMEN DRESS"
+        "WOMEN_DRESS": "WOMEN DRESS",
+        "SHOES": "SHOES"
     }
 }

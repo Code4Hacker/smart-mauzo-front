@@ -171,7 +171,7 @@ const Receipt = () => {
                                     <span>{pcounter !== undefined ? pcounter.QTY : "Wait ..."}<b> QUANTITIES</b></span>
                                 </div>
                                 <div className="col-3 text-center">
-                                    <span><b>TOTAL PRICE: </b>{pcounter !== undefined ? pcounter.ONE_TOTAL + " Tshs." : "Wait ..."}</span>
+                                    <span><b>TOTAL PRICE: </b>{pcounter !== undefined ? Number(pcounter.ONE_TOTAL).toLocaleString() + " Tshs." : "Wait ..."}</span>
                                 </div>
                             </div>
                         </div>

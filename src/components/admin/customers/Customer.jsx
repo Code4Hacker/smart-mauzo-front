@@ -25,7 +25,6 @@ const Customer = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("ADD CANCELED!");
                 }
             })
         });
@@ -35,7 +34,6 @@ const Customer = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("ADD CANCELED!");
                 }
             });
         });
@@ -45,7 +43,6 @@ const Customer = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("UPDATE CANCELED!");
                 }
             })
         });
@@ -55,7 +52,6 @@ const Customer = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("SELL CANCELED!");
                 }
             });
         });
@@ -71,14 +67,8 @@ const Customer = () => {
             setContents(response.data.customer[0]);
             const deals = await axios.get(`${baseURL}dealforone.php?customer=${response.data.customer[0].customerUnique}&employee=${response.data.customer[0].registeredBy}`);
             setWorks(deals.data.deals);
-            for (let index = 0; index < deals.data.deals.length; index++) {
-                if (index < deals.data.deals.length - 1) {
-                    setOnecount(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
-                }else if(deals.data.deals.length === 1){
-                    setOnecount(Number(deals.data.deals[index].price));
-                }
-
-            }
+            const money_in = await axios.get(`${baseURL}customerTotal.php?customer=${response.data.customer[0].customerUnique}`);
+            setOnecount(Number(money_in.data.TOTAL).toLocaleString());
             setCount(deals.data.counter);
         }
 
@@ -87,11 +77,6 @@ const Customer = () => {
     }, []);
     return (
         <div>
-            {/* <div className="pre_loader">
-                <div className="loading">
-                    <div className="loader"></div>
-                </div>
-            </div> */}
             <Mini />
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar">
@@ -136,10 +121,6 @@ const Customer = () => {
                                             <h5>Address</h5>
                                             <p>{contents !== undefined ? contents.customerAddress : "Wait ..."}</p>
                                         </div>
-                                        {/* <div className="">
-                                            <h5>Registered By</h5>
-                                            <p>{contents !== undefined ? contents.customerUnique : "Wait ..."}</p>
-                                        </div> */}
                                         <div className="">
                                             <h5>Total Price</h5>
                                             {

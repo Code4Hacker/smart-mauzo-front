@@ -89,7 +89,7 @@ const ICustomer = () => {
                             boxShadow: "0px 10px 10px 0px rgba(0, 0, 0, 0.1)", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px"
                         }}
                             data-aos="fade-right" data-aos-duration="1000" >
-                            <div className="common-grid-2" style={{ "--grid-template": "auto auto auto auto auto auto", boxShadow: "10px 0px 10px 0px rgba(0, 0, 0, 0.1)", borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}
+                            <div className="common-grid-2" style={{ "--grid-template": "auto auto auto auto auto", boxShadow: "10px 0px 10px 0px rgba(0, 0, 0, 0.1)", borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}
                                 data-aos="fade-right" data-aos-duration="1000" >
                                 <div className="grid-item "
                                     style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>

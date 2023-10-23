@@ -26,7 +26,6 @@ const OneCustomer = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("ADD CANCELED!");
                 }
             })
         });
@@ -36,7 +35,6 @@ const OneCustomer = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("ADD CANCELED!");
                 }
             });
         });
@@ -71,14 +69,8 @@ const OneCustomer = () => {
             const deals = await axios.get(`${baseURL}dealforone.php?customer=${response.data.customer[0].customerUnique}&employee=${response.data.customer[0].registeredBy}`);
             window.localStorage.setItem("UNIQUE_ID", response.data.customer[0].customerUnique);
             setWorks(deals.data.deals);
-            for (let index = 0; index < deals.data.deals.length; index++) {
-                if (index < deals.data.deals.length - 1) {
-                    setOnecount(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
-                } else if (deals.data.deals.length === 1) {
-                    setOnecount(Number(deals.data.deals[index].price));
-                }
-
-            }
+            const money_in = await axios.get(`${baseURL}customerTotal.php?customer=${response.data.customer[0].customerUnique}`);
+            setOnecount(Number(money_in.data.TOTAL).toLocaleString());
             setCount(deals.data.counter);
         }
 
@@ -97,7 +89,7 @@ const OneCustomer = () => {
             "transform": "translateX(-50%)"
         });
         window.print();
-        window.onafterprint = function(){
+        window.onafterprint = function () {
             jQuery(".prt_on").show();
             jQuery(".prt_on").css({
                 "display": "block !important"
@@ -163,7 +155,7 @@ const OneCustomer = () => {
                                         <div className="">
                                             <h5>Total Price</h5>
                                             {
-                                                onecount !== undefined ? <p>{onecount} <span className="small">Tsh</span></p>:"Cash is Empty"
+                                                onecount !== undefined ? <p>{onecount} <span className="small">Tsh</span></p> : "Cash is Empty"
                                             }
                                         </div>
 
@@ -195,7 +187,7 @@ const OneCustomer = () => {
                                     marginTop: '40px', position: 'relative'
                                 }}>
                                     {
-                                        works !== undefined && works?.length > -1 ? works.map((work, id) => <EC_Deals  setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} deals={work} num={id}  setCount={setCount} key={id} />) : <Loading/>
+                                        works !== undefined && works?.length > -1 ? works.map((work, id) => <EC_Deals setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} deals={work} num={id} setCount={setCount} key={id} />) : <Loading />
                                     }
                                 </div>
                             </div>

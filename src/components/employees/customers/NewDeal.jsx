@@ -10,8 +10,9 @@ import axios from 'axios';
 import { baseURL } from '../../../baseURL';
 import { useParams } from 'react-router-dom';
 import Multiple from './MeasurementFields/Multiple';
+import Loading from '../../Loader/Loading';
 
-const NewDeal = ({  setWorks, setOnecount, setContents, setCount, unique }) => {
+const NewDeal = ({ setWorks, setOnecount, setContents, setCount, unique }) => {
 
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
@@ -27,6 +28,8 @@ const NewDeal = ({  setWorks, setOnecount, setContents, setCount, unique }) => {
     const [pVhone, setPVhone] = useState("");
     const [mVail, setMVail] = useState("");
     const [cVodes, setCVodes] = useState();
+    const [workers, setWorkers] = useState();
+    const [worker, setWorker] = useState();
 
     const params = useParams();
 
@@ -40,12 +43,17 @@ const NewDeal = ({  setWorks, setOnecount, setContents, setCount, unique }) => {
             jQuery(this).addClass("choose");
         });
     }
-    const uniqueID = async() => {
+    const uniqueID = async () => {
         const unique_get = await axios.get(`${baseURL}customerID.php?id=${params.id}`);
         setCodes(unique_get.data.UNIQUE_ID);
     }
+    const the_workers = async () => {
+        const get__worker = await axios.get(`${baseURL}worker.php`);
+        setWorkers(get__worker.data.workers);
+    }
     useEffect(() => {
         uniqueID();
+        the_workers();
     }, []);
     previewSelect();
     return (
@@ -66,36 +74,32 @@ const NewDeal = ({  setWorks, setOnecount, setContents, setCount, unique }) => {
                                 style={{ marginTop: "5px", marginBottom: "5px" }} ></textarea>
                             <div className="small text-center">{lVname}</div>
 
-
-                            {/* <div className="flex">
-                                <input type="text" placeholder="Quantity" name="Quantity" value={mail}
-                                    onChange={(e) => setMail(e.target.value)}
-                                    style={{ marginTop: "5px", marginBottom: "5px" }} />
-                                <div className="small text-center">{mVail}</div>
-                                <input type="text" placeholder="Price " name="price" value={phone}
-                                    onChange={(e) => setPhone(e.target.value)}
-                                    style={{ marginTop: "5px", marginBottom: "5px" }} />
-                                <div className="small text-center">{pVhone}</div>
-                            </div> */}
                             <textarea type="text" placeholder="Requirements" name="req" value={summary}
                                 onChange={(e) => setSummary(e.target.value)}
                                 style={{ marginTop: "5px", marginBottom: "5px" }} ></textarea>
                             <div className="small text-center">{sVummary}</div>
+                            <select name="worker" id="" onChange={(e) => setWorker(e.target.value)}>
+                                <option value={"null"}>Select Worker</option>
+                                {
+                                    workers !== undefined && workers?.length > 0 ? workers.map((w, k) => <option value={w.workerName} key={k}>{w.workerName}</option>): <Loading/>
+                                }
+                            </select>
 
                             <div className="flex">
-                                <div className="" style={{width:'100%'}}>
+                                <div className="" style={{ width: '100%' }}>
                                     <div className="small text-center">Payment Status</div>
                                     <select name="" id="" onChange={(evt) => setDstatus(evt.target.value)}>
                                         <option value={raws.deal_status.PENDING}>{raws.deal_status.PENDING}</option>
                                         <option value={raws.deal_status.PAID}>{raws.deal_status.PAID}</option>
                                     </select>
                                 </div>
-                                <div className="" style={{width:'100%'}}>
+                                <div className="" style={{ width: '100%' }}>
                                     <div className="small text-center">Deal Attitude</div>
                                     <select name="" id="" onChange={(evt) => setTracking(evt.target.value)}>
-                                        <option value={raws.deal_track.ON_PROGRESS_DEAL}>{raws.deal_track.ON_PROGRESS_DEAL}</option>
-                                        <option value={raws.deal_track.TRANSPORTED}>{raws.deal_track.TRANSPORTED}</option>
-                                        <option value={raws.deal_track.DELIVERED}>{raws.deal_track.DELIVERED}</option>
+                                        <option value={raws.deal_track.FIRST_CHOICE}>{raws.deal_track.FIRST_CHOICE}</option>
+                                        <option value={raws.deal_track.SECOND_CHOICE}>{raws.deal_track.SECOND_CHOICE}</option>
+                                        <option value={raws.deal_track.THIRD_CHOICE}>{raws.deal_track.THIRD_CHOICE}</option>
+                                        <option value={raws.deal_track.FORTH_CHOICE}>{raws.deal_track.FORTH_CHOICE}</option>
                                     </select>
                                 </div>
                             </div>
@@ -105,90 +109,13 @@ const NewDeal = ({  setWorks, setOnecount, setContents, setCount, unique }) => {
                             <div className="button">
                                 <button id="bottonGet" onClick={() => setNext_task(2)}><i className="bi bi-chevron-double-right"></i> next</button>
                             </div>
-                        </div> 
-                        // : next_task === 1 ?
-                            // <div className="container">
-                            //     <div className="title">
-                            //         <h3><span>Choose the Point</span></h3>
-                            //     </div>
-                            //     <div className="preview" onClick={() => setChoice("Multiple")}>
-                            //         <div className="title">
-                            //             <h4><span>Multiple Selection</span></h4>
-                            //             <span className="small comment desc">
-                            //                 {("Men Jacket | Women Skirt | Women Jacket | Men Trouser").substring(0, 50)}...
-                            //             </span>
-                            //         </div>
-                            //     </div>
-                            //     <div className="preview" onClick={() => setChoice("MenJacket")}>
-                            //         <div className="title">
-                            //             <h4><span>Men Jacket</span></h4>
-                            //             <span className="small comment desc">
-                            //                 L | B | W | HPS | BG | BACK | AMPITY | LSLEEVES | SLEEVES
-                            //             </span>
-                            //         </div>
-                            //     </div>
-
-                            //     <div className="preview" onClick={() => setChoice("MenTrouser")}>
-                            //         <div className="title">
-                            //             <h4><span>Men Trouser</span></h4>
-                            //             <span className="small comment desc">
-                            //                 L | W | HPS | THIGH | KNEE | ANKLE | FLYS
-                            //             </span>
-                            //         </div>
-                            //     </div>
-
-                            //     <div className="preview" onClick={() => setChoice("WomenBorJ")}>
-                            //         <div className="title">
-                            //             <h4><span>Women Blouse/Jacket</span></h4>
-                            //             <span className="small comment desc" style={{ fontSize: 'x-small' }}>
-                            //                 {(" L | CHU | U CHU | HALF | B | UW | MW | HPS | SHOULDER | BACK | AMPITY | LONG/SHORT SLEEVES").substring(0, 50)}...
-                            //             </span>
-                            //         </div>
-                            //     </div>
-
-                            //     <div className="preview" onClick={() => setChoice("WomenSorT")}>
-                            //         <div className="title">
-                            //             <h4><span>Women Skirt/Trouser</span></h4>
-                            //             <span className="small comment desc">
-                            //                 L | W | HPS | THIGH | KNEE | ANKLE | FLYS
-                            //             </span>
-                            //         </div>
-                            //     </div>
-
-                            //     <div className="preview" onClick={() => setChoice("WomenD")}>
-                            //         <div className="title">
-                            //             <h4><span>Women Dress</span></h4>
-                            //             <span className="small comment desc">
-                            //                 L | DW | KNEE
-                            //             </span>
-                            //         </div>
-                            //     </div>
-
-
-                            //     <div className="button">
-                            //         <button id="bottonGet" onClick={() => setNext_task(0)}><i className="bi bi-chevron-double-left"></i> Back</button>
-                            //         <button id="bottonGet" onClick={() => setNext_task(2)}><i className="bi bi-chevron-double-right"></i> Next</button>
-                            //     </div>
-                            // </div> 
-                            : next_task === 2 ?
-                                // <div className="">
-                                //     {choice === "MenJacket" ? 
-                                //     <MenJacket setTask={setNext_task}  fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus} setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} /> : 
-                                //     choice === "MenTrouser" ? 
-                                //     <MenTrouser setTask={setNext_task}  fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus}setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} /> : 
-                                //     choice === "WomenBorJ" ? 
-                                //     <WomenBorJ setTask={setNext_task}  fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus}setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} /> : 
-                                //     choice === "WomenSorT" ? 
-                                //     <WomenSorT setTask={setNext_task}  fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus}setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} /> : 
-                                //     choice === "WomenD" ? 
-                                //     <WomenDress setTask={setNext_task}  fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus}setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} /> : choice === "Multiple" ? 
-                                //     <Multiple setTask={setNext_task}  fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus}setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} /> : "No choice Selected"}
-                                // </div>
-                                <div className="">
-                                     <Multiple setTask={setNext_task}  fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus}setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} /> 
-                                </div>
-                                :
-                                "Loading ..."
+                        </div>
+                        : next_task === 2 ?
+                            <div className="">
+                                <Multiple setTask={setNext_task} fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus} setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} worker={worker} />
+                            </div>
+                            :
+                            "Loading ..."
                 }
             </div>
         </div>

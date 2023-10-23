@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const Card = ({ workers, setworkers }) => {
     const { workerID, workerName } = workers;
     return (
-        <div className="common-grid-2 " style={{ "--grid-template": "auto 100px" }}>
+        <div className="common-grid-2 for_worker " style={{ "--grid-template": "auto 100px" }}>
             <div className="grid-item h " style={{ paddingLeft: "10px", paddingRight: "10px " }}>
                 <div className="title " style={{textAlign:'start'}}>
                     <h5><span>

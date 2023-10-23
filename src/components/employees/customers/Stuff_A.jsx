@@ -4,14 +4,13 @@ import Card from './Card3'
 import axios from 'axios'
 import Update from './Update'
 import { baseURL } from '../../../baseURL'
-import TopBar2 from '../../widgets/topbar/TopBar2'
-import SideBar2 from '../../widgets/sidebar/SideBar2'
 import AddCustomers from './AddCustomer'
-import Mini2 from '../../widgets/sidebar/Mini2'
 import Loading from '../../Loader/Loading'
-import AddWorker from './AddWorker'
+import Mini from '../../widgets/sidebar/Mini'
+import SideBar from '../../widgets/sidebar/SideBar'
+import TopBar from '../../widgets/topbar/TopBar'
 
-const Stuffs = () => {
+const Stuff_A = () => {
     const jqueryCodes = () => {
         // jQuery.noConflict();
         setTimeout(() => {
@@ -67,15 +66,20 @@ const Stuffs = () => {
     }, []);
     return (
         <div>
-            <Mini2 />
+            {/* <div className="pre_loader">
+                <div className="loading">
+                    <div className="loader"></div>
+                </div>
+            </div> */}
+            <Mini />
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar">
                     <div className="row" data-aos="fade-left" data-aos-duration="1000" >
-                        <SideBar2 />
+                        <SideBar />
                     </div>
                 </div>
                 <div className="dash_grid_items">
-                    <TopBar2 location={"CUSTOMERS"} />
+                    <TopBar location={"ADMIN"} />
                     <div className=" container " style={{
 
 
@@ -105,14 +109,7 @@ const Stuffs = () => {
                     </div>
                 </div>
             </div>
-            
-            <AddWorker setContents={setContents} />
-            <div className="addnew">
-                <button className='bi bi-person-plus-fill add_open'>
-                </button>
-            </div>
         </div >
     )
 }
-export default Stuffs;
-
+export default Stuff_A;

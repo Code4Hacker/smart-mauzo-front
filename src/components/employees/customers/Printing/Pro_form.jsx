@@ -113,10 +113,10 @@ const Pro_form = () => {
                                     <span>{printingdt !== undefined ? printingdt.deal.quantity : "Wait ..."}</span>
                                 </div>
                                 <div className="col-2 text-center">
-                                    <span>{printingdt !== undefined ? printingdt.deal.price + " Tshs." : "Wait ..."}</span>
+                                    <span>{printingdt !== undefined ? Number(printingdt.deal.price).toLocaleString() + " Tshs." : "Wait ..."}</span>
                                 </div>
                                 <div className="col-2 text-center">
-                                    <span>{printingdt !== undefined ? printingdt.deal.price * printingdt.deal.quantity + " Tshs." : "Wait ..."}</span>
+                                    <span>{printingdt !== undefined ? Number(printingdt.deal.price * printingdt.deal.quantity).toLocaleString() + " Tshs." : "Wait ..."}</span>
                                 </div>
 
                             </div>
@@ -131,9 +131,9 @@ const Pro_form = () => {
                                     <span>Ac NO: 51710032937</span><br />
                                 </div>
                                 <div className="col-6">
-                                    <span>TOTAL AMOUNT  <span style={{ fontWeight: 900 }}>{printingdt !== undefined ? printingdt.deal.price * printingdt.deal.quantity + " Tshs." : "Wait ..."}</span></span><br />
-                                    <span>VAT AMOUNT   <span style={{ fontWeight: 900 }}>{2.1}</span> </span><br />
-                                    <span>GRAND TOTAL AMOUNT   <span style={{ fontWeight: 900 }}>{printingdt !== undefined ? printingdt.deal.price * printingdt.deal.quantity * 2.1 + " Tshs." : "Wait ..."}</span></span><br />
+                                    <span>TOTAL AMOUNT  <span style={{ fontWeight: 900 }}>{printingdt !== undefined ? Number(printingdt.deal.price * printingdt.deal.quantity).toLocaleString() + " Tshs." : "Wait ..."}</span></span><br />
+                                    {/* <span>VAT AMOUNT   <span style={{ fontWeight: 900 }}>{2.1}</span> </span><br />
+                                    <span>GRAND TOTAL AMOUNT   <span style={{ fontWeight: 900 }}>{printingdt !== undefined ? printingdt.deal.price * printingdt.deal.quantity * 2.1 + " Tshs." : "Wait ..."}</span></span><br /> */}
                                 </div>
                             </div>
                         </div>

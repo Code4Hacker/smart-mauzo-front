@@ -62,9 +62,9 @@ const Work = ({ works }) => {
                                     }}>{dealStatus}</span>
                                 </div>
                                 <div className="col-4 text-end">
-                                    {d.price * d.quantity} Tshs. 
-                                     <span className="x-small">
-                                       [ Price {d.price}
+                                    {Number(d.price * d.quantity).toLocaleString()} Tshs. 
+                                     <span className="x-small" style={{fontFamily:'cursive'}}>
+                                       [ Price {Number(d.price).toLocaleString()}
                                         @({d.quantity}) Items ]
                                     </span>
                                 </div>

@@ -64,10 +64,10 @@ const NewStock = ({ setStocksdt }) => {
             setPvhoto(<span style={{ color: 'orange' }}></span>);
 
         if (title.length >= 4 && des.length >= 4 && (cost.length >= 2 || cost.match(/[\d+]/g)) && (qty.length >= 1 || qty.match(/[\d+]/g)) && !(photo.length < 1)) {
-            const response = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
+            const response = await axios.get(`${baseURL}log.php?a_id=${window.localStorage.adminmail}`);
 
             if (response.data.status === "200") {
-                setRegId(response.data.employee[0].employeeID);
+                setRegId(response.data.adm[0].adminID);
             }
             addNew(`${baseURL}stocks.php`);
             switch (status) {

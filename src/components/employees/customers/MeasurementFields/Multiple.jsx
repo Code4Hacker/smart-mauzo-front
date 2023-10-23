@@ -5,10 +5,9 @@ import { baseURL } from '../../../../baseURL';
 import { useParams } from 'react-router-dom';
 import Loading from '../../../Loader/Loading';
 
-const Multiple = ({ setTask, fname, lname, mail, phone, requirements, unique, dstatus, tracks, setWorks, setOnecount, setContents, setCount }) => {
+const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks, setWorks, setOnecount, setContents, setCount, worker }) => {
 
     // M---JACKET
-    // const [measures, setMeasures] = useState("");
     const [lenm, setLenm] = useState("");
     const [bm, setBm] = useState("");
     const [wm, setWm] = useState("");
@@ -23,7 +22,6 @@ const Multiple = ({ setTask, fname, lname, mail, phone, requirements, unique, ds
 
 
     // M---TROUSER
-    // const [measures, setMeasures] = useState("");
     const [lenmt, setLenmt] = useState("");
     const [wmt, setWmt] = useState("");
     const [hpsmt, setHpsmt] = useState("");
@@ -36,7 +34,6 @@ const Multiple = ({ setTask, fname, lname, mail, phone, requirements, unique, ds
 
 
     // W---BLOUSER
-    // const [measures, setMeasures] = useState("");
     const [lenwb, setLenwb] = useState("");
     const [bwb, setBwb] = useState("");
     const [uwwb, setUwwb] = useState("");
@@ -54,7 +51,6 @@ const Multiple = ({ setTask, fname, lname, mail, phone, requirements, unique, ds
     const [quantitywb, setQuantitywb] = useState("");
 
     // W---TROUSER/SKIRT
-    // const [measures, setMeasures] = useState("");
     const [lenw, setLenw] = useState("");
     const [ww, setWw] = useState("");
     const [hpsw, setHpsw] = useState("");
@@ -65,42 +61,38 @@ const Multiple = ({ setTask, fname, lname, mail, phone, requirements, unique, ds
     const [pricew, setPricew] = useState("");
     const [quantityw, setQuantityw] = useState("");
 
-    // W---JACKET
-    // const [measures, setMeasures] = useState("");
+    // W---DRESS
     const [lenwd, setLenwd] = useState("");
-    const [dwwd, setDwwd] = useState("");
+    const [bwd, setBwd] = useState("");
+    const [wwd, setWwd] = useState("");
+    const [hpswd, setHpswd] = useState("");
     const [kneewd, setKneewd] = useState("");
+    const [halfwd, setHalfwd] = useState("");
+    const [kwd, setKwd] = useState("");
     const [pricewd, setPricewd] = useState("");
     const [quantitywd, setQuantitywd] = useState("");
 
+    // W---SHOES
+    const [pricesh, setPricesh] = useState("");
+    const [quantitysh, setQuantitysh] = useState("");
 
     const params = useParams();
 
-
-
     const [next_view, setNext_view] = useState(0);
-    const [choice, setChoice] = useState("MenJacket");
+    const [sh, setSh] = useState("");
     const [m_tshirt, setMt_shirt] = useState("");
     const [w_tshirt, setWt_shirt] = useState("");
     const [mj, setMj] = useState("");
     const [wj, setWj] = useState("");
     const [wd, setWd] = useState("");
 
-    const menT = () => {
-        m_tshirt === "" ? setMt_shirt("choose") : setMt_shirt("");
-    }
-    const wT = () => {
-        w_tshirt === "" ? setWt_shirt("choose") : setWt_shirt("");
-    }
-    const mJK = () => {
-        mj === "" ? setMj("choose") : setMj("");
-    }
-    const wJK = () => {
-        wj === "" ? setWj("choose") : setWj("");
-    }
-    const wDS = () => {
-        wd === "" ? setWd("choose") : setWd("");
-    }
+    const menT = () => m_tshirt === "" ? setMt_shirt("choose") : setMt_shirt("");
+    const wT = () => w_tshirt === "" ? setWt_shirt("choose") : setWt_shirt("");
+    const mJK = () => mj === "" ? setMj("choose") : setMj("");
+    const wJK = () => wj === "" ? setWj("choose") : setWj("");
+    const wDS = () => wd === "" ? setWd("choose") : setWd("");
+    const Shoes = () => sh === "" ? setSh("choose") : setSh("");
+    
     const query_close = () => {
         jQuery(".cancel").on("click", function () {
             jQuery(".add_box.add_deal").fadeOut();
@@ -146,10 +138,19 @@ const Multiple = ({ setTask, fname, lname, mail, phone, requirements, unique, ds
         }
         if (wd === "choose") {
             const dealdt = {
-                "measurement": `L - ${lenwd}, DW - ${dwwd}, KNEE - ${kneewd}`,
+                "measurement": `L - ${lenwd}, B - ${bwd}, W - ${wwd}, HPS - ${hpswd}, KNEE - ${kneewd}, HALF - ${halfwd}, K - ${kwd}`,
                 "category": "Women Dress",
                 "quantity": quantitywd,
                 "price": pricewd
+            };
+            bodydata.push(dealdt);
+        }
+        if (sh === "choose") {
+            const dealdt = {
+                "measurement": `No Measurements`,
+                "category": "SHOES",
+                "quantity": quantitysh,
+                "price": pricesh
             };
             bodydata.push(dealdt);
         }
@@ -163,9 +164,10 @@ const Multiple = ({ setTask, fname, lname, mail, phone, requirements, unique, ds
                         description: lname,
                         requirements: requirements,
                         pay_status: dstatus !== "" ? dstatus : "PENDING",
-                        deal_tracking: tracks !== ""? tracks : "ON PROGRESS",
+                        deal_tracking: tracks !== "" ? tracks : "ON PROGRESS",
                         registered_by: employee.data.employee[0].employeeID,
-                        customer: unique
+                        customer: unique,
+                        the_worker: worker 
                     },
                     "resp": bodydata
                 }
@@ -173,7 +175,7 @@ const Multiple = ({ setTask, fname, lname, mail, phone, requirements, unique, ds
                 const respn = await axios.post(`${baseURL}manydeal.php`, deal_assets);
                 console.log(deal_assets);
                 console.log(respn.data);
-                if(respn.data.status === "200"){
+                if (respn.data.status === "200") {
                     const getall = async () => {
                         const response = await axios.get(`${baseURL}onecustomer.php?id=${params.id}`);
                         setContents(response.data.customer[0]);
@@ -186,12 +188,12 @@ const Multiple = ({ setTask, fname, lname, mail, phone, requirements, unique, ds
                             } else if (deals.data.deals.length === 1) {
                                 setOnecount(Number(deals.data.deals[index].price));
                             }
-            
+
                         }
                         setCount(deals.data.counter);
                         jQuery(".add_box.add_deal").fadeOut();
                     }
-            
+
                     getall();
                 }
             }
@@ -254,7 +256,15 @@ const Multiple = ({ setTask, fname, lname, mail, phone, requirements, unique, ds
                                 <div className="title">
                                     <h4><span>Women Dress</span></h4>
                                     <span className="small comment desc">
-                                        L | DW | KNEE
+                                        L | B | W | HPS | KNEE | HALF | K
+                                    </span>
+                                </div>
+                            </div>
+                            <div className={`preview p2 ${sh}`} onClick={Shoes}>
+                                <div className="title">
+                                    <h4><span>SHOES</span></h4>
+                                    <span className="small comment desc">
+                                        QUANTITY & PRICE
                                     </span>
                                 </div>
                             </div>
@@ -527,20 +537,41 @@ const Multiple = ({ setTask, fname, lname, mail, phone, requirements, unique, ds
                                     <div className="title">
                                         <h3><span>Women Dress</span></h3>
                                     </div>
-                                    <input type="text" placeholder="L" name="l" value={lenwd}
-                                        onChange={(e) => setLenwd(e.target.value)}
-                                        style={{ marginTop: "5px", marginBottom: "5px" }} />
-                                    <div className="small text-center">{lenwd?.length < 1 ? "Fill this field" : ""}</div>
-                                    <input type="text" placeholder="DW" name="dw" value={dwwd}
-                                        onChange={(e) => setDwwd(e.target.value)}
-                                        style={{ marginTop: "5px", marginBottom: "5px" }} />
-                                    <div className="small text-center">{dwwd?.length < 1 ? "Fill this field" : ""}</div>
-                                    <input type="text" placeholder="KNEE" name="knee" value={kneewd}
-                                        onChange={(e) => setKneewd(e.target.value)}
-                                        style={{ marginTop: "5px", marginBottom: "5px" }} />
-                                    <div className="small text-center">{kneewd?.length < 1 ? "Fill this field" : ""}</div>
                                     <div className="flex">
-
+                                        <input type="text" placeholder="L" name="l" value={lenwd}
+                                            onChange={(e) => setLenwd(e.target.value)}
+                                            style={{ marginTop: "5px", marginBottom: "5px" }} />
+                                        <div className="small text-center">{lenwd?.length < 1 ? "Fill this field" : ""}</div>
+                                        <input type="text" placeholder="B" name="b" value={bwd}
+                                            onChange={(e) => setBwd(e.target.value)}
+                                            style={{ marginTop: "5px", marginBottom: "5px" }} />
+                                        <div className="small text-center">{bwd?.length < 1 ? "Fill this field" : ""}</div>
+                                    </div>
+                                    <div className="flex">
+                                        <input type="text" placeholder="W" name="w" value={wwd}
+                                            onChange={(e) => setWwd(e.target.value)}
+                                            style={{ marginTop: "5px", marginBottom: "5px" }} />
+                                        <div className="small text-center">{wwd?.length < 1 ? "Fill this field" : ""}</div>
+                                        <input type="text" placeholder="HPS" name="hps" value={hpswd}
+                                            onChange={(e) => setHpswd(e.target.value)}
+                                            style={{ marginTop: "5px", marginBottom: "5px" }} />
+                                        <div className="small text-center">{hpswd?.length < 1 ? "Fill this field" : ""}</div>
+                                    </div>
+                                    <div className="flex">
+                                        <input type="text" placeholder="KNEE" name="knee" value={kneewd}
+                                            onChange={(e) => setKneewd(e.target.value)}
+                                            style={{ marginTop: "5px", marginBottom: "5px" }} />
+                                        <div className="small text-center">{kneewd?.length < 1 ? "Fill this field" : ""}</div>
+                                        <input type="text" placeholder="HALF" name="half" value={halfwd}
+                                            onChange={(e) => setHalfwd(e.target.value)}
+                                            style={{ marginTop: "5px", marginBottom: "5px" }} />
+                                        <div className="small text-center">{halfwd?.length < 1 ? "Fill this field" : ""}</div>
+                                    </div>
+                                    <input type="text" placeholder="K" name="k" value={kwd}
+                                        onChange={(e) => setKwd(e.target.value)}
+                                        style={{ marginTop: "5px", marginBottom: "5px" }} />
+                                    <div className="small text-center">{kwd?.length < 1 ? "Fill this field" : ""}</div>
+                                    <div className="flex">
                                         <input type="text" placeholder="PRICE" name="lName" value={pricewd}
                                             onChange={(e) => setPricewd(e.target.value)}
                                             style={{ marginTop: "5px", marginBottom: "5px", border: `1px solid ${pricewd?.length < 1 ? "red" : "black"}` }} />
@@ -548,6 +579,22 @@ const Multiple = ({ setTask, fname, lname, mail, phone, requirements, unique, ds
                                         <input type="text" placeholder="QUANTITY" name="fname" value={quantitywd}
                                             onChange={(e) => setQuantitywd(e.target.value)}
                                             style={{ marginTop: "5px", marginBottom: "5px", width: '150px', border: `1px solid ${quantitywd?.length < 1 ? "red" : "black"}` }} />
+                                    </div>
+                                </div>
+
+                                {/* SHOES*/}
+                                <div className="container" style={{ display: `${sh === "" ? "none" : "block"}` }}>
+                                    <div className="title">
+                                        <h3><span>SHOES</span></h3>
+                                    </div>
+                                    <div className="flex">
+                                        <input type="text" placeholder="PRICE" name="lName" value={pricesh}
+                                            onChange={(e) => setPricesh(e.target.value)}
+                                            style={{ marginTop: "5px", marginBottom: "5px", border: `1px solid ${pricesh?.length < 1 ? "red" : "black"}` }} />
+
+                                        <input type="text" placeholder="QUANTITY" name="fname" value={quantitysh}
+                                            onChange={(e) => setQuantitysh(e.target.value)}
+                                            style={{ marginTop: "5px", marginBottom: "5px", width: '150px', border: `1px solid ${quantitysh?.length < 1 ? "red" : "black"}` }} />
                                     </div>
                                 </div>
                                 <div className="button">

@@ -181,7 +181,7 @@ const Delivery = () => {
                                     <span>Ac NO: 51710032937</span><br />
                                 </div>
                                 <div className="col-6">
-                                    <span>TOTAL AMOUNT  <span style={{ fontWeight: 900 }}>{pcounter !== undefined ? pcounter.ONE_TOTAL + " Tshs." : "Wait ..."}</span></span><br />
+                                    <span>TOTAL AMOUNT  <span style={{ fontWeight: 900 }}>{pcounter !== undefined ? Number(pcounter.ONE_TOTAL).toLocaleString() + " Tshs." : "Wait ..."}</span></span><br />
                                     {/* <span>VAT AMOUNT   <span style={{ fontWeight: 900 }}>{2.1}</span> </span><br />
                                     <span>GRAND TOTAL AMOUNT   <span style={{ fontWeight: 900 }}>{printingdt !== undefined ? printingdt.deal.price * printingdt.deal.quantity * 2.1 + " Tshs." : "Wait ..."}</span></span><br /> */}
                                 </div>

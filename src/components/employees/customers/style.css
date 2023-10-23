@@ -220,14 +220,6 @@
     justify-items: center;
 }
 
-/* 
-.measures>* {
-    padding: 10px;
-    min-width: 120px;
-    border-radius: 2px;
-    border: 1px solid var(--green);
-} */
-
 .measures>* {
     padding: 8px;
     min-width: 80px;
@@ -297,15 +289,102 @@
     padding-top: 20px;
     border-radius: 20px;
 }
+.card_holder > .for_worker{
+    width: 300px !important;
+}
+@media screen and (max-width:992px){  
+.mrs {
+    width: 95% !important;
+    justify-self: center;
+    align-self: center;
+    margin-left: 10px;
+    border-radius: 10px !important;
+    margin-bottom: 10px;
+    display: grid;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.103);
+    overflow-y: scroll;
+    overflow-x: hidden !important;
+    scroll-snap-type: y mandatory;
+}
 
+.for_single .mrs {
+    height: 170px;
+}
+
+.sna_container {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-top: 60px;
+    border-bottom: 1px solid var(--milk);
+    scroll-snap-align: center;
+    min-height: 200px;
+}
+
+.sna_container>*>* {
+    display: flex !important;
+}
+
+.sna_container h4 {
+    writing-mode: vertical-lr;
+    padding-bottom: 10px;
+}
+.for_single 
+.sna_container {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-top: 20px;
+    border-bottom: 1px solid var(--milk);
+    scroll-snap-align: center;
+    min-height: 170px;
+}
+.mrs h4,
+.mrs h4 span {
+    color: var(--milk) !important;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.measures {
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 1;
+    flex-flow: 1;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    justify-items: center;
+}
+
+.measures>* {
+    padding: 8px;
+    min-width: 80px;
+    font-size: 11px;
+    border-radius: 10px;
+    background: linear-gradient(60deg, transparent, rgb(1, 110, 105));
+    background-color: var(--milk);
+    border: 0px solid var(--green);
+    color: white;
+}
+
+}
 @media screen and (max-width:500px) {
     .mrs {
-        width: 100%;
+        width: 85% !important;
         justify-self: center;
         align-self: center;
         margin-left: -10px;
-        border-radius: 10px;
+        border-radius: 10px !important;
         margin-bottom: 10px;
+        display: grid;
+        height: 200px;
+        background-color: rgba(0, 0, 0, 0.13);
+        overflow-y: scroll;
+        overflow-x: hidden !important;
+        scroll-snap-type: y mandatory;
     }
 
     .mrs h4,
@@ -330,10 +409,10 @@
     }
 
     .measures>* {
-        padding: 8px;
-        min-width: 80px;
-        font-size: 11px;
-        border-radius: 10px;
+        padding: 5px;
+        min-width: 0px;
+        font-size: 9px;
+        border-radius: 5px;
         background: linear-gradient(60deg, transparent, rgb(1, 110, 105));
         background-color: var(--milk);
         border: 0px solid var(--green);
