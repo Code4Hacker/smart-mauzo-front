@@ -112,3 +112,12 @@
     overflow: hidden;
     overflow-y: scroll;
 }
+@media screen and (max-width:600px){
+    .grid_repo{
+        width: 100%;
+        position: relative;
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: 100%;
+    }
+}
