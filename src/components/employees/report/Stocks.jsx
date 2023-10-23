@@ -12,6 +12,8 @@ import NewStock from './NewStock'
 import jQuery from 'jquery'
 import Loading from '../../Loader/Loading'
 import Mini2 from '../../widgets/sidebar/Mini2'
+import './style.css';
+import Requirements from './Requirements'
 
 const Stocks = () => {
     Aos.init({
@@ -22,6 +24,7 @@ const Stocks = () => {
     const [count, setCount] = useState();
     const [count2, setCount2] = useState();
     const [stocksdt, setStocksdt] = useState();
+    const [srequirements, setSrequirements] = useState();
     const navigate = useNavigate();
     const query = () => {
         jQuery(".addstockBtn").on("click", function () {
@@ -39,7 +42,9 @@ const Stocks = () => {
         query();
         const getall = async () => {
             const response = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
-
+            const requirements = await axios.get(`${baseURL}Requirements.php`);
+            setSrequirements(requirements.data);
+            // Requirements.php
 
             if (response.data.status === "200") {
                 setEmployee(response.data.employee);
@@ -94,17 +99,18 @@ const Stocks = () => {
                     </div>
                 </div>
                 <div className="dash_grid_items">
-                    <div className="top_banner" style={{
-                        backgroundImage: `url(${moneybg})`
-                    }}>
+                    {/* style={{
+                     backgroundImage: `url(${moneybg})`
+                 }} */}
+                    {/* <div className="top_banner" >
                         <div className="shadows">
                             <div className="center">
                                 <h1 className='white'>CARENITHO COMPANY</h1>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     {/* <TopBar2 location={"DASHBOARD"} /> */}
-                    <div className="grid_template showcas">
+                    <div className="grid_template showcas stks">
                         <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="fade-up" data-aos-duration="1000"
                             data-aos-delay="3000">
                             <div className="title text-center mt-2">
@@ -140,6 +146,70 @@ const Stocks = () => {
                             <div className="col-xl-12">
                                 <div className="row">
                                     <div className="col-10">
+                                        <h5>STOCK REPORTS</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-xl-12">
+                                    <div className="filter_tab">
+                                        <div className="filter_dates">
+                                            <div className="categorie">
+                                                <span className="bi bi-search"> Filter By</span>
+                                            </div>
+                                            <div className="repo_filter">
+                                                <ul>
+                                                    <li className='li_input'><input type="date" name="" id="" /></li>
+                                                    <li><i className="bi bi-calenda"></i><span> 1 Month</span></li>
+                                                    <li><i className="bi bi-calenda"></i><span> 2 Weeks</span></li>
+                                                    <li><i className="bi bi-calenda"></i><span> 1 Week</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div className="filter_dates">
+                                            <div className="categories">
+                                                <span>Categories</span>
+                                            </div>
+                                            <div className="">
+                                                <ul>
+                                                    <li><i className="bi bi-collection"></i><span> Dress</span></li>
+                                                    <li><i className="bi bi-person-walking"></i><span> Shoes</span></li>
+                                                    <li><i className="bi bi-coin"></i><span> Bills</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div className="">
+                                            <div className="container glass">
+                                                <div className="grid_repo">
+                                                    <div className="">
+                                                        <div className="title">
+                                                            <h4>Resources</h4>
+                                                        </div>
+                                                        {
+                                                            stocksdt !== undefined && stocksdt?.length > 0 ? stocksdt.map((stock, i) => <Stock_card card={stock} key={i} />) : <Loading />
+                                                        }
+                                                    </div>
+                                                    <div className="">
+                                                        <div className="title">
+                                                            <h4>Customers Requirements List</h4>
+                                                        </div>
+                                                        {
+                                                            srequirements !== undefined && srequirements.RE_QUIREMENT?.length > 0 ? srequirements.RE_QUIREMENT.map((stock, i) => <Requirements card={stock} key={i} />) : <Loading />
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-xl-12">
+                                <div className="row">
+                                    <div className="col-10">
                                         <h5>Arrival Stocks</h5>
                                     </div>
                                     <div className="col-2">
@@ -150,8 +220,7 @@ const Stocks = () => {
                                 </div>
                             </div>
                         </div>
-
-                        <div className="container">
+                        {/* <div className="container">
                             <div className="flex bx">
                                 {
                                     stocksdt !== undefined && stocksdt?.length > 0 ? stocksdt.map((stock, i) => <Stock_card card={stock} key={i} />) : <Loading />
@@ -162,7 +231,7 @@ const Stocks = () => {
                                     Show All
                                 </span>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
