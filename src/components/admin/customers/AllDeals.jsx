@@ -128,7 +128,7 @@ const AllDeals = () => {
                 <button className='bi bi-person-plus-fill add_open'>
                 </button>
             </div> */}
-            <Search setDeals={setWorks} setCount={setCount} uri={"searchdeals.php"} id={"NO"}/>
+            <Search setDeals={setWorks} setCount={setCount} uri={"searchDeals.php"} id={"NO"}/>
         </div >
     )
 }
