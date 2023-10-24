@@ -13,11 +13,12 @@ import Invoice from './components/employees/customers/Printing/Invoice';
 import Receipt from './components/employees/customers/Printing/Receipt';
 import Pro_form2 from './components/employees/customers/Printing/Pro_forma2';
 import ICustomer from './components/employees/customers/IndividualCustomers';
-import AStocks from './components/admin/report/Stocks';
+import AStocks from './components/admin/report/AStocks';
 import Delivery from './components/employees/customers/Printing/Delivery';
 import StuffMember from './components/employees/customers/StuffMember';
 import Stuffs from './components/employees/customers/Stuffs';
 import Stuff_A from './components/employees/customers/Stuff_A';
+import UStock from './components/employees/report/Update';
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
 
         <Route path='/stuff_members' element={  <Stuffs />} />
         <Route path='/stuff' element={  <Stuff_A />} />
+        <Route path='/edit_stock/:id' element={  <UStock />} />
         <Route path='/stuff_member/:id' element={  <StuffMember />} />
         {/* GENERAL */}
         <Route path='/pro_forma/:id' element={  <Pro_form />} />
@@ -54,5 +56,4 @@ function App() {
     </BrowserRouter>
   )
 }
-
 export default App;

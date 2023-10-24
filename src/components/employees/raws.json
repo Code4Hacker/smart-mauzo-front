@@ -9,6 +9,12 @@
         "THIRD_CHOICE": "DONE",
         "FORTH_CHOICE": "TAKEN"
     },
+    "stocks": {
+        "FIRST_CHOICE": "FABRIC",
+        "SECOND_CHOICE": "SHOES",
+        "THIRD_CHOICE": "CLOTHES",
+        "FORTH_CHOICE": "BILLS"
+    },
     "filters": {
         "ALL": "ALL",
         "MEN_JACKET": "MEN JACKET",

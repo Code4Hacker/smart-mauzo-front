@@ -4,23 +4,23 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import Loader from '../../Loader/Loader'
 import { baseURL } from '../../../baseURL'
-import SideBar2 from '../../widgets/sidebar/SideBar2'
 import Stock_card from './Stock_card'
 import NewStock from './NewStock'
 import jQuery from 'jquery'
 import Loading from '../../Loader/Loading'
-import Mini2 from '../../widgets/sidebar/Mini2'
 import './style.css';
 import Requirements from './Requirements'
+import Mini from '../../widgets/sidebar/Mini'
+import SideBar from '../../widgets/sidebar/SideBar'
 
-const Stocks = () => {
+const AStocks = () => {
     Aos.init({
         duration: 1000,
         easing: 'linear'
     });
     const thedate = new Date();
 
-    const [employee, setEmployee] = useState();
+    const [admin, setAdmin] = useState();
     const [count, setCount] = useState();
     const [cty, setCty] = useState("CLOTHES");
     const [count2, setCount2] = useState();
@@ -29,7 +29,6 @@ const Stocks = () => {
     const [srequirements, setSrequirements] = useState();
     const [hide, setHide] = useState(false);
     const [date_days, setDate_days] = useState(7);
-    // const [money, setMoney] = useState(0);
     let increment = 2;
 
     const [datefrom1, setDatefrom1] = useState(`${(thedate.getFullYear())}-${(thedate.getMonth() + 1)}-${(thedate.getDate() - 7)}`);
@@ -49,13 +48,13 @@ const Stocks = () => {
         });
     }
     const getall = async () => {
-        const response = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
+        const response = await axios.get(`${baseURL}admin.php?admin_id=${window.localStorage.adminmail}`);
         const requirements = await axios.get(`${baseURL}Requirements.php?start=${datefrom1}&to_end=${dateto1}`);
         setSrequirements(requirements.data);
         // Requirements.php
 
         if (response.data.status === "200") {
-            setEmployee(response.data.employee);
+            setAdmin(response.data.admin);
         }
         const stock = await axios.get(`${baseURL}stocks.php?start=${datefrom1}&to_end=${dateto1}&category=${cty}`);
         if (stock.data.status === "200") {
@@ -75,17 +74,21 @@ const Stocks = () => {
         }
     }
     const counterGet = async () => {
-        const response = await axios.get(`${baseURL}e_counter.php?employee_id=${window.localStorage.emMail}`);
-        const deals = await axios.get(`${baseURL}deals.php`);
-        for (let index = 0; index < deals.data.deals.length; index++) {
-            if (index < deals.data.deals.length - 1) {
-                setCount2(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
-            }
+        const response = await axios.get(`${baseURL}counter.php?admin_id=${window.localStorage.adminmail}`);
+        const deals = await axios.get(`${baseURL}dealtotal.php?admin_id=${window.localStorage.adminmail}`);
 
+        if (deals.data.status === "200") {
+            setCount2(Number(deals.data.TOTAL).toLocaleString())
         }
+        
         if (response.data.status === "200") {
             setCount(response.data.counts);
         }
+    }
+    if (window.localStorage.adminmail !== undefined) {
+
+    } else {
+        navigate('/');
     }
     useEffect(() => {
         query();
@@ -94,10 +97,10 @@ const Stocks = () => {
 
         counterGet();
 
-        if (window.localStorage.emMail !== undefined) {
+        if (window.localStorage.adminmail !== undefined) {
 
         } else {
-            navigate('/e_login');
+            navigate('/');
         }
 
     }, []);
@@ -193,44 +196,56 @@ const Stocks = () => {
     return (
         <div>
             <Loader />
-            <Mini2 />
+            <Mini />
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar">
                     <div className="row" data-aos="fade-left" data-aos-duration="1000"
                         data-aos-delay="3000">
-                        <SideBar2 />
+                        <SideBar />
 
                     </div>
                 </div>
                 <div className="dash_grid_items">
                     {/* <TopBar2 location={"DASHBOARD"} /> */}
                     <div className="grid_template showcas stks">
-                        <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="fade-up" data-aos-duration="1000"
-                            data-aos-delay="3000">
-                            <div className="title text-center mt-2">
-                                <h5><span>Customers</span></h5>
-                            </div>
-                            <div className="number">
-                                <div className="title text-center mt-2">
-                                    <h1><span>
-                                        {count !== undefined ? count.customers : "0"}
-                                    </span></h1>
-                                </div>
-                            </div>
+                <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="flip-up" data-aos-duration="1000"
+                >
+                    <div className="title text-center mt-2">
+                        <h5><span>Employees</span></h5>
+                    </div>
+                    <div className="number">
+                        <div className="title text-center mt-2">
+                            <h1><span>
+                                {count !== undefined ? count.employees : "0"}
+                            </span></h1>
                         </div>
-                        <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="fade-up" data-aos-duration="1000"
-                            data-aos-delay="3000">
-                            <div className="title text-center mt-2">
-                                <h5><span>Your Customers</span></h5>
-                            </div>
-                            <div className="number">
-                                <div className="title text-center mt-2">
-                                    <h1><span>
-                                        {count !== undefined ? count.your_customers : "0"}
-                                    </span></h1>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="flip-up" data-aos-duration="1000"
+                >
+                    <div className="title text-center mt-2">
+                        <h5><span>Customers</span></h5>
+                    </div>
+                    <div className="number">
+                        <div className="title text-center mt-2">
+                            <h1><span>
+                                {count !== undefined ? count.customers : "0"}
+                            </span></h1>
                         </div>
+                    </div>
+                </div>
+                <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="flip-up" data-aos-duration="1000"
+                >
+                    <div className="title text-center mt-2">
+                        <h5><span>TOTAL SALES</span></h5>
+                    </div>
+                    <div className="number">
+                        <div className="title text-center mt-2">
+                            <h3><span> {count2} </span></h3>
+                            <span className="small">Tshs.</span>
+                        </div>
+                    </div>
+                </div>
 
                     </div>
                     <div className="top_banner" style={{
@@ -333,4 +348,4 @@ const Stocks = () => {
     )
 }
 
-export default Stocks;
+export default AStocks;
