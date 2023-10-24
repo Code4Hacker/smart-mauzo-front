@@ -22,13 +22,13 @@ const Update = ({ setEmployee }) => {
 
     const addNew = async (PATH) => {
         let formdata = new FormData();
-            formdata.append("fname", fname === "" && store.first2 ? store.first2 : fname);
-            formdata.append("lname", lname === "" && store.last2 ? store.last2 : lname);
-            formdata.append("address", address === "" && store.add2 ? store.add2 : address);
-            formdata.append("phone", phone === "" && store.phone2 ? store.phone2 : phone);
-            formdata.append("mail", mail === "" && store.email2 ? store.email2 : mail);
-            formdata.append("codes", codes);
-            formdata.append("id", store.id2 ? store.id2 : 0);
+        formdata.append("fname", fname === "" && store.first2 ? store.first2 : fname);
+        formdata.append("lname", lname === "" && store.last2 ? store.last2 : lname);
+        formdata.append("address", address === "" && store.add2 ? store.add2 : address);
+        formdata.append("phone", phone === "" && store.phone2 ? store.phone2 : phone);
+        formdata.append("mail", mail === "" && store.email2 ? store.email2 : mail);
+        formdata.append("codes", codes);
+        formdata.append("id", store.id2 ? store.id2 : 0);
 
         let bodyContent = formdata;
 
@@ -40,27 +40,34 @@ const Update = ({ setEmployee }) => {
 
         let response = await axios.request(reqOptions);
         setStatus(response.data.status);
+        console.log(response.data.status);
+        if (response.data.status === "200") {
+            setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+            jQuery(".rename_box").fadeOut({
+                duration: 1000
+            });
+        }
     }
     const jqueries = () => {
         store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
     }
     const handleupdate = () => {
-        fname.length < 4 ?
-            setFVname(<span style={{ color: 'red' }}>First Name is Too Small!</span>) :
-            setFVname(<span style={{ color: 'orange' }}>Rule Followed Successiful!</span>);
-        lname.length < 4 ?
-            setLVname(<span style={{ color: 'red' }}>Last Name is Too Small!</span>) :
-            setLVname(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
-        mail.length < 10 ?
-            setMVail(<span style={{ color: 'red' }}>Email is Invalid!</span>) :
-            setMVail(<span style={{ color: 'orange' }}>Rule Followed Successiful!</span>);
-        phone.match(/[a-z]/g) ?
-            setPVhone(<span style={{ color: 'red' }}>Phone Number Not Valid!</span>) :
-            setPVhone(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
-        address.length < 10 ?
-            setAVddress(<span style={{ color: 'red' }}>Address is not Valid!</span>) :
-            setAVddress(<span style={{ color: 'orange' }}>Followed Successiful!</span>);
-        if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10) {
+        // fname.length < 4 ?
+        //     setFVname(<span style={{ color: 'red' }}>First Name is Too Small!</span>) :
+        //     setFVname(<span style={{ color: 'orange' }}></span>);
+        // lname.length < 4 ?
+        //     setLVname(<span style={{ color: 'red' }}>Last Name is Too Small!</span>) :
+        //     setLVname(<span style={{ color: 'orange' }}></span>);
+        // mail.length < 10 ?
+        //     setMVail(<span style={{ color: 'red' }}>Email is Invalid!</span>) :
+        //     setMVail(<span style={{ color: 'orange' }}></span>);
+        // phone.match(/[a-z]/g) ?
+        //     setPVhone(<span style={{ color: 'red' }}>Phone Number Not Valid!</span>) :
+        //     setPVhone(<span style={{ color: 'orange' }}></span>);
+        // address.length < 10 ?
+        //     setAVddress(<span style={{ color: 'red' }}></span>) :
+        //     setAVddress(<span style={{ color: 'orange' }}></span>);
+        // if (fname.length >= 1 && lname.length >= 1 && phone.match(/[\d+]/g)) {
             addNew(`${baseURL}updtodelc.php`);
             switch (status) {
                 case '404':
@@ -76,22 +83,22 @@ const Update = ({ setEmployee }) => {
                     setMVail(<span style={{ color: 'orange' }}></span>);
                     setPVhone(<span style={{ color: 'orange' }}></span>);
                     setAVddress(<span style={{ color: 'green' }}>Successiful!</span>);
-                    store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+                    setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
                     jQuery(".rename_box").fadeOut({
                         duration: 1000
                     });
                     break;
                 default:
-                    console.log(status);
                     break;
-            }
+                }
+                console.log(status);
             const getall = async () => {
                 const response = await axios.get(`${baseURL}customers.php`);
                 setEmployee(response.data.customers);
             }
             getall();
 
-        }
+        // }
 
     }
     return (
@@ -123,7 +130,7 @@ const Update = ({ setEmployee }) => {
                     <div className="small text-center">{aVddress}</div>
 
                     <div className="button">
-                        <button id2="bottonGet" onClick={handleupdate}>Complete</button>
+                        <button id="bottonGet" onClick={handleupdate}>Complete</button>
                     </div>
                 </div>
             </div>

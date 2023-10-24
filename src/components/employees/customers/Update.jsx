@@ -48,25 +48,25 @@ const Update = ({ setEmployee }) => {
     }
 
     const handleupdate = () => {
-        fname.length < 3 ?
-            setFVname(<span style={{ color: 'red' }}>First Name is Too Small!</span>) :
-            setFVname(<span style={{ color: 'orange' }}></span>);
-        lname.length < 3 ?
-            setLVname(<span style={{ color: 'red' }}>Last Name is Too Small!</span>) :
-            setLVname(<span style={{ color: 'orange' }}></span>);
-        mail.length < 10 ?
-            setMVail(<span style={{ color: 'red' }}>Email is Invalid!</span>) :
-            setMVail(<span style={{ color: 'orange' }}></span>);
-        phone.length < 10 || phone.match(/[a-z]/g) ?
-            setPVhone(<span style={{ color: 'red' }}>Phone Number Not Valid!</span>) :
-            setPVhone(<span style={{ color: 'orange' }}></span>);
-        address.length < 10 ?
-            setAVddress(<span style={{ color: 'red' }}>Address is not Valid!</span>) :
-            setAVddress(<span style={{ color: 'orange' }}></span>);
-        !codes.match(/[0-9]/g) || codes.length < 8 ?
-            setCVodes(<span style={{ color: 'red' }}>Unique Required!</span>) :
-            setCVodes(<span style={{ color: 'orange' }}></span>);
-        if (fname.length >= 3 && lname.length >= 3 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length >= 8)) {
+        // fname.length < 3 ?
+        //     setFVname(<span style={{ color: 'red' }}>First Name is Too Small!</span>) :
+        //     setFVname(<span style={{ color: 'orange' }}></span>);
+        // lname.length < 3 ?
+        //     setLVname(<span style={{ color: 'red' }}>Last Name is Too Small!</span>) :
+        //     setLVname(<span style={{ color: 'orange' }}></span>);
+        // mail.length < 10 ?
+        //     setMVail(<span style={{ color: 'red' }}>Email is Invalid!</span>) :
+        //     setMVail(<span style={{ color: 'orange' }}></span>);
+        // phone.length < 10 || phone.match(/[a-z]/g) ?
+        //     setPVhone(<span style={{ color: 'red' }}>Phone Number Not Valid!</span>) :
+        //     setPVhone(<span style={{ color: 'orange' }}></span>);
+        // address.length < 10 ?
+        //     setAVddress(<span style={{ color: 'red' }}>Address is not Valid!</span>) :
+        //     setAVddress(<span style={{ color: 'orange' }}></span>);
+        // !codes.match(/[0-9]/g) || codes.length < 8 ?
+        //     setCVodes(<span style={{ color: 'red' }}>Unique Required!</span>) :
+        //     setCVodes(<span style={{ color: 'orange' }}></span>);
+        // if (fname.length >= 3 && lname.length >= 3 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length >= 8)) {
             addNew(`${baseURL}updtodelc.php`);
             switch (status) {
                 case '404':
@@ -100,7 +100,7 @@ const Update = ({ setEmployee }) => {
                 setEmployee(response.data.customers);
             }
             getall();
-        }
+        // }
 
     }
     return (

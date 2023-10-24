@@ -42,6 +42,10 @@ const AddEmployee = ({ setEmployee }) => {
         }
 
         let response = await axios.request(reqOptions);
+        if(response.data.status === "200"){
+            jqueries();
+            getall();
+        }
         setStatus(response.data.status);
     }
     
