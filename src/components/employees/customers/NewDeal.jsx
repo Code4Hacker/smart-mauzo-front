@@ -81,7 +81,7 @@ const NewDeal = ({ setWorks, setOnecount, setContents, setCount, unique }) => {
                             <select name="worker" id="" onChange={(e) => setWorker(e.target.value)}>
                                 <option value={"null"}>Select Worker</option>
                                 {
-                                    workers !== undefined && workers?.length > 0 ? workers.map((w, k) => <option value={w.workerName} key={k}>{w.workerName}</option>): <Loading/>
+                                    workers !== undefined && workers?.length > 0 ? workers.map((w, k) => <option value={w.workerName} key={k}>{w.workerName}</option>): "Loading..."
                                 }
                             </select>
 

@@ -154,7 +154,7 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
             };
             bodydata.push(dealdt);
         }
-        try {
+        // try {
             const employee = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
 
             if (employee.data.status === "200") {
@@ -173,14 +173,15 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                 }
 
                 // const respn = await axios.post(`${baseURL}manydeal.php`, deal_assets);
-                const respn = await  axios.request({
+                const respn = await axios.request({
                     method:"POST",
                     url:`${baseURL}manydeal.php`,
-                    data: deal_assets
+                    data: JSON.stringify(deal_assets)
+                }).catch(function (error) {
+                    console.log("Axios Error:", error.message);
                 });
-                console.log(deal_assets);
-                console.log(respn.data);
-                if (respn.data.status === "200") {
+                console.log(respn);
+                if (respn.data !== undefined && respn.data.status === "200") {
                     const getall = async () => {
                         const response = await axios.get(`${baseURL}onecustomer.php?id=${params.id}`);
                         setContents(response.data.customer[0]);
@@ -202,9 +203,9 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                     getall();
                 }
             }
-        } catch (error) {
-            console.error("ERROR",error.message);
-        }
+        // } catch (error) {
+        //     console.log("ERROR",error.message);
+        // }
         bodydata = [];
     }
     useEffect(() => { query_close(); }, []);
