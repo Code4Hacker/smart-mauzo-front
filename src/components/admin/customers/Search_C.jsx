@@ -14,7 +14,7 @@ const S_Customer = () => {
     const searchHandle = async () => {
         try {
             const search_user = await axios.get(`${baseURL}search_customer.php?title=${title}&unique=${unique}`);
-            console.log(search_user.data);
+            // console.log(search_user.data);
             setUsearch(search_user.data.customers);
         } catch (error) {
             console.log("Error, ", error.message);

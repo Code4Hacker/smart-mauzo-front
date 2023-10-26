@@ -6,7 +6,7 @@
     top: 0px;
     left: 0px;
     background-color: rgba(0, 0, 83, 0.219);
-    backdrop-filter: blur(40px);
+    backdrop-filter: blur(50px);
 }
 
 .pre-loader>* {

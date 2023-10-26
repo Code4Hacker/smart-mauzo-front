@@ -1,15 +1,15 @@
 .showcase>*:nth-child(1) {
-    background: linear-gradient(60deg, rgba(170, 62, 0, 0.664), rgba(0, 13, 134, 0.76));
+    background: linear-gradient(60deg, rgba(206, 76, 0, 0.452), rgba(0, 26, 255, 0.5));
     background-color: var(--black);
 }
 
 .showcase>*:nth-child(2) {
-    background: linear-gradient(-60deg, rgba(0, 158, 34, 0.726), rgba(0, 15, 153, 0.795));
+    background: linear-gradient(-60deg, rgba(0, 206, 45, 0.452), rgba(0, 26, 255, 0.5));
     background-color: var(--black);
 }
 
 .showcase>*:nth-child(3) {
-    background: linear-gradient(60deg, rgba(0, 167, 36, 0.753), rgba(140, 201, 0, 0.753));
+    background: linear-gradient(60deg, rgba(0, 206, 45, 0.452), rgba(179, 255, 0, 0.5));
     background-color: var(--black);
 }
 
@@ -125,7 +125,7 @@
 
     }
     .top_banner{
-        min-height: 200px;
+        min-height: 300px;
         padding: 10px;
         width: 90%;
         margin: 10px;

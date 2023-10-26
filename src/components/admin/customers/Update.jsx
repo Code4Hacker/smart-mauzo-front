@@ -49,7 +49,7 @@ const Update = ({ setEmployee }) => {
         }
     }
     const jqueries = () => {
-        store.clear(); setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+        setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
     }
     const handleupdate = () => {
         // fname.length < 4 ?

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import jQuery from 'jquery'
-import Card from './Card3'
+import Card from './Card4'
 import axios from 'axios'
 import Update from './Update'
 import { baseURL } from '../../../baseURL'

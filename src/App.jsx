@@ -21,6 +21,7 @@ import Stuff_A from './components/employees/customers/Stuff_A';
 import UStock from './components/employees/report/Update';
 import SCustomer from './components/employees/customers/SearchCustomer';
 import S_Customer from './components/admin/customers/Search_C';
+import StuffMember2 from './components/employees/customers/StuffMember2';
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
         <Route path='/stuff' element={  <Stuff_A />} />
         <Route path='/edit_stock/:id' element={  <UStock />} />
         <Route path='/stuff_member/:id' element={  <StuffMember />} />
+        <Route path='/stuff_memb/:id' element={  <StuffMember2 />} />
         {/* GENERAL */}
         <Route path='/pro_forma/:id' element={  <Pro_form />} />
         <Route path='/pro_forma2/:id' element={  <Pro_form2 />} />

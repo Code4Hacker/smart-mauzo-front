@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 const Work = ({ works }) => {
     const [splitted_deal, setSplittled_deal] = useState();
     const [money, setMoney] = useState(0);
-    const { dealID, tracking, registedDate,dealStatus } = works;
+    const { dealID, tracking, registedDate, dealStatus } = works;
     let date = ((new Date(`${registedDate.split("-")[1]}/${registedDate.split("-")[2]}/${registedDate.split("-")[0]}`))).getDay();
     let mydate = date;
     switch (date) {
@@ -25,7 +25,7 @@ const Work = ({ works }) => {
     const params = useParams();
     const deal_picks = async () => {
         const getdata_for = await axios.get(`${baseURL}contentfor.php?id=${dealID}&mini_employee=${params.id}`);
-        setSplittled_deal(getdata_for.data.deals);
+        setSplittled_deal(getdata_for.data);
         let fdt = new FormData();
         fdt.append("id", dealID);
         let bodydat = fdt;
@@ -40,43 +40,50 @@ const Work = ({ works }) => {
         // console.log(getdata_for);
         // }
     }
-    useEffect(() => { 
+    useEffect(() => {
         deal_picks();
-     }, []);
+    }, []);
     return (
         <>
-        {splitted_deal !== undefined && splitted_deal?.length > 0 ?
-        <div className='grid works'>
-            <div className="day">
-                <div className="center">
-                    {mydate}
-                </div>
-            </div>
-            <div className="line">
-            </div>
-            <div className="content">
-                 { splitted_deal.map((d, k) =>
-                        <div className="week_jb_gemini" key={k}>
-                            <div className="row">
-                                <div className="col-8">
-                                    <span>{d.categories}</span><br />
-                                    <span className='x-small' style={{
-                                        color:'gray'
-                                    }}>{dealStatus}</span>
-                                </div>
-                                <div className="col-4 text-end">
-                                    {Number(d.price * d.quantity).toLocaleString()} Tshs. 
-                                     <span className="x-small" style={{fontFamily:'cursive'}}>
-                                       [ Price {Number(d.price).toLocaleString()}
-                                        @({d.quantity}) Items ]
-                                    </span>
+            {splitted_deal !== undefined && splitted_deal.deals?.length > 0 ?
+                <div className='grid works'>
+                    <div className="day">
+                        <div className="center">
+                            {mydate}
+                        </div>
+                    </div>
+                    <div className="line">
+                    </div>
+                    <div className="content">
+                        {splitted_deal.deals.map((d, k) =>
+                            <div className="week_jb_gemini" key={k}>
+                                <div className="row">
+                                    <div className="col-8">
+                                        <div className="row">
+                                            <div className="col-5">
+                                                <span>{d.categories}</span><br />
+                                                <span className='x-small' style={{
+                                                    color: 'gray'
+                                                }}>{dealStatus}</span>
+                                            </div>
+                                            <div className="col-7">
+                                                <span>{splitted_deal.the_name}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-4 text-end">
+                                        {Number(d.price * d.quantity).toLocaleString()} Tshs.
+                                        <span className="x-small" style={{ fontFamily: 'cursive' }}>
+                                            [ Price {Number(d.price).toLocaleString()}
+                                            @({d.quantity}) Items ]
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )}
-            </div>
-        </div>
-        :""}
+                        )}
+                    </div>
+                </div>
+                : ""}
         </>
     )
 }
