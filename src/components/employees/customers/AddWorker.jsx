@@ -13,7 +13,7 @@ const AddWorker = ({ setContents }) => {
 
     const jqueries = () => {
         jQuery(".add_box.cmt").fadeOut({ duration: 500 });
-        setAddress(""); setFname(""); setMail(""); setPhone(""); setLname("");
+        setFullname(""); setFullVname("");
     }
     const getall = async () => {
         const response = await axios.get(`${baseURL}worker.php`);
@@ -86,7 +86,10 @@ const AddWorker = ({ setContents }) => {
 
 
                     <div className="button">
-                        <button id="bottonGt" onClick={handleupdate}>Add Worker</button>
+                        <button id="bottonGt text-center" onClick={handleupdate}>
+                            <div className="bn2"></div>
+                            <div className="bn1">Add Worker</div>
+                        </button>
                     </div>
                 </div>
             </div>

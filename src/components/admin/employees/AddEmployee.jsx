@@ -19,10 +19,10 @@ const AddEmployee = ({ setEmployee }) => {
     const [mVail, setMVail] = useState("");
     const [cVodes, setCVodes] = useState("");
     const [status, setStatus] = useState();
-    
+
     const jqueries = () => {
-        jQuery(".add_box.adduser").fadeOut({duration:500});
-         setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+        jQuery(".add_box.adduser").fadeOut({ duration: 500 });
+        setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
     }
     const addNew = async (PATH) => {
         let formdata = new FormData();
@@ -42,17 +42,17 @@ const AddEmployee = ({ setEmployee }) => {
         }
 
         let response = await axios.request(reqOptions);
-        if(response.data.status === "200"){
+        if (response.data.status === "200") {
             jqueries();
             getall();
         }
         setStatus(response.data.status);
     }
-    
+
     const getall = async () => {
         const response = await axios.get(`${baseURL}employee.php`);
         setEmployee(response.data.employees);
-    }   
+    }
     const handleupdate = () => {
         fname.length < 4 ?
             setFVname(<span style={{ color: 'red' }}>First Name is Too Small!</span>) :
@@ -69,7 +69,7 @@ const AddEmployee = ({ setEmployee }) => {
         address.length < 10 ?
             setAVddress(<span style={{ color: 'red' }}>Address is not Valid!</span>) :
             setAVddress(<span style={{ color: 'orange' }}></span>);
-        !codes.match(/[0-9]/g) || codes.length < 8?
+        !codes.match(/[0-9]/g) || codes.length < 8 ?
             setCVodes(<span style={{ color: 'red' }}>Strong Password Required!</span>) :
             setCVodes(<span style={{ color: 'orange' }}></span>);
         if (fname.length >= 4 && lname.length >= 4 && mail.length >= 10 && phone.match(/[\d+]/g) && address.length >= 10 && (!codes.match(/[0-9]/g) || codes.length >= 8)) {
@@ -135,7 +135,14 @@ const AddEmployee = ({ setEmployee }) => {
                     <div className="small text-center">{aVddress}</div>
 
                     <div className="button">
-                        <button id="bottonGet" onClick={handleupdate}>Complete</button>
+                        <button id="bottonGet" onClick={handleupdate}>
+                            <div className="bn2"></div>
+                            <div className="bn1">
+                                <span className="small">
+                                    <i className="bi bi-chevron-double-down"></i> Complete
+                                </span>
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -64,6 +64,11 @@ const Login = () => {
             }
         }
     }
+    window.onkeyup = function(evt){
+        if(evt.key === "Enter" || evt.key === 13){
+            handlesubmit();
+        }
+    }
     useEffect(() => {
         if (window.localStorage.adminmail !== undefined) {
             navigate('/admin');
@@ -77,7 +82,14 @@ const Login = () => {
                         <span>We need to save your Cookies First ? </span>
                         <div className="btn">
                             {/* <button>No</button> */}
-                            <button>Continue</button>
+                            <button>
+                                <div className="bn2"></div>
+                                <div className="bn1">
+                                    <span className="small">
+                                        <i className="bi bi-chevron-double-right"></i> Continue
+                                    </span>
+                                </div>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -87,7 +99,7 @@ const Login = () => {
             </div>
             <div className="container">
                 <div className="registration_box login">
-                <div className="reg_items">
+                    <div className="reg_items">
                         <Link to={'/'} className="header active">Admin</Link>
                         <Link to={'/e_login'} className='header'>Employee</Link>
                     </div>
@@ -104,7 +116,14 @@ const Login = () => {
 
                     </div>
                     <div className="btn">
-                        <button className="gradient" id="buttonGet" style={{ color: "white" }} onClick={handlesubmit}>Sign In</button>
+                        <button className="gradient" id="buttonGet" style={{ color: "white" }} onClick={handlesubmit}>
+                            <div className="bn2"></div>
+                            <div className="bn1">
+                                <span className="small">
+                                    <i className="bi bi-chevron-double-lock"></i> Sign In
+                                </span>
+                            </div>
+                        </button>
                     </div>
                 </div>
 

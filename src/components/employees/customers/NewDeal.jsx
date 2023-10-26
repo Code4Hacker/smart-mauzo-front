@@ -107,7 +107,14 @@ const NewDeal = ({ setWorks, setOnecount, setContents, setCount, unique }) => {
 
 
                             <div className="button">
-                                <button id="bottonGet" onClick={() => setNext_task(2)}><i className="bi bi-chevron-double-right"></i> next</button>
+                                <button id="bottonGet" onClick={() => setNext_task(2)}>
+                                    <div className="bn2"></div>
+                                    <div className="bn1">
+                                        <span className="small">
+                                            <i className="bi bi-chevron-double-right"></i> next
+                                        </span>
+                                    </div>
+                                </button>
                             </div>
                         </div>
                         : next_task === 2 ?

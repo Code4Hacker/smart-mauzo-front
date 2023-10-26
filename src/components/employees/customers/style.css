@@ -363,6 +363,26 @@
     text-align: start;
     margin: 5px;
 }
+button{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    min-width: 50px;
+}
+.btn_cli{
+    width:25px;
+    border: 1.3px solid white;
+    border-bottom-color:rgb(214, 0, 143);
+    border-top-color:rgb(0, 111, 214);
+    border-radius: 50px;
+    /* margin: 10px; */
+    left: 50%;
+    margin-left: 20px;
+    transform: translateX(-50%);
+    height: 25px;
+    animation: 1s rotate linear infinite;
+}
 @media screen and (max-width:992px){  
 .mrs {
     width: 95% !important;

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import './style.css';
 import './../../primary/style2.css';
-import jQuery from 'jquery';
+import jQuery, { event } from 'jquery';
 import { baseURL } from '../../baseURL';
 
 const ELogin = () => {
@@ -66,6 +66,12 @@ const ELogin = () => {
             }
         }
     }
+    
+    window.onkeyup = function(evt){
+        if(evt.key === "Enter" || evt.key === 13){
+            handlesubmit();
+        }
+    }
     useEffect(() => {
         if (window.localStorage.emMail !== undefined) {
             navigate('/employee');
@@ -79,7 +85,14 @@ const ELogin = () => {
                         <span>We need to save your Cookies First ? </span>
                         <div className="btn">
                             {/* <button>No</button> */}
-                            <button>Continue</button>
+                            <button>
+                                <div className="bn2"></div>
+                                <div className="bn1">
+                                    <span className="small">
+                                        <i className="bi bi-chevron-double-right"></i> continue
+                                    </span>
+                                </div>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -106,7 +119,14 @@ const ELogin = () => {
 
                     </div>
                     <div className="btn">
-                        <button className="gradient" id="buttonGet" style={{ color: "white" }} onClick={handlesubmit}>Sign In</button>
+                        <button className="gradient" id="buttonGet" style={{ color: "white" }} onClick={handlesubmit}>
+                            <div className="bn2"></div>
+                            <div className="bn1">
+                                <span className="small">
+                                    <i className="bi bi-chevron-lock"></i> Sign In
+                                </span>
+                            </div>
+                        </button>
                     </div>
                 </div>
 

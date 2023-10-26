@@ -136,7 +136,10 @@ const Update = ({ setEmployee }) => {
                     <div className="small text-center">{aVddress}</div>
 
                     <div className="button">
-                        <button id="bottonGe" onClick={handleupdate}>Complete</button>
+                        <button id="bottonGe" onClick={handleupdate}>
+                            <div className="bn2"></div>
+                            <div className="bn1"><span className="small">Complete</span></div>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -294,8 +294,22 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
 
 
                             <div className="button">
-                                <button id="bottonGet" onClick={() => setTask(0)}><i className="bi bi-chevron-double-left"></i> Back</button>
-                                <button id="bottonGet" onClick={() => setNext_view(1)}><i className="bi bi-chevron-double-right"></i> Next</button>
+                                <button id="bottonGet" onClick={() => setTask(0)}>
+                                    <div className="bn2"></div>
+                                    <div className="bn1">
+                                        <span className="small">
+                                            <i className="bi bi-chevron-double-left"></i> Back
+                                        </span>
+                                    </div>
+                                </button>
+                                <button id="bottonGet" onClick={() => setNext_view(1)}>
+                                    <div className="bn2"></div>
+                                    <div className="bn1">
+                                        <span className="small">
+                                            <i className="bi bi-chevron-double-right"></i> next
+                                        </span>
+                                    </div>
+                                </button>
                             </div>
                         </div> : next_view === 1 ?
                             <div className="multi_bx">
@@ -656,8 +670,22 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                                     </select>
                                 </div>
                                 <div className="button">
-                                    <button id="bottonGet" onClick={() => setNext_view(0)}><i className="bi bi-chevron-double-left"></i> Back</button>
-                                    <button onClick={send_array}><i className="bi bi-chevron-double-up"></i> Complete</button>
+                                    <button id="bottonGet" onClick={() => setNext_view(0)}>
+                                    <div className="bn2"></div>
+                                    <div className="bn1">
+                                        <span className="small">
+                                            <i className="bi bi-chevron-double-left"></i> Back
+                                        </span>
+                                    </div>
+                                </button>
+                                    <button onClick={send_array}>
+                                    <div className="bn2"></div>
+                                    <div className="bn1">
+                                        <span className="small">
+                                            <i className="bi bi-chevron-double-down"></i> Complete
+                                        </span>
+                                    </div>
+                                </button>
                                 </div>
                             </div>
                             : <Loading />

@@ -45,16 +45,16 @@ const NewStock = ({ setStocksdt, datefrom1, dateto1, cty }) => {
 
         let response = await axios.request(reqOptions);
         setStatus(response.data.status);
-        console.log(category,response.data);
-        if(response.data.status === "200"){
+        console.log(category, response.data);
+        if (response.data.status === "200") {
             const getal = async () => {
                 const stock = await axios.get(`${baseURL}stocks.php?start=${datefrom1}&to_end=${dateto1}&category=${cty}`);
                 if (stock.data.status === "200") {
                     setStocksdt(stock.data.stocks);
                     jQuery(".add_box.newstock").fadeOut({
-                        duration:100
+                        duration: 100
                     });
-                    setTitle("");setDes(""); setQty(""); setCost(""); setPhoto("");
+                    setTitle(""); setDes(""); setQty(""); setCost(""); setPhoto("");
                 }
             }
             getal();
@@ -93,11 +93,11 @@ const NewStock = ({ setStocksdt, datefrom1, dateto1, cty }) => {
                     const getal = async () => {
                         const stoc = await axios.get(`${baseURL}stocks.php?start=${datefrom1}&to_end=${dateto1}&category=${cty}`);
                         if (stoc.data.status === "200") {
-                            setStocksdt(stoc.data.stocks.splice(0,2));
+                            setStocksdt(stoc.data.stocks.splice(0, 2));
                             jQuery(".add_box.newstock").fadeOut({
-                                duration:100
+                                duration: 100
                             });
-                            setTitle("");setDes(""); setQty(""); setCost(""); setPhoto("");
+                            setTitle(""); setDes(""); setQty(""); setCost(""); setPhoto("");
                         }
                     }
                     getal();
@@ -110,9 +110,9 @@ const NewStock = ({ setStocksdt, datefrom1, dateto1, cty }) => {
                         if (stock.data.status === "200") {
                             setStocksdt(stock.data.stocks);
                             jQuery(".add_box.newstock").fadeOut({
-                                duration:100
+                                duration: 100
                             });
-                            setTitle("");setDes(""); setQty(""); setCost(""); setPhoto("");
+                            setTitle(""); setDes(""); setQty(""); setCost(""); setPhoto("");
                         }
                     }
                     getall();
@@ -164,19 +164,26 @@ const NewStock = ({ setStocksdt, datefrom1, dateto1, cty }) => {
                         <option value={raws.stocks.FIRST_CHOICE}>{raws.stocks.FIRST_CHOICE}</option>
                         <option value={raws.stocks.SECOND_CHOICE}>{raws.stocks.SECOND_CHOICE}</option>
                         <option value={raws.stocks.THIRD_CHOICE}>{raws.stocks.THIRD_CHOICE}</option>
-                        <option value={raws.stocks.FORTH_CHOICE}>{raws.stocks.FORTH_CHOICE}</option>     
+                        <option value={raws.stocks.FORTH_CHOICE}>{raws.stocks.FORTH_CHOICE}</option>
                     </select>
                     <div className='preview' onClick={getPhoto}>
                         <div className="title">
                             <input type="file" name="" id="profilePic" onChange={(e) => setPhoto(e.target.files[0])} hidden />
-                            <h4><span>SELECT IMAGE</span></h4>
+                            <h4><span className='bi bi-file' style={{padding:'10px'}}> SELECT IMAGE</span></h4>
                         </div>
                     </div>
                     <div className="small text-center">{pvhoto}</div>
 
 
                     <div className="button">
-                        <button id="bottonGet" onClick={handleupdate}>Complete</button>
+                        <button id="bottonGet" onClick={handleupdate}>
+                            <div className="bn2"></div>
+                            <div className="bn1">
+                                <span className="small">
+                                    <i className="bi bi-chevron-double-down"></i> Complete
+                                </span>
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -36,8 +36,12 @@ const Search = ({ setDeals, setCount, uri, id }) => {
 
     return (
         <div className='search'>
-            <input type="text" placeholder='filter Deal by the name...' value={title} onChange={(s) => setTitle(s.target.value)} />
-            <button className="bi bi-search" onClick={the_title}></button>
+            <input type="text" placeholder='filter Deal by Title...' value={title} onChange={(s) => setTitle(s.target.value)} />
+            <button className="bi bi-search" onClick={the_title}>
+                <div className="bn2"></div>
+                <div className="bn1">
+                </div>
+            </button>
         </div>
     )
 }

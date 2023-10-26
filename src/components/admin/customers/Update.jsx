@@ -68,35 +68,35 @@ const Update = ({ setEmployee }) => {
         //     setAVddress(<span style={{ color: 'red' }}></span>) :
         //     setAVddress(<span style={{ color: 'orange' }}></span>);
         // if (fname.length >= 1 && lname.length >= 1 && phone.match(/[\d+]/g)) {
-            addNew(`${baseURL}updtodelc.php`);
-            switch (status) {
-                case '404':
-                    setFVname(<span style={{ color: 'red' }}></span>);
-                    setLVname(<span style={{ color: 'orange' }}></span>);
-                    setMVail(<span style={{ color: 'orange' }}></span>);
-                    setPVhone(<span style={{ color: 'orange' }}></span>);
-                    setAVddress(<span style={{ color: 'blue' }}>No Existing User!</span>);
-                    break;
-                case '200':
-                    setFVname(<span style={{ color: 'red' }}></span>);
-                    setLVname(<span style={{ color: 'orange' }}></span>);
-                    setMVail(<span style={{ color: 'orange' }}></span>);
-                    setPVhone(<span style={{ color: 'orange' }}></span>);
-                    setAVddress(<span style={{ color: 'green' }}>Successiful!</span>);
-                    setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
-                    jQuery(".rename_box").fadeOut({
-                        duration: 1000
-                    });
-                    break;
-                default:
-                    break;
-                }
-                console.log(status);
-            const getall = async () => {
-                const response = await axios.get(`${baseURL}customers.php`);
-                setEmployee(response.data.customers);
-            }
-            getall();
+        addNew(`${baseURL}updtodelc.php`);
+        switch (status) {
+            case '404':
+                setFVname(<span style={{ color: 'red' }}></span>);
+                setLVname(<span style={{ color: 'orange' }}></span>);
+                setMVail(<span style={{ color: 'orange' }}></span>);
+                setPVhone(<span style={{ color: 'orange' }}></span>);
+                setAVddress(<span style={{ color: 'blue' }}>No Existing User!</span>);
+                break;
+            case '200':
+                setFVname(<span style={{ color: 'red' }}></span>);
+                setLVname(<span style={{ color: 'orange' }}></span>);
+                setMVail(<span style={{ color: 'orange' }}></span>);
+                setPVhone(<span style={{ color: 'orange' }}></span>);
+                setAVddress(<span style={{ color: 'green' }}>Successiful!</span>);
+                setAddress(""); setCodes(""); setFname(""); setMail(""); setPhone(""); setLname("");
+                jQuery(".rename_box").fadeOut({
+                    duration: 1000
+                });
+                break;
+            default:
+                break;
+        }
+        console.log(status);
+        const getall = async () => {
+            const response = await axios.get(`${baseURL}customers.php`);
+            setEmployee(response.data.customers);
+        }
+        getall();
 
         // }
 
@@ -130,7 +130,14 @@ const Update = ({ setEmployee }) => {
                     <div className="small text-center">{aVddress}</div>
 
                     <div className="button">
-                        <button id="bottonGet" onClick={handleupdate}>Complete</button>
+                        <button id="bottonGet" onClick={handleupdate}>
+                            <div className="bn2"></div>
+                            <div className="bn1">
+                                <span className="small">
+                                    <i className="bi bi-chevron-double-down"></i> complete
+                                </span>
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>

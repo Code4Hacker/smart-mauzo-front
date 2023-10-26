@@ -4,6 +4,7 @@ import './style.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { baseURL } from '../../../baseURL';
+import jQuery from 'jquery';
 const TopBar2 = ({ location }) => {
     Aos.init({
         duration: 1000,
@@ -13,8 +14,25 @@ const TopBar2 = ({ location }) => {
     const [count, setCount] = useState();
     const [count2, setCount2] = useState();
     const navigate = useNavigate();
-
+    const query_2 = () => {
+        jQuery("button").on("click", function () {
+            jQuery("button *").removeClass("btn_cli");
+            jQuery(this).find(".bn1").hide();
+            jQuery(this).find(".bn2").addClass("btn_cli");
+            jQuery(this).prop("disabled", true);
+            setTimeout(() => {
+                jQuery(this).prop("disabled", false);
+                jQuery(this).find(".bn1").show({
+                    done: function () {
+                        jQuery("button *").removeClass("btn_cli");
+                        jQuery(this).prop("disabled", false);
+                    }
+                });
+            }, 3000);
+        });
+    }
     useEffect(() => {
+        query_2();
         const getall = async () => {
             const response = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
 
@@ -43,7 +61,7 @@ const TopBar2 = ({ location }) => {
         } else {
             navigate('/e_login');
         }
-        
+
     }, []);
     return (
         <div className=' prt_on'>
@@ -77,7 +95,7 @@ const TopBar2 = ({ location }) => {
             </div>
             <div className="grid_templated showcase">
                 <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="flip-up" data-aos-duration="1000"
-                    >
+                >
                     <div className="title text-center mt-2">
                         <h5><span>All Customers</span></h5>
                     </div>
@@ -90,7 +108,7 @@ const TopBar2 = ({ location }) => {
                     </div>
                 </div>
                 <div className="box_full_template_grid " style={{ "--width": "100%" }} data-aos="flip-up" data-aos-duration="1000"
-                    >
+                >
                     <div className="title text-center mt-2">
                         <h5><span>Your Customers</span></h5>
                     </div>
