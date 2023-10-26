@@ -164,7 +164,7 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                         description: lname,
                         requirements: requirements,
                         pay_status: dstatus !== "" ? dstatus : "PENDING",
-                        deal_tracking: tracks !== "" ? tracks : "ON PROGRESS",
+                        deal_tracking: tracks !== "" ? tracks : "WAITING",
                         registered_by: employee.data.employee[0].employeeID,
                         customer: unique,
                         the_worker: worker 
@@ -198,7 +198,7 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                 }
             }
         } catch (error) {
-            console.error(error);
+            console.error("ERROR",error.message);
         }
         bodydata = [];
     }
