@@ -182,7 +182,7 @@ const OneCustomer = () => {
                                 <div className="title"><h3><span style={{
                                     fontWeight: 100, marginTop: '50px !important', padding: '20px', background: 'var(--milk)', color: 'var(--black)', position: 'relative', minHeight: '30px', marginLeft: '-50px', borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px'
                                 }}>CUSTOMER DEALS</span></h3></div>
-                                <button className="print_deal bi bi-printer-fill prt_on" onClick={printing}> Print</button>
+                                {/* <button className="print_deal bi bi-printer-fill prt_on" onClick={printing}> Print</button> */}
                                 <div className="deals" style={{
                                     marginTop: '40px', position: 'relative'
                                 }}>
