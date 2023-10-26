@@ -47,11 +47,7 @@ const S_Customer = () => {
                         <div className="input_">
                             <div className="flex">
                                 <input type="text" placeholder={`Search by Customer ${title}`} value={unique} onChange={(evt) => setUnique(evt.target.value)} />
-                                <button className='bi bi-search' onClick={searchHandle}>
-                                    <div className="bn2"></div>
-                                    <div className="bn1">
-                                    </div>
-                                </button>
+                                <button className='bi bi-search' onClick={searchHandle}></button>
                             </div>
                             <div className="sel">
                                 <span onClick={() => setTitle("Last Name")}>Customer Name </span><span onClick={() => setTitle("Unique ID")}> Customer ID</span>
