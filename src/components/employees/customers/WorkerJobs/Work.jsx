@@ -24,7 +24,7 @@ const Work = ({ works }) => {
     // console.log("THIS", (mydate))
     const params = useParams();
     const deal_picks = async () => {
-        const getdata_for = await axios.get(`${baseURL}contentfor1d.php?id=${dealID}&mini_employee=${params.id}`);
+        const getdata_for = await axios.get(`${baseURL}contentfor.php?id=${dealID}&mini_employee=${params.id}`);
         setSplittled_deal(getdata_for.data.deals);
         let fdt = new FormData();
         fdt.append("id", dealID);
