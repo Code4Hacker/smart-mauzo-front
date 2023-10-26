@@ -38,7 +38,7 @@ body {
 }
 
 .dashboard_grid_container>div:nth-child(1) {
-    background-color: rgb(58, 58, 58);
+    background-color: rgb(5, 5, 17);
     animation: 1s fader linear infinite;
     height: 100vh;
     padding: 10px;

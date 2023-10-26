@@ -11,7 +11,9 @@
     --milk: rgb(51, 51, 51);
     --milk2: rgb(238, 238, 238);
     --milk3: rgb(51, 51, 51);
+    --milk4: rgb(0, 4, 29);
     --shadow: rgb(221, 202, 245);
+    --sh-2: linear-gradient(60deg, rgb(0, 16, 51), rgb(0, 139, 81), rgb(0, 16, 51));
     --gray_color: rgb(228, 225, 225);
     --calenda-color:rgb(151, 151, 151);
     --black: rgb(248, 246, 255);
@@ -76,7 +78,7 @@ h6 {
 .title h4 span,
 .title h5 span{
     color: transparent;
-    background: linear-gradient(60deg, red,var(--green-slim));
+    background: linear-gradient(60deg, rgb(0, 197, 76),var(--green-slim));
     background-clip: text;
     font-weight: 900;
     -webkit-background-clip: text;
@@ -320,10 +322,22 @@ html,body{
     border-radius: 10px;
     min-width: 600px;
     margin-top: 0px;
+    background-color: var(--black);
     display: grid;
     grid-template-columns: var(--grid-template);
     overflow: hidden;
     
+}
+
+.common-grid-2:nth-child(1) {
+    background: var(--sh-2);
+    
+}
+.common-grid-2 > * span{
+    color: var(--milk);
+}
+.common-grid-2:nth-child(1) > * span{
+    color: var(--black);
 }
 
 .common-grid h5 span ,.common-grid-2 h5 span {
@@ -354,8 +368,8 @@ html,body{
     overflow-x: hidden;
 }
 ::-webkit-scrollbar{
-    width: 2px;
-    height: 2px;
+    width: 1px;
+    height: 1px;
 }
 ::-webkit-scrollbar-thumb{
     background-color: rgb(107, 107, 107);

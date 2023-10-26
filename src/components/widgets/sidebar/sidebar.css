@@ -1,7 +1,7 @@
 .navtab {
-    border-bottom: 1px solid var(--milk);
+    border-bottom: 1px solid var(--milk4);
     margin-left: -30px;
-    background-color: var(--milk);
+    background-color: var(--milk4);
     margin-top: -10px;
     padding-top: 20px !important;
     text-align: center !important;
@@ -38,12 +38,12 @@
     margin-top: -10px;
     padding: 10px !important;
     margin-left: -42px !important;
-    border-top: 1px solid var(--banner-color);
+    border-top: 1px solid var(--top-color);
     padding-top: 50px !important;
     width: 220px !important;
     border-bottom-left-radius: 20px !important;
     border-bottom-right-radius: 20px !important;
-    background-color: var(--milk);
+    background-color: var(--milk4);
 }
 
 .menu li:nth-child(1) .dropdown {

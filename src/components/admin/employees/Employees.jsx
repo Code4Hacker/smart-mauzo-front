@@ -36,7 +36,6 @@ const Employees = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("ADD CANCELED!");
                 }
             });
         });
@@ -46,7 +45,6 @@ const Employees = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("UPDATE CANCELED!");
                 }
             })
         });
@@ -56,7 +54,6 @@ const Employees = () => {
                 duration: 500,
                 easing: 'linear',
                 done: function () {
-                    console.log("SELL CANCELED!");
                 }
             });
         });
@@ -93,50 +90,50 @@ const Employees = () => {
 
                         {/* Employees */}
                         <div className="card_holder" style={{
-                            boxShadow: "0px 10px 10px 0px rgba(0, 0, 0, 0.1)", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px"
+                            boxShadow: "0px 10px 10px 0px rgba(0, 0, 0, 0.1)", borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px", borderRadius:'10px'
                         }}
                             data-aos="fade-right" data-aos-duration="1000" >
                             <div className="common-grid-2 " style={{ "--grid-template": "auto auto auto auto auto auto auto", boxShadow: "10px 0px 10px 0px rgba(0, 0, 0, 0.1)", borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}
                                 data-aos="fade-right" data-aos-duration="1000" >
                                 <div className="grid-item "
-                                    style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>
+                                    style={{ backgroundColor: "var(--sh-2)", paddingLeft: "10px", paddingRight: "10px" }}>
                                     <div className="title ">
                                         <h5><span>First Name</span></h5>
                                     </div>
                                 </div>
                                 <div className="grid-item "
-                                    style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>
+                                    style={{ backgroundColor: "var(--sh-2)", paddingLeft: "10px", paddingRight: "10px" }}>
                                     <div className="title " style={{ textAlign: 'start' }}>
                                         <h5><span>Last Name</span></h5>
                                     </div>
                                 </div>
                                 <div className="grid-item "
-                                    style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>
+                                    style={{ backgroundColor: "var(--sh-2)", paddingLeft: "10px", paddingRight: "10px" }}>
                                     <div className="title " style={{ textAlign: 'start' }}>
                                         <h5><span>Email/Username</span></h5>
                                     </div>
                                 </div>
                                 <div className="grid-item "
-                                    style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>
+                                    style={{ backgroundColor: "var(--sh-2)", paddingLeft: "10px", paddingRight: "10px" }}>
                                     <div className="title " style={{ textAlign: 'start' }}>
                                         <h5><span>Telephone</span></h5>
                                     </div>
                                 </div>
                                 <div className="grid-item "
-                                    style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>
+                                    style={{ backgroundColor: "var(--sh-2)", paddingLeft: "10px", paddingRight: "10px" }}>
                                     <div className="title " style={{ textAlign: 'start' }}>
                                         <h5><span>Role</span></h5>
                                     </div>
                                 </div>
 
                                 <div className="grid-item "
-                                    style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>
+                                    style={{ backgroundColor: "var(--sh-2)", paddingLeft: "10px", paddingRight: "10px" }}>
                                     <div className="title ">
                                         <h5><span>Date Added</span></h5>
                                     </div>
                                 </div>
                                 <div className="grid-item "
-                                    style={{ backgroundColor: "var(--shadow)", paddingLeft: "10px", paddingRight: "10px" }}>
+                                    style={{ backgroundColor: "var(--sh-2)", paddingLeft: "10px", paddingRight: "10px" }}>
                                     <div className="title ">
                                         <h5><span>Actions</span></h5>
                                     </div>
