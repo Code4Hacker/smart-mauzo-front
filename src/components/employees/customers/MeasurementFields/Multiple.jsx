@@ -172,7 +172,12 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                     "resp": bodydata
                 }
 
-                const respn = await axios.post(`${baseURL}manydeal.php`, deal_assets);
+                // const respn = await axios.post(`${baseURL}manydeal.php`, deal_assets);
+                const respn = await  axios.request({
+                    method:"POST",
+                    url:`${baseURL}manydeal.php`,
+                    data: deal_assets
+                });
                 console.log(deal_assets);
                 console.log(respn.data);
                 if (respn.data.status === "200") {
