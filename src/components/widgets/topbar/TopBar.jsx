@@ -54,7 +54,7 @@ const TopBar = ({ location }) => {
                                 <h2 style={{
                                     marginTop: "50px",
                                     marginLeft: "20px"
-                                }} className='gradient-text'>EMPLOYEE - {location}</h2>
+                                }} className='gradient-text'>ADMIN - {location}</h2>
                             </div>
                         </div>
                         <div className="col-3 flex mt-20">
