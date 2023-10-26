@@ -9,6 +9,7 @@ import './../../primary/style2.css'
 import SideBar2 from '../widgets/sidebar/SideBar2'
 import TopBar2 from '../widgets/topbar/TopBar2'
 import Mini2 from '../widgets/sidebar/Mini2'
+import Loading from '../Loader/Loading'
 
 const EDashboard = () => {
     Aos.init({
@@ -100,7 +101,7 @@ const EDashboard = () => {
                                                         className="gray small">{(employee.customerEmail).substring(0,12)}...</span>
                                                 </div>
                                             </div>
-                                        </div>):"Loading ..."}
+                                        </div>):<Loading/>}
 
                                         
 
