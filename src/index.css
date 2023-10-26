@@ -42,7 +42,7 @@
     border-radius: 50%;
     top: var(--top);
     left: var(--left);
-    background: linear-gradient(60deg, var(--green), var(--blue));
+    background: linear-gradient(60deg, red, var(--blue));
 }
 
 .registration_box {

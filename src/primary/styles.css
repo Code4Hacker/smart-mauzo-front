@@ -55,7 +55,7 @@ h6 {
 .title h4 span,
 .title h5 span{
     color: transparent;
-    background: linear-gradient(60deg, var(--green-slim),var(--green));
+    background: linear-gradient(60deg, red,var(--green-slim));
     background-clip: text;
     font-weight: 900;
     -webkit-background-clip: text;
