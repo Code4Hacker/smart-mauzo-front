@@ -32,7 +32,28 @@ body {
     font-family: 'Ubuntu', sans-serif;
     background-color: var(--black);
     color: var(--milk);
+    /* background-image: url(../assets/money.png); */
+    /* background-size: 300px; */
+    /* background-repeat: repeat-x; */
+    /* backface-visibility: 10; */
+    /* object-position: center; */
 }
+.card_holder{
+    background-color: var(--black);
+}
+/* body:before {
+    content:'';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: var(--black);
+    color: var(--milk);
+    opacity: 30%;
+    background-image: url(../assets/money.png);
+    background-size: 200px;
+    object-position: center;
+} */
 
 h1,
 h2,
