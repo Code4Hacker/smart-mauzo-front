@@ -548,6 +548,14 @@ textarea{
         border-radius: 10px;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.185);
     }
+    .box_full {
+        background-color: var(--top-color);
+        color: white;
+        height: 250px;
+        padding-top: 50px;
+        border-bottom-left-radius: 60px;
+        border-bottom-right-radius: 60px;
+    }
 
 }
 

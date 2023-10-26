@@ -125,9 +125,8 @@
 
     }
     .top_banner{
-        min-height: 300px;
+        min-height: 200px;
         padding: 10px;
-        padding-top: 100px;
         width: 90%;
         margin: 10px;
         margin-left: 10px;
@@ -143,8 +142,6 @@
         background-color: var(--milk);
         background-attachment: fixed !important;
         background-attachment: fixed;
-        border-bottom-left-radius: 60px;
-        border-bottom-right-radius: 60px;
     }
     .addstockBtn{
         width: 80px;
