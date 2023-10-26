@@ -157,7 +157,7 @@ const AStocks = () => {
     const cty_fabric = async () => {
         setCty("FABRIC");
         const as_new = async () => {
-            const sto = await axios.get(`${baseURL}stocks.php?start=${datefrom1}&to_end=${dateto1}&category=FABRIC}`);
+            const sto = await axios.get(`${baseURL}stocks.php?start=${datefrom1}&to_end=${dateto1}&category=FABRIC`);
             if (sto.data.status === "200") {
                 setStocksdt(sto.data.stocks);
                 setHide(true);

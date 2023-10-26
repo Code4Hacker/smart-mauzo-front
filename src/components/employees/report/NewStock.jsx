@@ -6,7 +6,7 @@ import { baseURL } from '../../../baseURL';
 import jQuery from 'jquery';
 import raws from '../../employees/raws.json';
 
-const NewStock = ({ setStocksdt, datefrom1, dateto1 }) => {
+const NewStock = ({ setStocksdt, datefrom1, dateto1, cty }) => {
     const [title, setTitle] = useState("");
     const [des, setDes] = useState("");
     const [cost, setCost] = useState("");
@@ -45,11 +45,12 @@ const NewStock = ({ setStocksdt, datefrom1, dateto1 }) => {
 
         let response = await axios.request(reqOptions);
         setStatus(response.data.status);
+        console.log(category,response.data);
         if(response.data.status === "200"){
             const getal = async () => {
-                const stock = await axios.get(`${baseURL}stocks.php?start=${datefrom1}&to_end=${dateto1}`);
+                const stock = await axios.get(`${baseURL}stocks.php?start=${datefrom1}&to_end=${dateto1}&category=${cty}`);
                 if (stock.data.status === "200") {
-                    setStocksdt(stock.data.stocks.splice(0,2));
+                    setStocksdt(stock.data.stocks);
                     jQuery(".add_box.newstock").fadeOut({
                         duration:100
                     });
@@ -78,7 +79,7 @@ const NewStock = ({ setStocksdt, datefrom1, dateto1 }) => {
             setPvhoto(<span style={{ color: 'red' }}>No Photo Selected!</span>) :
             setPvhoto(<span style={{ color: 'orange' }}></span>);
 
-        if (title.length >= 4 && des.length >= 4 && (cost.length >= 2 || cost.match(/[\d+]/g)) && (qty.length >= 1 || qty.match(/[\d+]/g))) {
+        if (title.length >= 2) {
             const response = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
 
             if (response.data.status === "200") {
@@ -90,7 +91,7 @@ const NewStock = ({ setStocksdt, datefrom1, dateto1 }) => {
                     setTVitle(<span style={{ color: 'red' }}></span>);
                     setDves(<span style={{ color: 'orange' }}></span>);
                     const getal = async () => {
-                        const stoc = await axios.get(`${baseURL}stocks.php?start=${datefrom1}&to_end=${dateto1}`);
+                        const stoc = await axios.get(`${baseURL}stocks.php?start=${datefrom1}&to_end=${dateto1}&category=${cty}`);
                         if (stoc.data.status === "200") {
                             setStocksdt(stoc.data.stocks.splice(0,2));
                             jQuery(".add_box.newstock").fadeOut({
@@ -105,9 +106,9 @@ const NewStock = ({ setStocksdt, datefrom1, dateto1 }) => {
                     setTVitle(<span style={{ color: 'red' }}></span>);
                     setDves(<span style={{ color: 'orange' }}></span>);
                     const getall = async () => {
-                        const stock = await axios.get(`${baseURL}stocks.php?start=${datefrom1}&to_end=${dateto1}`);
+                        const stock = await axios.get(`${baseURL}stocks.php?start=${datefrom1}&to_end=${dateto1}&category=${cty}`);
                         if (stock.data.status === "200") {
-                            setStocksdt(stock.data.stocks.splice(0,2));
+                            setStocksdt(stock.data.stocks);
                             jQuery(".add_box.newstock").fadeOut({
                                 duration:100
                             });
