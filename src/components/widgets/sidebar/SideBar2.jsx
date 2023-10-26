@@ -60,7 +60,7 @@ const SideBar2 = () => {
                         </Link>
                     </li>
                     <li className="nested_list">
-                        <Link to={"/deals"} className="dropdown">
+                        <Link to={"/search_customer"} className="dropdown">
                             <i className="bi bi-search"></i>
                             <span> Customer
                             </span>

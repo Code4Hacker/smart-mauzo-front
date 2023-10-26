@@ -23,7 +23,7 @@ const AddCustomers = ({ setCustomers }) => {
 
 
     const jqueries = () => {
-        jQuery(".add_box.cmt").fadeOut({ duration: 500 });
+        jQuery(".add_box.cmt").fadeOut({ duration: 20 });
         setAddress(""); setFname(""); setMail(""); setPhone(""); setLname("");
     }
     const getall = async () => {
@@ -31,13 +31,18 @@ const AddCustomers = ({ setCustomers }) => {
         setCustomers(response.data.customers);
     }
     const addNew = async (PATH) => {
+        const respons = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
+
+        if (respons.data.status === "200") {
+            setRegId(respons.data.employee[0].employeeID);
+        }
         let formdata = new FormData();
         formdata.append("fname", fname);
         formdata.append("lname", lname);
         formdata.append("address", address);
         formdata.append("phone", phone);
         formdata.append("mail", mail);
-        formdata.append("registered", regId);
+        formdata.append("registered", respons.data.employee[0].employeeID);
         formdata.append("photo", photo);
 
         let bodyContent = formdata;
@@ -83,11 +88,6 @@ const AddCustomers = ({ setCustomers }) => {
         //     setCVodes(<span style={{ color: 'red' }}>Unique code should contain numbers too!</span>) :
         //     setCVodes(<span style={{ color: 'orange' }}></span>);
         if (fname.length >= 1 && lname.length >= 1 && (phone.length >= 10 || phone.match(/[\d+]/g)) && address.length >= 1) {
-            const response = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
-
-            if (response.data.status === "200") {
-                setRegId(response.data.employee[0].employeeID);
-            }
             addNew(`${baseURL}customers.php`);
             switch (status) {
                 case "400":
