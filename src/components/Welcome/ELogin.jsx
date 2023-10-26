@@ -37,9 +37,9 @@ const ELogin = () => {
                     jQuery(".asking").fadeIn({ duration: 200 });
                     jQuery(".btn button:nth-child(1)").on("click", function () {
                         jQuery(".asking > *").text("Loading ...");
-                        setTimeout(() => {
-                            navigate('/employee');
-                        }, 2000);
+                        // setTimeout(() => {
+                        //     navigate('/employee');
+                        // }, 2000);
                     });
                     jQuery(".btn button:nth-child(1)").on("click", function () {
                         jQuery(".asking > *").text("Saving ...");
@@ -47,16 +47,16 @@ const ELogin = () => {
                         window.localStorage.setItem("emMail", email);
                         setTimeout(() => {
                             jQuery(".asking > *").text("Almost there ...");
-                            setTimeout(() => {
-                                jQuery(".asking > *").text("Done ...");
-                                setTimeout(() => {
-                                    jQuery(".asking > *").text("Redirecting ...");
-                                    setTimeout(() => {
-                                        navigate('/employee');
-                                    }, 3000);
-                                }, 2000);
-                            }, 2000);
                         }, 2000);
+                        setTimeout(() => {
+                            jQuery(".asking > *").text("Done ...");
+                        }, 4000);
+                        setTimeout(() => {
+                            jQuery(".asking > *").text("Redirecting ...");
+                        }, 6000);
+                        setTimeout(() => {
+                            navigate('/employee');
+                        }, 8000);
                     });
                     break;
                 case '404':

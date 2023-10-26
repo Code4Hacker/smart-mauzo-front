@@ -34,11 +34,11 @@ const Login = () => {
                     setVmail(<span style={{ color: 'green' }}></span>);
 
                     jQuery(".asking").fadeIn({ duration: 200 });
-                    jQuery(".btn button:nth-child(1)").on("click", function () {
+                    jQuery(".btn button:nth-child(2)").on("click", function () {
                         jQuery(".asking > *").text("Loading ...");
-                        setTimeout(() => {
-                            navigate('/admin');
-                        }, 2000);
+                        // setTimeout(() => {
+                        //     navigate('/admin');
+                        // }, 2000);
                     });
                     jQuery(".btn button:nth-child(1)").on("click", function () {
                         jQuery(".asking > *").text("Saving ...");
