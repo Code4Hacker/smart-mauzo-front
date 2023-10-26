@@ -115,7 +115,7 @@
 .glass> * > * {
     padding-bottom: 50px;
 }
-.glass *,.glass,.grid_repo *, .deals *,.card_holder2,.card_holder2 *,.card_holder *, .deal *, .customers * {
+.glass *,.glass,.grid_repo * {
     animation :fadeWords 1s linear both;
     animation-timeline: view();
     animation-range: entry 30% cover 30%;

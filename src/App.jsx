@@ -19,6 +19,8 @@ import StuffMember from './components/employees/customers/StuffMember';
 import Stuffs from './components/employees/customers/Stuffs';
 import Stuff_A from './components/employees/customers/Stuff_A';
 import UStock from './components/employees/report/Update';
+import SCustomer from './components/employees/customers/SearchCustomer';
+import S_Customer from './components/admin/customers/Search_C';
 
 function App() {
 
@@ -41,6 +43,8 @@ function App() {
         <Route path='/one_customer/:id' element={  <OneCustomer />} />
         <Route path='/repo' element={  <Stocks />} />
         <Route path='/userEmp' element={  <ICustomer />} />
+        <Route path='/search_customer' element={  <SCustomer />} />
+        <Route path='/search_' element={  <S_Customer />} />
 
         <Route path='/stuff_members' element={  <Stuffs />} />
         <Route path='/stuff' element={  <Stuff_A />} />

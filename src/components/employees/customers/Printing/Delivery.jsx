@@ -139,7 +139,7 @@ const Delivery = () => {
                                             <span>{d.quantity}</span>
                                         </div>
                                         <div className="col-9">
-                                            <span>{d.categories}</span>
+                                            {/* <span>{d.categories}</span> */}
                                         </div>
                                         {/* <div className="col-2 text-center">
                                             <span>{Number(d.price).toLocaleString()}</span>

@@ -71,6 +71,13 @@ const SideBar = () => {
                         </Link>
                     </li>
                     <li className="nested_list">
+                        <Link to={"/search_"} className="dropdown">
+                            <i className="bi bi-search"></i>
+                            <span> Customer
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="nested_list">
                         <Link to={"/stuff"} className="dropdown">
                             <i className="bi bi-person-workspace"></i>
                             <span> Stuff and/or Workers

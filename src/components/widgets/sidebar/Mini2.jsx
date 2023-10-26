@@ -22,6 +22,7 @@ const Mini2 = () => {
             <Link to={'/e_customers'}> <h3 className="bi bi-collection"></h3></Link>
             <Link to={'/userEmp'}> <h3 className="bi bi-people"></h3></Link>
             <Link to={'/stuff_members'}> <h3 className="bi bi-person-workspace"></h3></Link>
+            <Link to={'/search_customer'}> <h3 className="bi bi-person-search"></h3></Link>
             <Link to={'/repo'}> <h3 className="bi bi-building"></h3></Link>
             <div  onClick={handleLog}> <h3 className="bi bi-shield"></h3></div>
             <i className="bi bi-x main-bar"></i>

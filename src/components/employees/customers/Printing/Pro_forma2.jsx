@@ -142,7 +142,7 @@ const Pro_form2 = () => {
                                             <span className='white'>{i + 1}</span>
                                         </div>
                                         <div className="col-6">
-                                            <span>{d.categories}</span>
+                                            {/* <span>{d.categories}</span> */}
                                         </div>
                                         <div className="col-1 text-center">
                                             <span>{d.quantity}</span>
