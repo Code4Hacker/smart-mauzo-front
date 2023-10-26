@@ -42,7 +42,7 @@
     border-radius: 50%;
     top: var(--top);
     left: var(--left);
-    background: linear-gradient(60deg, red, var(--blue));
+    background: linear-gradient(60deg, red, var(--top-color));
 }
 
 .registration_box {
@@ -151,8 +151,9 @@
         border-radius: 50%;
         top: 5% !important;
         z-index: 2;
-        left: 10% !important;
-        background: linear-gradient(60deg, var(--green), var(--blue));
+        left: 10% !important;    
+        background: linear-gradient(60deg, red, var(--top-color));
+
     }.bubble:nth-child(2) {
         position: fixed;
         width: 150vw !important;
@@ -160,8 +161,9 @@
         border-radius: 50%;
         top: -10% !important;
         z-index: 2;
-        left: 30% !important;
-        background: linear-gradient(60deg, var(--green), var(--blue));
+        left: 30% !important;    
+        background: linear-gradient(60deg, red, var(--top-color));
+
     }
 
     .registration_box {
