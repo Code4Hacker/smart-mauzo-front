@@ -5,7 +5,9 @@ import { baseURL } from '../../../../baseURL';
 import { useParams } from 'react-router-dom';
 import Loading from '../../../Loader/Loading';
 
-const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks, setWorks, setOnecount, setContents, setCount, worker }) => {
+const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks, setWorks, setOnecount, setContents, setCount }) => {
+    // const [worker, setWorker] = useState();
+    const [workers, setWorkers] = useState();
 
     // M---JACKET
     const [lenm, setLenm] = useState("");
@@ -19,6 +21,7 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
     const [ssm, setSsm] = useState("");
     const [pricem, setPricem] = useState("");
     const [quantitym, setQuantitym] = useState("");
+    const [workerm, setWorkerm] = useState("");
 
 
     // M---TROUSER
@@ -31,6 +34,7 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
     const [flysmt, setFlysmt] = useState("");
     const [pricemt, setPricemt] = useState("");
     const [quantitymt, setQuantitymt] = useState("");
+    const [workermt, setWorkermt] = useState("");
 
 
     // W---BLOUSER
@@ -49,6 +53,7 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
     const [halfwb, setHalfwb] = useState("");
     const [pricewb, setPricewb] = useState("");
     const [quantitywb, setQuantitywb] = useState("");
+    const [workerwb, setWorkerwb] = useState("");
 
     // W---TROUSER/SKIRT
     const [lenw, setLenw] = useState("");
@@ -60,6 +65,7 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
     const [flysw, setFlysw] = useState("");
     const [pricew, setPricew] = useState("");
     const [quantityw, setQuantityw] = useState("");
+    const [workerw, setWorkerw] = useState("");
 
     // W---DRESS
     const [lenwd, setLenwd] = useState("");
@@ -71,10 +77,12 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
     const [kwd, setKwd] = useState("");
     const [pricewd, setPricewd] = useState("");
     const [quantitywd, setQuantitywd] = useState("");
+    const [workerwd, setWorkerwd] = useState("");
 
     // W---SHOES
     const [pricesh, setPricesh] = useState("");
     const [quantitysh, setQuantitysh] = useState("");
+    const [workersh, setWorkersh] = useState("");
 
     const params = useParams();
 
@@ -92,7 +100,7 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
     const wJK = () => wj === "" ? setWj("choose") : setWj("");
     const wDS = () => wd === "" ? setWd("choose") : setWd("");
     const Shoes = () => sh === "" ? setSh("choose") : setSh("");
-    
+
     const query_close = () => {
         jQuery(".cancel").on("click", function () {
             jQuery(".add_box.add_deal").fadeOut();
@@ -105,7 +113,8 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                 "measurement": `L - ${lenmt}, W - ${wmt}, HPS - ${hpsmt}, THIGH - ${thighmt}, KNEE - ${kneemt}, ANKLE - ${anklemt}, FLYS - ${flysmt}`,
                 "category": "Men Trouser",
                 "quantity": quantitymt,
-                "price": pricemt
+                "price": pricemt,
+                "the_worker": workermt
             };
             bodydata.push(dealdt);
         }
@@ -114,7 +123,8 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                 "measurement": `L - ${lenw}, W - ${ww}, HPS - ${hpsw}, THIGH - ${thighw}, KNEE - ${kneew}, ANKLE - ${anklew}, FLYS - ${flysw}`,
                 "category": "Women Trouser",
                 "quantity": quantityw,
-                "price": pricew
+                "price": pricew,
+                "the_worker": workerw
             };
             bodydata.push(dealdt);
         }
@@ -123,7 +133,8 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                 "measurement": `L - ${lenm}, B - ${bm}, W - ${wm}, HPS - ${hpsm}, BACK - ${backm}, BG - ${bgm}, AMPITY - ${amptym}, L SLVS - ${lsm}, S SLVS - ${ssm}`,
                 "category": "Men Jacket",
                 "quantity": quantitym,
-                "price": pricem
+                "price": pricem,
+                "the_worker": workerm
             };
             bodydata.push(dealdt);
         }
@@ -132,7 +143,8 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                 "measurement": `L - ${lenwb}, CHU - ${chuwb}, U CHU - ${uchuwb}, HALF - ${halfwb}, B - ${bwb}, UW - ${uwwb}, MW - ${mwwb}, HPS - ${hpswb}, SHOULDER-  ${shoulderwb}, BACK - ${backwb}, AMPITY - ${amptywb}, L SLVS - ${lswb}, S SLVS - ${sswb}`,
                 "category": "Women Jacket",
                 "quantity": quantitywb,
-                "price": pricewb
+                "price": pricewb,
+                "the_worker": workerwb
             };
             bodydata.push(dealdt);
         }
@@ -141,7 +153,8 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                 "measurement": `L - ${lenwd}, B - ${bwd}, W - ${wwd}, HPS - ${hpswd}, KNEE - ${kneewd}, HALF - ${halfwd}, K - ${kwd}`,
                 "category": "Women Dress",
                 "quantity": quantitywd,
-                "price": pricewd
+                "price": pricewd,
+                "the_worker": workerwd
             };
             bodydata.push(dealdt);
         }
@@ -150,65 +163,69 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                 "measurement": `No Measurements`,
                 "category": "SHOES",
                 "quantity": quantitysh,
-                "price": pricesh
+                "price": pricesh,
+                "the_worker": workersh
             };
             bodydata.push(dealdt);
         }
         // try {
-            const employee = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
+        const employee = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
 
-            if (employee.data.status === "200") {
-                const deal_assets = {
-                    "main_data": {
-                        title: fname,
-                        description: lname,
-                        requirements: requirements,
-                        pay_status: dstatus !== "" ? dstatus : "PENDING",
-                        deal_tracking: tracks !== "" ? tracks : "WAITING",
-                        registered_by: employee.data.employee[0].employeeID,
-                        customer: unique,
-                        the_worker: worker 
-                    },
-                    "resp": bodydata
-                }
-
-                // const respn = await axios.post(`${baseURL}manydeal.php`, deal_assets);
-                const respn = await axios.request({
-                    method:"POST",
-                    url:`${baseURL}manydeal.php`,
-                    data: JSON.stringify(deal_assets)
-                }).catch(function (error) {
-                    console.log("Axios Error:", error.message);
-                });
-                console.log(respn);
-                if (respn.data !== undefined && respn.data.status === "200") {
-                    const getall = async () => {
-                        const response = await axios.get(`${baseURL}onecustomer.php?id=${params.id}`);
-                        setContents(response.data.customer[0]);
-                        const deals = await axios.get(`${baseURL}dealforone.php?customer=${response.data.customer[0].customerUnique}&employee=${response.data.customer[0].registeredBy}`);
-                        window.localStorage.setItem("UNIQUE_ID", response.data.customer[0].customerUnique);
-                        setWorks(deals.data.deals);
-                        for (let index = 0; index < deals.data.deals.length; index++) {
-                            if (index < deals.data.deals.length - 1) {
-                                setOnecount(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
-                            } else if (deals.data.deals.length === 1) {
-                                setOnecount(Number(deals.data.deals[index].price));
-                            }
-
-                        }
-                        setCount(deals.data.counter);
-                        jQuery(".add_box.add_deal").fadeOut();
-                    }
-
-                    getall();
-                }
+        if (employee.data.status === "200") {
+            const deal_assets = {
+                "main_data": {
+                    title: fname,
+                    description: lname,
+                    requirements: requirements,
+                    pay_status: dstatus !== "" ? dstatus : "PENDING",
+                    deal_tracking: tracks !== "" ? tracks : "WAITING",
+                    registered_by: employee.data.employee[0].employeeID,
+                    customer: unique
+                },
+                "resp": bodydata
             }
+
+            // const respn = await axios.post(`${baseURL}manydeal.php`, deal_assets);
+            const respn = await axios.request({
+                method: "POST",
+                url: `${baseURL}manydeal.php`,
+                data: JSON.stringify(deal_assets)
+            }).catch(function (error) {
+                console.log("Axios Error:", error.message);
+            });
+            console.log(respn.data);
+            if (respn.data !== undefined && respn.data.status === "200") {
+                const getall = async () => {
+                    const response = await axios.get(`${baseURL}onecustomer.php?id=${params.id}`);
+                    setContents(response.data.customer[0]);
+                    const deals = await axios.get(`${baseURL}dealforone.php?customer=${response.data.customer[0].customerUnique}&employee=${response.data.customer[0].registeredBy}`);
+                    window.localStorage.setItem("UNIQUE_ID", response.data.customer[0].customerUnique);
+                    setWorks(deals.data.deals);
+                    for (let index = 0; index < deals.data.deals.length; index++) {
+                        if (index < deals.data.deals.length - 1) {
+                            setOnecount(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
+                        } else if (deals.data.deals.length === 1) {
+                            setOnecount(Number(deals.data.deals[index].price));
+                        }
+
+                    }
+                    setCount(deals.data.counter);
+                    jQuery(".add_box.add_deal").fadeOut();
+                }
+
+                getall();
+            }
+        }
         // } catch (error) {
         //     console.log("ERROR",error.message);
         // }
         bodydata = [];
     }
-    useEffect(() => { query_close(); }, []);
+    const the_workers = async () => {
+        const get__worker = await axios.get(`${baseURL}worker.php`);
+        setWorkers(get__worker.data.workers);
+    }
+    useEffect(() => { query_close(); the_workers(); }, []);
 
     return (
         <div>
@@ -344,7 +361,12 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                                             onChange={(e) => setQuantitym(e.target.value)}
                                             style={{ marginTop: "5px", marginBottom: "5px", width: '150px', border: `1px solid ${quantitym?.length < 1 ? "red" : "black"}` }} />
                                     </div>
-
+                                    <select name="worker" id="" onChange={(e) => setWorkerm(e.target.value)}>
+                                        <option value={"null"}>Select Worker</option>
+                                        {
+                                            workers !== undefined && workers?.length > 0 ? workers.map((w, k) => <option value={w.workerName} key={k}>{w.workerName}</option>) : "Loading..."
+                                        }
+                                    </select>
 
                                 </div>
 
@@ -398,6 +420,12 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                                             onChange={(e) => setQuantitymt(e.target.value)}
                                             style={{ marginTop: "5px", marginBottom: "5px", width: '150px', border: `1px solid ${quantitymt?.length < 1 ? "red" : "black"}` }} />
                                     </div>
+                                    <select name="worker" id="" onChange={(e) => setWorkermt(e.target.value)}>
+                                        <option value={"null"}>Select Worker</option>
+                                        {
+                                            workers !== undefined && workers?.length > 0 ? workers.map((w, k) => <option value={w.workerName} key={k}>{w.workerName}</option>) : "Loading..."
+                                        }
+                                    </select>
                                 </div>
 
 
@@ -481,6 +509,12 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                                             onChange={(e) => setQuantitywb(e.target.value)}
                                             style={{ marginTop: "5px", marginBottom: "5px", width: '150px', border: `1px solid ${quantitywb?.length < 1 ? "red" : "black"}` }} />
                                     </div>
+                                    <select name="worker" id="" onChange={(e) => setWorkerwb(e.target.value)}>
+                                        <option value={"null"}>Select Worker</option>
+                                        {
+                                            workers !== undefined && workers?.length > 0 ? workers.map((w, k) => <option value={w.workerName} key={k}>{w.workerName}</option>) : "Loading..."
+                                        }
+                                    </select>
                                 </div>
 
 
@@ -534,6 +568,12 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                                             onChange={(e) => setQuantityw(e.target.value)}
                                             style={{ marginTop: "5px", marginBottom: "5px", width: '150px', border: `1px solid ${quantityw?.length < 1 ? "red" : "black"}` }} />
                                     </div>
+                                    <select name="worker" id="" onChange={(e) => setWorkerw(e.target.value)}>
+                                        <option value={"null"}>Select Worker</option>
+                                        {
+                                            workers !== undefined && workers?.length > 0 ? workers.map((w, k) => <option value={w.workerName} key={k}>{w.workerName}</option>) : "Loading..."
+                                        }
+                                    </select>
                                 </div>
 
 
@@ -586,6 +626,12 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                                             onChange={(e) => setQuantitywd(e.target.value)}
                                             style={{ marginTop: "5px", marginBottom: "5px", width: '150px', border: `1px solid ${quantitywd?.length < 1 ? "red" : "black"}` }} />
                                     </div>
+                                    <select name="worker" id="" onChange={(e) => setWorkerwd(e.target.value)}>
+                                        <option value={"null"}>Select Worker</option>
+                                        {
+                                            workers !== undefined && workers?.length > 0 ? workers.map((w, k) => <option value={w.workerName} key={k}>{w.workerName}</option>) : "Loading..."
+                                        }
+                                    </select>
                                 </div>
 
                                 {/* SHOES*/}
@@ -602,6 +648,12 @@ const Multiple = ({ setTask, fname, lname, requirements, unique, dstatus, tracks
                                             onChange={(e) => setQuantitysh(e.target.value)}
                                             style={{ marginTop: "5px", marginBottom: "5px", width: '150px', border: `1px solid ${quantitysh?.length < 1 ? "red" : "black"}` }} />
                                     </div>
+                                    <select name="worker" id="" onChange={(e) => setWorkersh(e.target.value)}>
+                                        <option value={"null"}>Select Worker</option>
+                                        {
+                                            workers !== undefined && workers?.length > 0 ? workers.map((w, k) => <option value={w.workerName} key={k}>{w.workerName}</option>) : "Loading..."
+                                        }
+                                    </select>
                                 </div>
                                 <div className="button">
                                     <button id="bottonGet" onClick={() => setNext_view(0)}><i className="bi bi-chevron-double-left"></i> Back</button>

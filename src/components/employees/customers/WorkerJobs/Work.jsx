@@ -3,6 +3,7 @@ import './style.css';
 import axios from 'axios';
 import { baseURL } from '../../../../baseURL';
 import Loading from '../../../Loader/Loading';
+import { useParams } from 'react-router-dom';
 
 const Work = ({ works }) => {
     const [splitted_deal, setSplittled_deal] = useState();
@@ -21,8 +22,9 @@ const Work = ({ works }) => {
         default: mydate = "What is this ?, " + date; break;
     }
     // console.log("THIS", (mydate))
+    const params = useParams();
     const deal_picks = async () => {
-        const getdata_for = await axios.get(`${baseURL}contentfor1d.php?id=${dealID}`);
+        const getdata_for = await axios.get(`${baseURL}contentfor1d.php?id=${dealID}&mini_employee=${params.id}`);
         setSplittled_deal(getdata_for.data.deals);
         let fdt = new FormData();
         fdt.append("id", dealID);
@@ -42,6 +44,8 @@ const Work = ({ works }) => {
         deal_picks();
      }, []);
     return (
+        <>
+        {splitted_deal !== undefined && splitted_deal?.length > 0 ?
         <div className='grid works'>
             <div className="day">
                 <div className="center">
@@ -51,8 +55,7 @@ const Work = ({ works }) => {
             <div className="line">
             </div>
             <div className="content">
-                {
-                    splitted_deal !== undefined && splitted_deal?.length > 0 ? splitted_deal.map((d, k) =>
+                 { splitted_deal.map((d, k) =>
                         <div className="week_jb_gemini" key={k}>
                             <div className="row">
                                 <div className="col-8">
@@ -70,10 +73,11 @@ const Work = ({ works }) => {
                                 </div>
                             </div>
                         </div>
-                    ) : <Loading />
-                }
+                    )}
             </div>
         </div>
+        :""}
+        </>
     )
 }
 

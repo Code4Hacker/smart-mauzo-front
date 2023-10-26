@@ -47,13 +47,13 @@ const NewDeal = ({ setWorks, setOnecount, setContents, setCount, unique }) => {
         const unique_get = await axios.get(`${baseURL}customerID.php?id=${params.id}`);
         setCodes(unique_get.data.UNIQUE_ID);
     }
-    const the_workers = async () => {
-        const get__worker = await axios.get(`${baseURL}worker.php`);
-        setWorkers(get__worker.data.workers);
-    }
+    // const the_workers = async () => {
+    //     const get__worker = await axios.get(`${baseURL}worker.php`);
+    //     setWorkers(get__worker.data.workers);
+    // }
     useEffect(() => {
         uniqueID();
-        the_workers();
+        // the_workers();
     }, []);
     previewSelect();
     return (
@@ -78,12 +78,12 @@ const NewDeal = ({ setWorks, setOnecount, setContents, setCount, unique }) => {
                                 onChange={(e) => setSummary(e.target.value)}
                                 style={{ marginTop: "5px", marginBottom: "5px" }} ></textarea>
                             <div className="small text-center">{sVummary}</div>
-                            <select name="worker" id="" onChange={(e) => setWorker(e.target.value)}>
+                            {/* <select name="worker" id="" onChange={(e) => setWorker(e.target.value)}>
                                 <option value={"null"}>Select Worker</option>
                                 {
                                     workers !== undefined && workers?.length > 0 ? workers.map((w, k) => <option value={w.workerName} key={k}>{w.workerName}</option>): "Loading..."
                                 }
-                            </select>
+                            </select> */}
 
                             <div className="flex">
                                 <div className="" style={{ width: '100%' }}>
@@ -112,7 +112,7 @@ const NewDeal = ({ setWorks, setOnecount, setContents, setCount, unique }) => {
                         </div>
                         : next_task === 2 ?
                             <div className="">
-                                <Multiple setTask={setNext_task} fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus} setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} worker={worker} />
+                                <Multiple setTask={setNext_task} fname={fname} lname={lname} mail={mail} phone={phone} requirements={summary} unique={codes} tracks={tracking} dstatus={dstatus} setContents={setContents} setOnecount={setOnecount} setWorks={setWorks} setCount={setCount} />
                             </div>
                             :
                             "Loading ..."

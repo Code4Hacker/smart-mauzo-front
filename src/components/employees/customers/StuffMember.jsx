@@ -35,11 +35,11 @@ const StuffMember = () => {
         gem_data.append("to_end", dateto1);
         let newdata = gem_data;
         const getal = async () => {
-            const money = await axios.get(`${baseURL}contents.php?id=${params.id}`);
+            const money = await axios.get(`${baseURL}contents.php?id=${params.id}&start=${datefrom1}&to_end=${dateto1}`);
             setMoney(money.data.TOTAL);
             const response = await axios.request({
                 method:'POST',
-                url:`${baseURL}worker.php`,
+                url:`${baseURL}worker.php?name_worker=${params.id}`,
                 data:newdata
             });
             setContents(response.data);
