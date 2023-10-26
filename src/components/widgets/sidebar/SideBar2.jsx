@@ -3,6 +3,7 @@ import './sidebar.css'
 import Aos from 'aos'
 import { Link, useNavigate } from 'react-router-dom';
 import jQuery from 'jquery';
+import imagelogo from "../../../assets/money.png";
 
 const SideBar2 = () => {
     Aos.init({
@@ -27,8 +28,8 @@ const SideBar2 = () => {
             <div className="col-xl-12 flex navtab">
                 <div className="row">
                     <div className="col-10">
-                        <div className="title">
-                            <h5>CAREN<span>ITHO</span></h5>
+                        <div className="logoB" style={{ overflow: 'hidden', paddingLeft: '20px', position: 'relative', borderRadius: '10px' }}>
+                            <img src={imagelogo} alt="Logo" style={{ width: '100%', objectFit: 'cover', position: 'relative' }} />
                         </div>
                     </div>
                     <div className="col-2">
@@ -81,11 +82,11 @@ const SideBar2 = () => {
                     </li>
                     <li>
                         <span className="dropdown" onClick={handleLog} style={{
-                            color:'white',
-                            padding:'10px',
-                            borderRadius:'10px',
-                            backgroundColor:'royalblue'
-                            }}>
+                            color: 'white',
+                            padding: '10px',
+                            borderRadius: '10px',
+                            backgroundColor: 'royalblue'
+                        }}>
                             <i className="bi bi-shield-fill"></i>
                             <span> Log Out</span>
                         </span>

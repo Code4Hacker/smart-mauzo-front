@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
-import imagelogo from './../../../../assets/20231009_145646.jpg';
+import imagelogo from './../../../../assets/money.png';
 import axios from 'axios';
 import { baseURL } from '../../../../baseURL';
 import { useParams } from 'react-router-dom';
@@ -46,16 +46,16 @@ const Delivery = () => {
             <div className="log_see" style={{ display: 'none' }}><span>Please Wait ...</span></div>
             <div className="container">
                 <div className="row">
-                    <div className="col-10 pr-f">
+                    <div className="col-9 pr-f">
                         <h3>DELIVERY </h3>
                     </div>
-                    <div className="col-2">
-                        {/* <div className="logoB" style={{overflow:'hidden',position:'relative',borderRadius:'10px'}}>
+                    <div className="col-3">
+                        <div className="logoB" style={{overflow:'hidden',position:'relative',borderRadius:'10px'}}>
                             <img src={imagelogo} alt="Logo" style={{width:'100%',objectFit:'cover',position:'relative'}} />
-                        </div> */}
-                        <div className="title">
-                            <h3>CARENITHO</h3>
                         </div>
+                        {/* <div className="title">
+                            <h3>CARENITHO</h3>
+                        </div> */}
                     </div>
                     <div className="container">
                         <div className="row pr-f">
