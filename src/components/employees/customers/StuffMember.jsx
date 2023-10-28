@@ -131,7 +131,39 @@ const StuffMember = () => {
                                     marginTop: '40px', position: 'relative'
                                 }}>
                                     {
-                                        contents !== undefined && contents.deals?.length > 0 ? contents.deals.map((j,i) => <Work works={j} key={i}/>) : <Loading/>
+                                        contents !== undefined && contents.deals?.length > 0 ? 
+                                        <>
+                                        <div className='grid works'>
+                                            <div className="day">
+                                                <div className="center">
+                                                    DAY
+                                                </div>
+                                            </div>
+                                            <div className="line">
+                                            </div>
+                                            <div className="content">
+                                                    <div className="week_jb_gemini">
+                                                        <div className="row" style={{background:"linear-gradient(70deg, royalblue, red, royalblue)", padding:'10px', borderRadius:'10px', color:'white'}}>
+                                                            <div className="col-8">
+                                                                <div className="row">
+                                                                    <div className="col-5">
+                                                                        <span>CATEGORY</span><br />
+                                                                    </div>
+                                                                    <div className="col-7">
+                                                                        <span>CUSTOMER NAME</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="col-4 text-end">
+                                                                PRICE
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        {contents.deals.map((j,i) => <Work works={j} key={i}/>)}
+                                        </>
+                                         : <Loading/>
                                     }
                                 </div>
                             </div>

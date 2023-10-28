@@ -77,10 +77,10 @@ const Stock_card = ({card, setStocksdt, setTotal, setSrequirements, cty}) => {
                                 [ {Number(stockCost).toLocaleString()} per {quantity} ]
                             </span><br />
                             {date2}
-                            <div className="_stocks">
+                            {/* <div className="_stocks">
                                 <Link to={`/edit_stock/${stockID}`} className="bi bi-pen"></Link>
                                 <i className="bi bi-trash3" onClick={handledel}></i>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

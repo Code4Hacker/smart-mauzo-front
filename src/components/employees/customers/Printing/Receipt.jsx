@@ -107,19 +107,19 @@ const Receipt = () => {
                                 marginTop: '20px'
                             }}>
                                 <div className="col-1 bg-black text-center">
-                                    <span className='white'>S/N</span>
+                                    <span className='white'>NO</span>
                                 </div>
                                 <div className="col-6 text-center">
-                                    <span>Item Description</span>
+                                    <span>DESCRIPTION</span>
                                 </div>
                                 <div className="col-1 text-center">
-                                    <span>Qty</span>
+                                    <span>QTY</span>
                                 </div>
                                 <div className="col-2 text-center">
-                                    <span>Unit Price</span>
+                                    <span>PRICE</span>
                                 </div>
                                 <div className="col-2 text-center">
-                                    <span>Amount</span>
+                                    <span>AMOUNT</span>
                                 </div>
 
 
@@ -164,14 +164,14 @@ const Receipt = () => {
                                 ) : <Loading />}
                             <div className="row tb">
                                 <div className="col-1 text-center">
-                                    {/* <span className=''>MAIN</span> */}
+                                    <span className=''>TOTAL</span>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-8">
                                     {/* <span>{printingdt !== undefined ? printingdt.deal.dealDescription : "Wait ..."}</span> */}
                                 </div>
-                                <div className="col-2 text-center">
+                                {/* <div className="col-2 text-center">
                                     <span>{pcounter !== undefined ? pcounter.QTY : "Wait ..."}<b> QUANTITIES</b></span>
-                                </div>
+                                </div> */}
                                 <div className="col-3 text-center">
                                     <span><b>TOTAL PRICE: </b>{pcounter !== undefined ? Number(pcounter.ONE_TOTAL).toLocaleString() + " Tshs." : "Wait ..."}</span>
                                 </div>

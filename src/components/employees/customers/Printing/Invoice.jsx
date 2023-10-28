@@ -160,12 +160,12 @@ const Invoice = () => {
                                 <div className="col-1 text-center">
                                     {/* <span className=''>MAIN</span> */}
                                 </div>
-                                <div className="col-6">
+                                <div className="col-8">
                                     {/* <span>{printingdt !== undefined ? printingdt.deal.dealDescription : "Wait ..."}</span> */}
                                 </div>
-                                <div className="col-2 text-center">
+                                {/* <div className="col-2 text-center">
                                     <span>{pcounter !== undefined ? pcounter.QTY : "Wait ..."}<b> QUANTITIES</b></span>
-                                </div>
+                                </div> */}
                                 <div className="col-3 text-center">
                                     <span><b>TOTAL PRICE: </b>{pcounter !== undefined ? Number(pcounter.ONE_TOTAL).toLocaleString() + " Tshs." : "Wait ..."}</span>
                                 </div>

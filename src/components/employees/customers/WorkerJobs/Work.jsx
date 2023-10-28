@@ -4,6 +4,7 @@ import axios from 'axios';
 import { baseURL } from '../../../../baseURL';
 import Loading from '../../../Loader/Loading';
 import { useParams } from 'react-router-dom';
+import MINI from './MINI';
 
 const Work = ({ works }) => {
     const [splitted_deal, setSplittled_deal] = useState();
@@ -23,9 +24,19 @@ const Work = ({ works }) => {
     }
     // console.log("THIS", (mydate))
     const params = useParams();
+    let [total, setTotal] = useState(0);
     const deal_picks = async () => {
         const getdata_for = await axios.get(`${baseURL}contentfor.php?id=${dealID}&mini_employee=${params.id}`);
+        // console.log(getdata_all);
         setSplittled_deal(getdata_for.data);
+        // let m = 0;
+        // if(getdata_for.data.deals !== undefined){
+        //     for (let index = 0; index < getdata_for.data.deals.length; index++) {
+        //         setTotal(total += (getdata_for.data.deals[index].price*getdata_for.data.deals[index].quantity));
+        //         console.log(total);
+        //     }
+        // }
+
         let fdt = new FormData();
         fdt.append("id", dealID);
         let bodydat = fdt;
@@ -43,6 +54,7 @@ const Work = ({ works }) => {
     useEffect(() => {
         deal_picks();
     }, []);
+    let array = 0;
     return (
         <>
             {splitted_deal !== undefined && splitted_deal.deals?.length > 0 ?
@@ -56,34 +68,16 @@ const Work = ({ works }) => {
                     </div>
                     <div className="content">
                         {splitted_deal.deals.map((d, k) =>
-                            <div className="week_jb_gemini" key={k}>
-                                <div className="row">
-                                    <div className="col-8">
-                                        <div className="row">
-                                            <div className="col-5">
-                                                <span>{d.categories}</span><br />
-                                                <span className='x-small' style={{
-                                                    color: 'gray'
-                                                }}>{dealStatus}</span>
-                                            </div>
-                                            <div className="col-7">
-                                                <span>{splitted_deal.the_name}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-4 text-end">
-                                        {Number(d.price * d.quantity).toLocaleString()} Tshs.
-                                        <span className="x-small" style={{ fontFamily: 'cursive' }}>
-                                            [ Price {Number(d.price).toLocaleString()}
-                                            @({d.quantity}) Items ]
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                            <>
+                                <MINI d={d} splitted_deal={splitted_deal} dealID={dealID} dealStatus={dealStatus} key={k} />
+                                
+                                {/* {array += d.price} */}
+                            </>
                         )}
                     </div>
                 </div>
                 : ""}
+                {/* {array} */}
         </>
     )
 }

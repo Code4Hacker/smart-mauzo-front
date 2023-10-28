@@ -126,10 +126,10 @@ const Update = ({ setEmployee }) => {
                         onChange={(e) => setPhone(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
                     <div className="small text-center">{pVhone}</div>
-                    <input type="text" placeholder="Customer Unique " name="expire" value={codes}
+                    {/* <input type="text" placeholder="Customer Unique " name="expire" value={codes}
                         onChange={(e) => setCodes(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />
-                    <div className="small text-center">{cVodes}</div>
+                    <div className="small text-center">{cVodes}</div> */}
                     <input type="text" placeholder="Address " name="selling" value={address === "" && store.add2 ? store.add2 : address}
                         onChange={(e) => setAddress(e.target.value)}
                         style={{ marginTop: "5px", marginBottom: "5px" }} />

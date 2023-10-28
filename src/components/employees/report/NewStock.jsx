@@ -26,14 +26,20 @@ const NewStock = ({ setStocksdt, datefrom1, dateto1, cty }) => {
         // store.clear(); setAddress(""); setCodes(""); setTitle(""); setMail(""); setPhone(""); setDes("");
     }
     const addNew = async (PATH) => {
+        const respons = await axios.get(`${baseURL}e_log.php?employee_id=${window.localStorage.emMail}`);
+
+        if (respons.data.status === "200") {
+            setRegId(respons.data.employee[0].employeeID);
+        }
         let formdata = new FormData();
         formdata.append("stockTitle", title);
         formdata.append("stockDes", des);
         formdata.append("stockCost", cost);
-        formdata.append("quantity", qty);
-        formdata.append("registered", regId);
+        formdata.append("quantity", qty === "" ? "1": qty);
+        formdata.append("registered", respons.data.employee[0].employeeID);
         formdata.append("photo", photo);
         formdata.append("category", category);
+        // console.log(qty);
 
         let bodyContent = formdata;
 
@@ -45,7 +51,7 @@ const NewStock = ({ setStocksdt, datefrom1, dateto1, cty }) => {
 
         let response = await axios.request(reqOptions);
         setStatus(response.data.status);
-        console.log(category, response.data);
+        // console.log(category, response.data);
         if (response.data.status === "200") {
             const getal = async () => {
                 const stock = await axios.get(`${baseURL}stocks.php?start=${datefrom1}&to_end=${dateto1}&category=${cty}`);
@@ -144,10 +150,10 @@ const NewStock = ({ setStocksdt, datefrom1, dateto1, cty }) => {
                             onChange={(e) => setTitle(e.target.value)}
                             style={{ marginTop: "5px", marginBottom: "5px", width: '150px' }} />
                         <div className="small text-center">{tvitle}</div>
-                        <input type="text" placeholder="Quatities" name="qty" value={qty}
+                        <input type={`text`} placeholder="Quatities" name="qty" value={qty}
                             onChange={(e) => setQty(e.target.value)}
-                            style={{ marginTop: "5px", marginBottom: "5px" }} />
-                        <div className="small text-center">{qvty}</div>
+                            style={{ marginTop: "5px", marginBottom: "5px", opacity:`${category === "BILLS" ? "0": "1"}`, pointerEvents:`${category === "BILLS" ? "none": ""}` }}/>
+                        <div className={`small text-center ${category === "BILLS" ? "hide": ""}`}>{qvty}</div>
                     </div>
                     <div className="flex">
                         <textarea type="text" placeholder="Details" name="desc" value={des}

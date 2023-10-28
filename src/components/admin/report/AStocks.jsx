@@ -251,7 +251,7 @@ const AStocks = () => {
                     <div className="top_banner" style={{
                         background: 'none'
                     }}>
-                        <div className="row">
+                        {/* <div className="row">
                             <div className="col-xl-12">
                                 <div className="row">
                                     <div className="col-2">
@@ -264,7 +264,7 @@ const AStocks = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="row">
                             <div className="col-xl-12">
                                 <div className="row">
