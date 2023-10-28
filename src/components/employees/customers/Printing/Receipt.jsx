@@ -147,7 +147,9 @@ const Receipt = () => {
                                             <span className='white'>{i + 1}</span>
                                         </div>
                                         <div className="col-6">
-                                            <span>{d.categories}</span>
+                                            {/* <span>{d.categories}</span> */}
+                                           <span>{printingdt !== undefined ? printingdt.deal.dealDescription.split(",")[i] : "Wait ..."}</span>
+
                                         </div>
                                         <div className="col-1 text-center">
                                             <span>{d.quantity}</span>
@@ -162,10 +164,10 @@ const Receipt = () => {
                                 ) : <Loading />}
                             <div className="row tb">
                                 <div className="col-1 text-center">
-                                    <span className=''>MAIN</span>
+                                    {/* <span className=''>MAIN</span> */}
                                 </div>
                                 <div className="col-6">
-                                    <span>{printingdt !== undefined ? printingdt.deal.dealDescription : "Wait ..."}</span>
+                                    {/* <span>{printingdt !== undefined ? printingdt.deal.dealDescription : "Wait ..."}</span> */}
                                 </div>
                                 <div className="col-2 text-center">
                                     <span>{pcounter !== undefined ? pcounter.QTY : "Wait ..."}<b> QUANTITIES</b></span>
