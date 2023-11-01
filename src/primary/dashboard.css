@@ -237,9 +237,14 @@ table {
 }
 
 .box_full {
+    background:linear-gradient(60deg, rgb(0, 0, 12) 10%, transparent 60%, rgb(0, 0, 14) 10%);
     background-color: var(--top-color);
     color: white;
-    height: 200px;
+    height: 300px;
+    /* margin:10px; */
+    /* border-radius: 10px; */
+    /* border-bottom-left-radius: 60px; */
+    border-bottom-right-radius: 200px;
 }
 
 .box_full .col-10 {
@@ -552,6 +557,7 @@ textarea{
         background-color: var(--top-color);
         color: white;
         height: 250px;
+        margin: 30px;
         padding-top: 50px;
         border-bottom-left-radius: 60px;
         border-bottom-right-radius: 60px;

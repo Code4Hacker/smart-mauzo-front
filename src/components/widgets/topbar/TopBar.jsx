@@ -64,6 +64,7 @@ const TopBar = ({ location }) => {
     return (
         <div>
             <div className="box_full" style={{ "--width": "100%" }}>
+            <div className="toggle_mode"></div>
                 <div className="container">
                     <div className="row" data-aos="fade-left" data-aos-duration="1000" >
                         <div className="col-9 flex">
