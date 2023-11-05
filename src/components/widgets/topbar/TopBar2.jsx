@@ -31,6 +31,16 @@ const TopBar2 = ({ location }) => {
             }, 3000);
         });
     }
+    const togglemode = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            jQuery(".toggle_mode").toggleClass("dark");
+            jQuery(":root").toggleClass("dark");
+            jQuery(".box_full").toggleClass("dark");
+            jQuery(".dashboard_grid_container>div:nth-child(1)").toggleClass("dark");
+            jQuery(".customer").toggleClass("dark");
+            // console.log("CLICKEDMEME")
+    }
     useEffect(() => {
         query_2();
         const getall = async () => {
@@ -66,6 +76,7 @@ const TopBar2 = ({ location }) => {
     return (
         <div className=' prt_on'>
             <div className="box_full" style={{ "--width": "100%" }}>
+                <div className="toggle_mode" onClick={togglemode}></div>
                 <div className="container">
                     <div className="row" data-aos="fade-left" data-aos-duration="1000" >
                         <div className="col-9 flex">

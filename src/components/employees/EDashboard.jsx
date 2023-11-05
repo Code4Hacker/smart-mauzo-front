@@ -78,7 +78,6 @@ const EDashboard = () => {
                                                 minWidth:"200px",
                                                 borderRadius: "10px"
                                             }}
-                                            data-aos="fade-up" data-aos-duration="1000"
                                              key={i}>
                                             <div className="profile">
                                                 <img src="https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"
@@ -91,11 +90,11 @@ const EDashboard = () => {
                                                     paddingBottom: "-10px !important",
                                                     position: "relative"
                                                 }}>
-                                                <span className="" style={{
+                                                <Link to={`/one_customer/${employee.customerID}`} className="" style={{
                                                     fontSize: "small",
                                                     fontWeight: 100,
                                                     textTransform: "uppercase"
-                                                }}>{ employee.customerLast}</span>
+                                                }}>{ employee.customerLast}</Link>
                                                 <div style={{ marginTop: " -7px" }}>
                                                     <span style={{ color: "rgb(102, 102, 102)" }}
                                                         className="gray small">{(employee.customerEmail).substring(0,12)}...</span>

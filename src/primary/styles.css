@@ -22,6 +22,27 @@
     --green-slim2:rgba(0, 119, 255, 0.199);
     --banner-color:rgb(29, 29, 29);
 }
+.dark:root {
+    --green: rgb(3, 211, 114);
+    --blue: rgb(255, 0, 0);
+    --milk: rgb(192, 192, 192);
+    --milk2: rgb(34, 34, 34);
+    --milk3: rgb(51, 51, 51);
+    --milk4: rgb(0, 16, 29);
+    --shadow: rgb(221, 202, 245);
+    --sh-2: linear-gradient(60deg, rgb(196, 62, 0), rgb(0, 209, 122), rgb(77, 192, 0));
+    --gray_color: rgb(228, 225, 225);
+    --calenda-color:rgb(151, 151, 151);
+    --black: rgb(0, 0, 0);
+    --top-color:rgb(1, 88, 59);
+    --green-slim: rgb(0, 119, 255);
+    --green-slim2:rgba(255, 0, 0, 0.199);
+    --banner-color:rgb(201, 201, 201);
+}
+.dark.customer>*,.dark.customer .grid_mini > *{
+    border: 1px solid var(--milk);
+    border-bottom: 10px solid var(--milk);
+}
 *{
     outline: none !important;
     text-decoration: none !important;

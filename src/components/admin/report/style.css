@@ -1,8 +1,9 @@
 .filter_tab{
     width:100%;
     border-radius: 15px;
-    overflow: hidden;
-    color: var(--black);
+    overflow: hidden;   
+    color: white !important;
+
     margin: 10px;
 }
 .filter_tab > *{
@@ -11,6 +12,7 @@
 }
 .filter_tab > *:nth-child(3){
     background: linear-gradient(60deg, rgb(0, 150, 219), rgb(255, 0, 76));
+    color: white !important;
 }
 .filter_tab .glass{
     background-color: rgba(0, 0, 0, 0.815);
@@ -49,7 +51,30 @@
     background-color: var(--calenda-color);
     background: linear-gradient(60deg, rgb(0, 150, 219), rgb(255, 0, 76));
     padding-left: 20px;
+    height:50px;
+    padding-top: 55px;
     padding-right: 20px;
+}
+.ses,.ses:hover{
+    height:20px !important;
+    margin-top: -50px !important;
+    width:20px !important;
+    background: none;
+}
+.ses > *{
+    position: absolute;
+    background-color: black;
+    height:30px !important;
+    margin-top: -25px !important;
+    border-radius: 3px;
+    margin-left: -35px !important;
+    padding: 5px;
+    color: white;
+    width:30px !important;
+}
+.ses > *:hover{
+    background-color: rgb(37, 0, 28);
+    color: white;
 }
 .filter_dates:nth-child(2){
     border-radius: 15px;

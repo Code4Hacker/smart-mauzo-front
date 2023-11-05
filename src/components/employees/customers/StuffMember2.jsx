@@ -13,15 +13,26 @@ import Work from './WorkerJobs/Work';
 
 const StuffMember2 = () => {
     const thedate = new Date();
-    const throwback_days = `${(thedate.getFullYear())}/${(thedate.getMonth()+1)}/${(thedate.getDate() - 7)}`;
+    let throwback_days;
+    let day = (thedate.getDate());
+    let month = (thedate.getMonth() + 1);
+    let year = (thedate.getFullYear());
+    let sub = day - 6;
+    // console.log(sub);
+    throwback_days = `${year}-${month >= 10? month : "0" + month}-${sub >= 10 ? sub : "0" + sub}`;
+    while(sub <= 0){
+        month--;
+        sub = 30 + sub;
+        throwback_days = `${year}-${month >= 10? month : "0" + month}-${sub >= 10 ? sub : "0" + sub}`;
+    }
 
     const [contents, setContents] = useState();
-    const params  = useParams();
+    const params = useParams();
     const [date_days, setDate_days] = useState(7);
     const [money, setMoney] = useState(0);
 
-    const [datefrom1, setDatefrom1] = useState(`${(thedate.getFullYear())}-${(thedate.getMonth()+1)}-${(thedate.getDate() - 7)}`);    
-    const [dateto1, setDateto1] = useState(`${(thedate.getFullYear())}-${(thedate.getMonth()+1)}-${(thedate.getDate())}`);
+    const [datefrom1, setDatefrom1] = useState(throwback_days);   
+    const [dateto1, setDateto1] = useState(`${(thedate.getFullYear())}-${(thedate.getMonth() + 1)}-${(thedate.getDate() >= 10 ? thedate.getDate() : "0" + thedate.getDate())}`);
 
     useEffect(() => {
 

@@ -68,16 +68,16 @@ const Work = ({ works }) => {
                     </div>
                     <div className="content">
                         {splitted_deal.deals.map((d, k) =>
-                            <>
+                            <div className="" key={k}>
                                 <MINI d={d} splitted_deal={splitted_deal} dealID={dealID} dealStatus={dealStatus} key={k} />
-                                
+
                                 {/* {array += d.price} */}
-                            </>
+                            </div>
                         )}
                     </div>
                 </div>
                 : ""}
-                {/* {array} */}
+            {/* {array} */}
         </>
     )
 }

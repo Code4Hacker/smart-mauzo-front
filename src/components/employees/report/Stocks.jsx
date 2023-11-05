@@ -19,6 +19,17 @@ const Stocks = () => {
         easing: 'linear'
     });
     const thedate = new Date();
+    let throwback_days;
+    let day = (thedate.getDate());
+    let month = (thedate.getMonth() + 1);
+    let year = (thedate.getFullYear());
+    let sub = day - 6;
+    throwback_days = `${year}-${month >= 10? month : "0" + month}-${sub >= 10 ? sub : "0" + sub}`;
+    while(sub <= 0){
+        month--;
+        sub = 30 + sub;
+        throwback_days = `${year}-${month >= 10? month : "0" + month}-${sub >= 10 ? sub : "0" + sub}`;
+    }
 
     const [employee, setEmployee] = useState();
     const [count, setCount] = useState();
@@ -32,8 +43,8 @@ const Stocks = () => {
     // const [money, setMoney] = useState(0);
     let increment = 2;
 
-    const [datefrom1, setDatefrom1] = useState(`${(thedate.getFullYear())}-${(thedate.getMonth() + 1)}-${(thedate.getDate() - 7)}`);
-    const [dateto1, setDateto1] = useState(`${(thedate.getFullYear())}-${(thedate.getMonth() + 1)}-${(thedate.getDate())}`);
+    const [datefrom1, setDatefrom1] = useState(throwback_days);
+    const [dateto1, setDateto1] = useState(`${(thedate.getFullYear())}-${(thedate.getMonth() + 1)}-${(thedate.getDate() >= 10 ? thedate.getDate() : "0" + thedate.getDate())}`);
 
     const navigate = useNavigate();
     const query = () => {
@@ -265,16 +276,16 @@ const Stocks = () => {
                                     <div className="filter_tab">
                                         <div className="filter_dates">
                                             <div className="categorie">
-                                                <span className="bi bi-search"> Filter By</span>
+                                                <span className="bi bi-search"> Filter</span>
                                             </div>
                                             <div className="repo_filter">
                                                 <ul>
-                                                    <li><button className="bi bi-search" onClick={filter_history}></button></li>
+                                                    <li><button className="ses" onClick={filter_history}><i className="bi bi-search"></i></button></li>
                                                     <li className='li_input flex'><div className="mt-2 p-1 x-small">End: </div> <input type="date" name="" id="" value={dateto1} onChange={(evt) => setDateto1(evt.target.value)} /></li>
                                                     <li className='li_input flex'><div className="mt-2 p-1 x-small">Start: </div> <input type="date" name="" id="" value={datefrom1} onChange={(evt) => setDatefrom1(evt.target.value)} /></li>
-                                                    <li onClick={filter_history_1M}><i className="bi bi-calenda"></i><span> 1 Month</span></li>
+                                                    {/* <li onClick={filter_history_1M}><i className="bi bi-calenda"></i><span> 1 Month</span></li>
                                                     <li onClick={filter_history_2w}><i className="bi bi-calenda"></i><span> 2 Weeks</span></li>
-                                                    <li onClick={filter_history_1w}><i className="bi bi-calenda"></i><span> 1 Week</span></li>
+                                                    <li onClick={filter_history_1w}><i className="bi bi-calenda"></i><span> 1 Week</span></li> */}
                                                 </ul>
                                             </div>
                                         </div>

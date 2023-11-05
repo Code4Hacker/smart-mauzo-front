@@ -103,7 +103,6 @@ const Dashboard = () => {
                                                 minWidth: "200px",
                                                 borderRadius: "10px"
                                             }}
-                                            data-aos="fade-up" data-aos-duration="1000"
                                              key={i}>
                                             <div className="profile">
                                                 <img src="https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"

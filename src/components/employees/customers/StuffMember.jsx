@@ -13,22 +13,33 @@ import Work from './WorkerJobs/Work';
 
 const StuffMember = () => {
     const thedate = new Date();
-    const throwback_days = `${(thedate.getFullYear())}/${(thedate.getMonth()+1)}/${(thedate.getDate() - 7)}`;
+    let throwback_days;
+    let day = (thedate.getDate());
+    let month = (thedate.getMonth() + 1);
+    let year = (thedate.getFullYear());
+    let sub = day - 6;
+    // console.log(sub);
+    throwback_days = `${year}-${month >= 10? month : "0" + month}-${sub >= 10 ? sub : "0" + sub}`;
+    while(sub <= 0){
+        month--;
+        sub = 30 + sub;
+        throwback_days = `${year}-${month >= 10? month : "0" + month}-${sub >= 10 ? sub : "0" + sub}`;
+    }
 
     const [contents, setContents] = useState();
-    const params  = useParams();
+    const params = useParams();
     const [date_days, setDate_days] = useState(7);
     const [money, setMoney] = useState(0);
 
-    const [datefrom1, setDatefrom1] = useState(`${(thedate.getFullYear())}-${(thedate.getMonth()+1)}-${(thedate.getDate() - 7)}`);    
-    const [dateto1, setDateto1] = useState(`${(thedate.getFullYear())}-${(thedate.getMonth()+1)}-${(thedate.getDate())}`);
+    const [datefrom1, setDatefrom1] = useState(throwback_days);
+    const [dateto1, setDateto1] = useState(`${(thedate.getFullYear())}-${(thedate.getMonth() + 1)}-${(thedate.getDate() >= 10 ? thedate.getDate() : "0" + thedate.getDate())}`);
 
     useEffect(() => {
 
         handleFilter();
         // jqueryCodes();
     }, []);
-    const handleFilter = async() => {
+    const handleFilter = async () => {
         let gem_data = new FormData();
         gem_data.append("name_worker", params.id);
         gem_data.append("start", datefrom1);
@@ -38,15 +49,15 @@ const StuffMember = () => {
             const money = await axios.get(`${baseURL}contents.php?id=${params.id}&start=${datefrom1}&to_end=${dateto1}`);
             setMoney(money.data.TOTAL);
             const response = await axios.request({
-                method:'POST',
-                url:`${baseURL}worker.php?name_worker=${params.id}`,
-                data:newdata
+                method: 'POST',
+                url: `${baseURL}worker.php?name_worker=${params.id}`,
+                data: newdata
             });
             setContents(response.data);
             // console.log(response.data);
         }
         const start = new Date(dateto1) - new Date(datefrom1);
-        const deff = Math.floor(start/ (1000 * 60 * 60 * 24))
+        const deff = Math.floor(start / (1000 * 60 * 60 * 24))
         setDate_days(deff);
         getal();
     }
@@ -72,7 +83,7 @@ const StuffMember = () => {
                                     }}>WORKER PROFILE</span></h3></div>
                                     <div className="grid2 prt_on" style={{ "--template": "auto" }}>
                                         <div className="content">
-                                            <div className="container" style={{marginTop:'30px'}}>
+                                            <div className="container" style={{ marginTop: '30px' }}>
                                                 <h4>Full Name</h4>
                                                 <p>{params.id}</p>
 
@@ -107,14 +118,15 @@ const StuffMember = () => {
                             </div>
                             <div className="col-md-4 process prt_on">
                                 <div className="title"><h3><span style={{
-                                    fontWeight: 100, marginTop: '50px !important',  padding: '20px', background: 'var(--milk)', color: 'var(--black)', position: 'relative', minHeight: '30px', marginLeft: '-50px', borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px'
+                                    fontWeight: 100, marginTop: '50px !important', padding: '20px', background: 'var(--milk)', color: 'var(--black)', position: 'relative', minHeight: '30px', marginLeft: '-50px', borderBottomLeftRadius: '30px', borderBottomRightRadius: '30px'
                                 }}>ACTIVITIES</span></h3></div>
                                 <div className="contents">
                                     <div className="processor" style={{
-                                marginTop: '30px'}}>
+                                        marginTop: '30px'
+                                    }}>
                                         <div className="processor2">
                                             <div className="center">
-                                                <h1><span>{contents !== undefined ? contents.counter:"0"}</span></h1>
+                                                <h1><span>{contents !== undefined ? contents.counter : "0"}</span></h1>
                                             </div>
                                         </div>
                                     </div>
@@ -131,39 +143,39 @@ const StuffMember = () => {
                                     marginTop: '40px', position: 'relative'
                                 }}>
                                     {
-                                        contents !== undefined && contents.deals?.length > 0 ? 
-                                        <>
-                                        <div className='grid works'>
-                                            <div className="day">
-                                                <div className="center">
-                                                    DAY
-                                                </div>
-                                            </div>
-                                            <div className="line">
-                                            </div>
-                                            <div className="content">
-                                                    <div className="week_jb_gemini">
-                                                        <div className="row" style={{background:"linear-gradient(70deg, royalblue, red, royalblue)", padding:'10px', borderRadius:'10px', color:'white'}}>
-                                                            <div className="col-8">
-                                                                <div className="row">
-                                                                    <div className="col-5">
-                                                                        <span>CATEGORY</span><br />
-                                                                    </div>
-                                                                    <div className="col-7">
-                                                                        <span>CUSTOMER NAME</span>
+                                        contents !== undefined && contents.deals?.length > 0 ?
+                                            <>
+                                                <div className='grid works'>
+                                                    <div className="day">
+                                                        <div className="center">
+                                                            DAY
+                                                        </div>
+                                                    </div>
+                                                    <div className="line">
+                                                    </div>
+                                                    <div className="content">
+                                                        <div className="week_jb_gemini">
+                                                            <div className="row" style={{ background: "linear-gradient(70deg, royalblue, red, royalblue)", padding: '10px', borderRadius: '10px', color: 'white' }}>
+                                                                <div className="col-8">
+                                                                    <div className="row">
+                                                                        <div className="col-5">
+                                                                            <span>CATEGORY</span><br />
+                                                                        </div>
+                                                                        <div className="col-7">
+                                                                            <span>CUSTOMER NAME</span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div className="col-4 text-end">
-                                                                PRICE
+                                                                <div className="col-4 text-end">
+                                                                    PRICE
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                            </div>
-                                        </div>
-                                        {contents.deals.map((j,i) => <Work works={j} key={i}/>)}
-                                        </>
-                                         : <Loading/>
+                                                </div>
+                                                {contents.deals.map((j, i) => <Work works={j} key={i} />)}
+                                            </>
+                                            : <Loading />
                                     }
                                 </div>
                             </div>
