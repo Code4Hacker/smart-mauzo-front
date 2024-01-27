@@ -28,9 +28,12 @@ const SideBar2 = () => {
             <div className="col-xl-12 flex navtab">
                 <div className="row">
                     <div className="col-10">
-                        <div className="logoB" style={{ overflow: 'hidden', paddingLeft: '20px', position: 'relative', borderRadius: '10px' }}>
-                            <img src={imagelogo} alt="Logo" style={{ width: '100%', objectFit: 'cover', position: 'relative' }} />
+                    <div className="title">
+                            <h5>Rubiq<span>Premier</span></h5>
                         </div>
+                        {/* <div className="logoB" style={{ overflow: 'hidden', paddingLeft: '20px', position: 'relative', borderRadius: '10px' }}>
+                            <img src={imagelogo} alt="Logo" style={{ width: '100%', objectFit: 'cover', position: 'relative' }} />
+                        </div> */}
                     </div>
                     <div className="col-2">
                         <i className="bi bi-arrow-left min_board" style={{ cursor: 'pointer' }}></i>

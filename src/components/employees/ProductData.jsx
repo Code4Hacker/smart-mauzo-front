@@ -10,18 +10,36 @@ import Mini2 from '../widgets/sidebar/Mini2'
 import './product.css'
 
 import { Product_log } from './product_log'
+import Loading from '../Loader/Loading'
 
 const EProducts = () => {
     Aos.init({
         duration: 1000,
         easing: 'linear'
     });
+    const [products, setProducts] = useState();
+    const getAll_products = async () => {
+        try {
+            const products = axios.request({
+                url: `${baseURL}add-product.php`,
+                method:'GET'
+            });
+            const data = (await products).data;
+            setProducts(data.products);
+            console.log(data);
+        } catch (error) {
+            console.log("Gemini Throwing .... ",error);
+        }
+
+    }
     useEffect(() => {
         const getall = async () => {
-            const response = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail : 0}`);
-            setContents(response.data.customers.splice(0, 3));
+            // const response = await axios.get(`${baseURL}employeeid.php?id=${localStorage.emMail != undefined ? localStorage.emMail : 0}`);
+            // setContents(response.data.customers.splice(0, 3));
+            
         }
         getall();
+        getAll_products();
     }, []);
     return (
         <div>
@@ -41,14 +59,11 @@ const EProducts = () => {
                         <button>Add User</button>
                         </div>
                         <div className="container product_list">
-                            <Product_log />
-                            <Product_log />
-                            <Product_log />
-                            <Product_log />
-                            <Product_log />
-                            <Product_log />
-                            <Product_log />
-                            <Product_log />
+                           {
+                            products !== undefined && products?.length > 0 ?
+                            products.map((data, i) =>  <Product_log key={i} product={data} setProduct={setProducts}/>):
+                           "Check your Connection | try to re-load the Page"
+                           }
                         </div>
                     </div>
                 </div>

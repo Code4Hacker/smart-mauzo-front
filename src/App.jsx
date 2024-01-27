@@ -23,47 +23,51 @@ import SCustomer from './components/employees/customers/SearchCustomer';
 import S_Customer from './components/admin/customers/Search_C';
 import StuffMember2 from './components/employees/customers/StuffMember2';
 import EProducts from './components/employees/ProductData';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Admin */}
-        <Route path='/admin' element={  <Dashboard />} />
-        <Route path='/employees' element={  <Employees />} />
-        <Route path='/customers' element={  <Customers />} />
-        <Route path='/deals' element={  <AllDeals />} />
-        <Route path='/customers/:id' element={  <Customer />} />
-        <Route path='/' element={  <Login />} />
-        <Route path='/report' element={  <AStocks />} />
+    <>
+    <Toaster />
+      <BrowserRouter>
+        <Routes>
+          {/* Admin */}
+          <Route path='/admin' element={<Dashboard />} />
+          <Route path='/employees' element={<Employees />} />
+          <Route path='/customers' element={<Customers />} />
+          <Route path='/deals' element={<AllDeals />} />
+          <Route path='/customers/:id' element={<Customer />} />
+          <Route path='/' element={<Login />} />
+          <Route path='/report' element={<AStocks />} />
 
 
-        <Route path='/products' element={  <EProducts />} />
+          <Route path='/products' element={<EProducts />} />
 
-        {/* Employee */}
-        <Route path='/e_login' element={  <ELogin />} />
-        <Route path='/employee' element={  <EDashboard />} />
-        <Route path='/e_customers' element={  <ECustomers />} />
-        <Route path='/one_customer/:id' element={  <OneCustomer />} />
-        <Route path='/repo' element={  <Stocks />} />
-        <Route path='/userEmp' element={  <ICustomer />} />
-        <Route path='/search_customer' element={  <SCustomer />} />
-        <Route path='/search_' element={  <S_Customer />} />
+          {/* Employee */}
+          <Route path='/e_login' element={<ELogin />} />
+          <Route path='/employee' element={<EDashboard />} />
+          <Route path='/e_customers' element={<ECustomers />} />
+          <Route path='/one_customer/:id' element={<OneCustomer />} />
+          <Route path='/repo' element={<Stocks />} />
+          <Route path='/userEmp' element={<ICustomer />} />
+          <Route path='/search_customer' element={<SCustomer />} />
+          <Route path='/search_' element={<S_Customer />} />
 
-        <Route path='/stuff_members' element={  <Stuffs />} />
-        <Route path='/stuff' element={  <Stuff_A />} />
-        <Route path='/edit_stock/:id' element={  <UStock />} />
-        <Route path='/stuff_member/:id' element={  <StuffMember />} />
-        <Route path='/stuff_memb/:id' element={  <StuffMember2 />} />
-        {/* GENERAL */}
-        <Route path='/pro_forma/:id' element={  <Pro_form />} />
-        <Route path='/pro_forma2/:id' element={  <Pro_form2 />} />
-        <Route path='/invoice/:id' element={  <Invoice />} />
-        <Route path='/receipt/:id' element={  <Receipt />} />
-        <Route path='/delivery/:id' element={  <Delivery />} />
-      </Routes>
-    </BrowserRouter>
+          <Route path='/stuff_members' element={<Stuffs />} />
+          <Route path='/stuff' element={<Stuff_A />} />
+          <Route path='/edit_stock/:id' element={<UStock />} />
+          <Route path='/stuff_member/:id' element={<StuffMember />} />
+          <Route path='/stuff_memb/:id' element={<StuffMember2 />} />
+          {/* GENERAL */}
+          <Route path='/pro_forma/:id' element={<Pro_form />} />
+          <Route path='/pro_forma2/:id' element={<Pro_form2 />} />
+          <Route path='/invoice/:id' element={<Invoice />} />
+          <Route path='/receipt/:id' element={<Receipt />} />
+          <Route path='/delivery/:id' element={<Delivery />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   )
 }
 export default App;
