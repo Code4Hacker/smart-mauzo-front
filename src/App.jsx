@@ -22,6 +22,7 @@ import UStock from './components/employees/report/Update';
 import SCustomer from './components/employees/customers/SearchCustomer';
 import S_Customer from './components/admin/customers/Search_C';
 import StuffMember2 from './components/employees/customers/StuffMember2';
+import EProducts from './components/employees/ProductData';
 
 function App() {
 
@@ -36,6 +37,9 @@ function App() {
         <Route path='/customers/:id' element={  <Customer />} />
         <Route path='/' element={  <Login />} />
         <Route path='/report' element={  <AStocks />} />
+
+
+        <Route path='/products' element={  <EProducts />} />
 
         {/* Employee */}
         <Route path='/e_login' element={  <ELogin />} />
