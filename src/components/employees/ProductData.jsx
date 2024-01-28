@@ -11,6 +11,7 @@ import './product.css'
 
 import { Product_log } from './product_log'
 import Loading from '../Loader/Loading'
+import toast from 'react-hot-toast'
 
 const EProducts = () => {
     Aos.init({
@@ -28,7 +29,7 @@ const EProducts = () => {
             setProducts(data.products);
             console.log(data);
         } catch (error) {
-            console.log("Gemini Throwing .... ",error);
+            toast.error("Gemini Throwing .... ",error);
         }
 
     }

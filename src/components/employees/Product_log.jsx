@@ -24,11 +24,11 @@ export const Product_log = ({ product, setProduct }) => {
             <div className="right">
                 <div className="p_head">
                     <h2>{product.productName}</h2>
-                    <span className="small"></span>
+                    <span className="small">{product.quantity} Remains</span>
                 </div>
                 <div className='border-top sales'>
-                    <span><div className="bi bi-wave"></div> Selling: {product.sellingPrice}Tsh</span>
-                    <span>Buyed at:  {product.buyingPrice}Tsh</span>
+                    <span><i className="bi bi-graph-up-arrow"></i> Selling: {product.sellingPrice}Tsh</span>
+                    <span><i className="bi bi-graph-down-arrow"></i> Buyed at:  {product.buyingPrice}Tsh</span>
                 </div>
                 <div className="date">
                     {product.registedDate}
