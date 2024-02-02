@@ -53,16 +53,19 @@ const TopBar2 = ({ location }) => {
         getall();
         const counterGet = async () => {
             const response = await axios.get(`${baseURL}e_counter.php?employee_id=${window.localStorage.emMail}`);
-            const deals = await axios.get(`${baseURL}deals.php`);
+            console.log(response.data.counts);
+            const deals = await axios.get(`${baseURL}add-product.php`);
+            // console.log(deals.data);
+            if (response.data.status === "200") {
+                setCount(response.data.counts);
+            }
             for (let index = 0; index < deals.data.deals.length; index++) {
                 if (index < deals.data.deals.length - 1) {
                     setCount2(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
                 }
 
             }
-            if (response.data.status === "200") {
-                setCount(response.data.counts);
-            }
+           
         }
         counterGet();
 
@@ -113,6 +116,7 @@ const TopBar2 = ({ location }) => {
                     <div className="number">
                         <div className="title text-center mt-2">
                             <h1><span>
+                                { console.log(count)}
                                 {count !== undefined ? count.customers : "0"}
                             </span></h1>
                         </div>

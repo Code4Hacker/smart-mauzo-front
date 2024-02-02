@@ -64,7 +64,7 @@ const OneCustomer = () => {
     const [count, setCount] = useState();
     const [onecount, setOnecount] = useState();
     const [products, setProducts] = useState();
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(true);
     const [numArr, setNumArr] = useState("1");
     const [deals, setDeals] = useState();
     const [sel, setSel] = useState();
