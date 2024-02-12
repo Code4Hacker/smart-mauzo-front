@@ -45,12 +45,12 @@ const EProducts = () => {
             if(products.data.status === "200"){
                 getAll_products();
                 setShow(false);
-                console.log(product);
+                // console.log(product);
                 setProduct(""); setBprice(); setQty(); setSprice(); setShow(false);
             }
         } catch (error) {
             toast.error("Gemini Throwing .... ", error);
-            console.log(error);
+            // console.log(error);
         }
     }
 
@@ -62,7 +62,7 @@ const EProducts = () => {
             });
             const data = (await products).data;
             setProducts(data.products);
-            console.log(data);
+            // console.log(data);
         } catch (error) {
             toast.error("Gemini Throwing .... ", error);
         }

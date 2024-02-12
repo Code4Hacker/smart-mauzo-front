@@ -64,9 +64,9 @@ const TopBar = ({ location }) => {
             const response = await axios.get(`${baseURL}counter.php?admin_id=${window.localStorage.adminmail}`);
             const deals = await axios.get(`${baseURL}dealtotal.php?admin_id=${window.localStorage.adminmail}`);
 
-            if (deals.data.status === "200") {
-                setCount2(Number(deals.data.TOTAL).toLocaleString())
-            }
+            // if (deals.data.status === "200") {
+            //     setCount2(Number(deals.data.TOTAL).toLocaleString())
+            // }
 
             if (response.data.status === "200") {
                 setCount(response.data.counts);

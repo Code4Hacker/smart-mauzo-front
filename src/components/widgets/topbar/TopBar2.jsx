@@ -53,18 +53,18 @@ const TopBar2 = ({ location }) => {
         getall();
         const counterGet = async () => {
             const response = await axios.get(`${baseURL}e_counter.php?employee_id=${window.localStorage.emMail}`);
-            console.log(response.data.counts);
+            // console.log(response.data.counts);
             const deals = await axios.get(`${baseURL}add-product.php`);
             // console.log(deals.data);
             if (response.data.status === "200") {
                 setCount(response.data.counts);
             }
-            for (let index = 0; index < deals.data.deals.length; index++) {
-                if (index < deals.data.deals.length - 1) {
-                    setCount2(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
-                }
+            // for (let index = 0; index < deals.data.deals.length; index++) {
+            //     if (index < deals.data.deals.length - 1) {
+            //         setCount2(Number(deals.data.deals[index].price) + Number(deals.data.deals[index + 1].price));
+            //     }
 
-            }
+            // }
            
         }
         counterGet();
