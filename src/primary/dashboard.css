@@ -91,10 +91,6 @@ text:nth-child(1) {
     fill: rgb(100, 100, 100);
 }
 
-path {
-    stroke: var(--black);
-    fill: var(--top-color);
-}
 
 table {
     color: var(--blue);

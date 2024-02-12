@@ -4,16 +4,16 @@ import axios from 'axios'
 import Loader from '../Loader/Loader'
 import { baseURL } from '../../baseURL'
 import './../../primary/style2.css'
-import SideBar2 from '../widgets/sidebar/SideBar2'
-import TopBar2 from '../widgets/topbar/TopBar2'
-import Mini2 from '../widgets/sidebar/Mini2'
 import './product.css'
 
 import { Product_log } from './product_log'
 import Loading from '../Loader/Loading'
 import toast from 'react-hot-toast'
+import Mini from '../widgets/sidebar/Mini'
+import TopBar from '../widgets/topbar/TopBar'
+import SideBar from '../widgets/sidebar/SideBar'
 
-const EProducts = () => {
+const AEProducts = () => {
     Aos.init({
         duration: 1000,
         easing: 'linear'
@@ -79,15 +79,15 @@ const EProducts = () => {
     return (
         <div>
             <Loader />
-            <Mini2 />
+            <Mini />
             <div className="dashboard_grid_container">
                 <div className="dash_grid_items sidebar">
                     <div className="row" data-aos="fade-left" data-aos-duration="1000">
-                        <SideBar2 />
+                        <SideBar />
                     </div>
                 </div>
                 <div className="dash_grid_items">
-                    <TopBar2 location={"VIEW PRODUCTS"} />
+                    <TopBar location={"VIEW PRODUCTS"} />
                     <div className="products">
                         <div className="text-center p-3">
 
@@ -125,6 +125,6 @@ const EProducts = () => {
     )
 }
 
-export default EProducts;
+export default AEProducts;
 
 

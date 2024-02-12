@@ -12,7 +12,8 @@ const TopBar = ({ location }) => {
     });
     const [admin, setAdmin] = useState();
     const [count, setCount] = useState();
-    const [count2, setCount2] = useState();
+
+    const [details, setDetails] = useState();
     const navigate = useNavigate();
     const query_2 = () => {
         jQuery("button").on("click", function () {
@@ -42,6 +43,13 @@ const TopBar = ({ location }) => {
             jQuery(".customer").toggleClass("dark");
             // console.log("CLICKEDMEME")
     }
+    const getRequests = async (end_point) => {
+        const response = axios.request({
+            method: "GET",
+            url: `${baseURL}${end_point}`,
+        });
+        return (await response).data;
+    }
     useEffect(() => {
         query_2();
         const getall = async () => {
@@ -70,7 +78,7 @@ const TopBar = ({ location }) => {
             navigate('/');
         }
         counterGe();
-
+        getRequests("stocks_calculations.php").then((responseStatus) => { setDetails(responseStatus.counts); }).catch((error) => { console.error("Error fetching data:", error); });
     }, []);
     return (
         <div>
@@ -137,7 +145,7 @@ const TopBar = ({ location }) => {
                     </div>
                     <div className="number">
                         <div className="title text-center mt-2">
-                            <h4><span> {count2} </span></h4>
+                            <h4><span>  {details != undefined ? Number(details.total_income).toLocaleString(): "0"} Tsh </span></h4>
                             <span className="small">Tshs.</span>
                         </div>
                     </div>

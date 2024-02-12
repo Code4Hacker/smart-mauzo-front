@@ -11,11 +11,11 @@ const Card = ({ workers, setworkers }) => {
                     </span></h5>
                 </div>
             </div>
-            <div className="grid-item h" style={{ paddingLeft: "10px", paddingRight: "10px " }}>
+            {/* <div className="grid-item h" style={{ paddingLeft: "10px", paddingRight: "10px " }}>
                 <div className="title">
                     <Link to={`/stuff_memb/${workerName}`} className="bi bi-folder-fill" style={{ color: "var(--black)",textDecoration:'none', padding: "8px", boxShadow: " inset 0px 0px 10px 0px rgba(0, 0, 0, 0.11)", margin: " 3px", borderRadius: " 10px", backgroundColor: 'var(--top-color)', fontSize: 'small', fontStyle: 'normal !important', cursor: 'pointer' }}> view</Link>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

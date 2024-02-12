@@ -100,17 +100,160 @@
 .x-small.num-2{
     color:var(--gray_color);
 }
-.stks{
-    background: linear-gradient(-60deg, rgb(0, 150, 219), rgb(255, 0, 76));
+.dashboardBg{
+    background-color: rgba(0, 76, 255, 0.103);
+}
+.card_show{
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px 0px rgba(85, 85, 85, 0.173);
+    margin: 10px;
+    max-width: 300px;
+    background-color: var(--black);
+    display: grid;
+    grid-template-columns: 100px auto;
+}
+.right .card_show{
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.033);
+    margin: 10px;
+    max-width: 100%;
+    min-height: 250px;
+    display: grid;
+    grid-template-columns: 100px auto;
+}
+.card_show > .icon{
+    border-radius: 50px;
+    background-color: rgba(57, 107, 255, 0.152);
+    color: rgb(57, 156, 255);
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+.card_show:nth-child(2) > .icon{
+    border-radius: 50px;
+    background-color: rgba(68, 185, 29, 0.152);
+    color: rgb(33, 145, 84);
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+.full_card{
+    border-radius: 30px;
+    background-color: rgb(255, 255, 255);
+    min-height: 300px;
+    width: 100%;
+    min-width: 700px;
+    max-height: 400px;
+    overflow-x: scroll;
+    overflow-y: scroll;
     padding: 20px;
-    padding-bottom: 100px;
-    border-bottom-left-radius:50px;
-    border-bottom-right-radius:50px;
+    position: relative;
+}
+.card_show.new_card{
+    display: flow-root;
+}
+.full_card .title{
+    text-align: start;
+    font-weight: 900;
+    border-bottom: 1px solid rgb(202, 201, 201);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+    text-transform: uppercase;
+}
+.the_list{
+    position: relative;
+    width: 100%;
+    display: grid;
+    font-weight: 100 !important;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    grid-template-columns: 5% 35% 15% 10% 20% 15%;
+}
+.the_list .b{
+    font-weight: 800 !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.simple_crd{
+    padding: 10px;
+    width: 300px;
+    border-radius: 10px;
+    color: white;
+    display: grid;
+    text-transform: uppercase;
+    font-size: small;
+    grid-template-columns: auto auto;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: rgba(31, 136, 255, 0.676);
+    background: linear-gradient(60deg, rgba(206, 40, 228, 0.842), rgba(31, 136, 255, 0.676));
+}
+.simple_crd:nth-child(2){
+    background: linear-gradient(60deg, rgb(14, 171, 9), rgba(31, 136, 255, 0.676));
+}
+.simple_crd > *:nth-child(1){
+    font-weight: 900;
+}
+.big_name{
+    width: 100%;
+    position: relative;
+    font-size: 34px;
+    text-align: center;
+    text-transform: uppercase;
+    opacity: 80%;
+    color: transparent;
+    background:linear-gradient(60deg, rgb(81, 120, 237), hotpink) ;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-weight: 900;
+    margin-top: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.simple_crd > *:nth-child(2){
+    text-align: end;
+    color: rgb(236, 236, 236);
+}
+.small_flex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+.icon > * {
+    font-size: 42px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.card_show .content{
+    padding: 10px;
+}
+.grid_cards{
+    display: grid;
+    grid-template-columns: 320px auto;
 }
 .grid_repo > * {
     height:800px;
     overflow: hidden;
     overflow-y: scroll;    
+}
+.card_show .content h1{
+    padding: -10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 900;
+}
+.card_show .content span{
+    padding: 0px;
+    position: relative;
+    color: var(--milk3);
+    margin-top: -100px;
+    font-weight: 100;
+    top: -10px;
 }
 .glass> * > * {
     padding-bottom: 50px;
@@ -170,6 +313,17 @@ li {
 }
 .hide{
     display:none;
+}
+.dont{
+    display: grid;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    grid-template-columns: auto auto auto auto;
+}
+.dont>* {
+    margin: -10px;
+    padding: -100px;
 }
 @media screen and (max-width:600px){
     .grid_repo{

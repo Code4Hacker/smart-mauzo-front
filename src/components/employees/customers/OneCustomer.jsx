@@ -64,7 +64,7 @@ const OneCustomer = () => {
     const [count, setCount] = useState();
     const [onecount, setOnecount] = useState();
     const [products, setProducts] = useState();
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
     const [numArr, setNumArr] = useState("1");
     const [deals, setDeals] = useState();
     const [sel, setSel] = useState();
@@ -276,7 +276,7 @@ const OneCustomer = () => {
                                     marginTop: '40px', position: 'relative'
                                 }}>
                                     {
-                                        deals !== undefined && deals?.length > 0 ? deals.map((work, id) => <EC_Deals deals={work}  key={id} />) : <Loading />
+                                        deals !== undefined && deals?.length > 0 ? deals.map((work, id) => <EC_Deals deals={work}  key={id} keys={id+1} />) : <Loading />
                                     }
                                 </div>
                             </div>

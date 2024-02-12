@@ -6,7 +6,7 @@ import raws from './../raws.json';
 import jQuery from 'jquery';
 import Loading from '../../Loader/Loading';
 
-const EC_Deals = ({ deals }) => {
+const EC_Deals = ({ deals, keys }) => {
     const params = useParams();
     const navigate = useNavigate();
     const [payed, setPayed] = useState();
@@ -136,7 +136,7 @@ const EC_Deals = ({ deals }) => {
             <div className="product">
                 <div className="left">
                     {/* <button className="bi bi-pen"></button> */}
-                    <button className="bi bi-printer" onClick={""}></button>
+                    <button className="bi">{keys}</button>
                 </div>
                 <div className="right">
                     <div className="p_head">
