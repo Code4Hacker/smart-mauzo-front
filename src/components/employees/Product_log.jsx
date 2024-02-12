@@ -38,3 +38,4 @@ export const Product_log = ({ product, setProduct }) => {
         </div>
     )
 }
+export default Product_log;
