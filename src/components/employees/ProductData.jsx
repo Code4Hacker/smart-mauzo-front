@@ -9,9 +9,10 @@ import TopBar2 from '../widgets/topbar/TopBar2'
 import Mini2 from '../widgets/sidebar/Mini2'
 import './product.css'
 
-import { Product_log } from './product_log'
-import Loading from '../Loader/Loading'
+// import { Product_log } from './product_log'
+// import Loading from '../Loader/Loading'
 import toast from 'react-hot-toast'
+import Product_log  from './Product_log'
 
 const EProducts = () => {
     Aos.init({

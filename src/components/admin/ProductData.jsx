@@ -6,7 +6,7 @@ import { baseURL } from '../../baseURL'
 import './../../primary/style2.css'
 import './product.css'
 
-import { Product_log } from './product_log'
+import Product_log  from './product_log'
 import Loading from '../Loader/Loading'
 import toast from 'react-hot-toast'
 import Mini from '../widgets/sidebar/Mini'
