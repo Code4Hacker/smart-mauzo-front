@@ -4,7 +4,6 @@ import { Dashboard, Employees } from './components';
 import Login from './components/Welcome/Login';
 import Customers from './components/admin/customers/Customers';
 import Customer from './components/admin/customers/Customer';
-import AllDeals from './components/admin/customers/AllDeals';
 import { ECustomers, EDashboard, ELogin } from './components/employees';
 import OneCustomer from './components/employees/customers/OneCustomer';
 import Pro_form from './components/employees/customers/Printing/Pro_form';
@@ -24,7 +23,6 @@ import S_Customer from './components/admin/customers/Search_C';
 import StuffMember2 from './components/employees/customers/StuffMember2';
 import EProducts from './components/employees/ProductData';
 import { Toaster } from 'react-hot-toast';
-import { Product_log } from './components/admin/product_log';
 import AEProducts from './components/admin/ProductData';
 
 function App() {
