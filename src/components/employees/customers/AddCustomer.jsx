@@ -40,7 +40,7 @@ const AddCustomers = ({ setCustomers }) => {
         formdata.append("fname", fname);
         formdata.append("lname", lname);
         formdata.append("address", address);
-        formdata.append("phone", phone);
+        formdata.append("phone", phone.replace("+", ""));
         formdata.append("mail", mail);
         formdata.append("registered", respons.data.employee[0].employeeID);
         formdata.append("photo", photo);

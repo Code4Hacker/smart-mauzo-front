@@ -69,10 +69,10 @@ const TopBar2 = ({ location }) => {
         }
         counterGet();
 
-        if (window.localStorage.emMail !== undefined) {
-
-        } else {
-            navigate('/e_login');
+        if(window.localStorage.user_role !== undefined && window.localStorage.user_role === "employee"){
+            console.log("NOT UNDEFINED");
+        }else{
+            navigate('/');
         }
 
     }, []);
@@ -116,7 +116,7 @@ const TopBar2 = ({ location }) => {
                     <div className="number">
                         <div className="title text-center mt-2">
                             <h1><span>
-                                { console.log(count)}
+                                {/* { console.log(count)} */}
                                 {count !== undefined ? count.customers : "0"}
                             </span></h1>
                         </div>

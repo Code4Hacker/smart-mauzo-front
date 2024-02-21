@@ -56,6 +56,8 @@ const TopBar = ({ location }) => {
             const response = await axios.get(`${baseURL}admin.php?admin_id=${window.localStorage.adminmail}`);
 
             if (response.data.status === "200") {
+                console.log(response.data);
+                console.log(window.localStorage.adminmail);
                 setAdmin(response.data.admin);
             }
         }
@@ -72,10 +74,17 @@ const TopBar = ({ location }) => {
                 setCount(response.data.counts);
             }
         }
-        if (window.localStorage.adminmail !== undefined) {
-
-        } else {
+        // if (window.localStorage.user_role  !== undefined && window.localStorage.user_role !== "admin") {}else{
+        //     navigate('/');
+        // }
+        if(window.localStorage.user_role !== undefined && window.localStorage.user_role === "admin"){
+            console.log("NOT UNDEFINED");
+            console.log(localStorage.user_role);
+            console.log(localStorage.adminmail);
+        }else{
             navigate('/');
+            console.log(localStorage.user_role);
+            console.log(localStorage.adminmail);
         }
         counterGe();
         getRequests("stocks_calculations.php").then((responseStatus) => { setDetails(responseStatus.counts); }).catch((error) => { console.error("Error fetching data:", error); });

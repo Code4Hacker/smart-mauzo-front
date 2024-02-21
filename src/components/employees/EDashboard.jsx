@@ -116,25 +116,6 @@ const EDashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="box_full_template_grid " style={{ "--width": "100%", "--h": "270px", position: 'relative' }}
-                            id="donutchart" data-aos="fade-left" data-aos-duration="1000"
-                            >
-                            <div className="title"><h3><span style={{
-                                fontWeight:100,marginTop:'20px !important',padding:'20px',background:'var(--milk)',color:'var(--black)',position:'relative',minHeight:'30px',marginLeft:'-50px',borderBottomLeftRadius:'30px',borderBottomRightRadius:'30px'
-                            }}>SHOWCASE</span></h3></div>
-                            {data ?
-                                <Chart
-                                    chartType="PieChart"
-                                    width="100%"
-                                    height="250px"
-                                    data={data}
-                                    options={options}
-                                    className='chart'
-                                /> : <div className="loader"></div>
-                            }
-
-                        </div> */}
-
                     </div>
                 </div>
             </div>

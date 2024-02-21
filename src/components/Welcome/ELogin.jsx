@@ -22,7 +22,7 @@ const ELogin = () => {
 
         if (email.length >= 8 && pass.length >= 6) {
             let formdt = new FormData();
-            formdt.append("Aemail", email);
+            formdt.append("Aemail", email.replace("+", ""));
             formdt.append("Apasscode", pass);
             const checkOut = await axios.request({
                 url: `${baseURL}e_log.php`,
@@ -37,14 +37,11 @@ const ELogin = () => {
                     jQuery(".asking").fadeIn({ duration: 200 });
                     jQuery(".btn button:nth-child(1)").on("click", function () {
                         jQuery(".asking > *").text("Loading ...");
-                        // setTimeout(() => {
-                        //     navigate('/employee');
-                        // }, 2000);
                     });
                     jQuery(".btn button:nth-child(1)").on("click", function () {
                         jQuery(".asking > *").text("Saving ...");
-                        window.localStorage.clear();
-                        window.localStorage.setItem("emMail", email);
+                        
+                       
                         setTimeout(() => {
                             jQuery(".asking > *").text("Almost there ...");
                         }, 2000);
@@ -53,9 +50,20 @@ const ELogin = () => {
                         }, 4000);
                         setTimeout(() => {
                             jQuery(".asking > *").text("Redirecting ...");
+                            localStorage.clear();
                         }, 6000);
                         setTimeout(() => {
-                            navigate('/employee');
+                            if(checkOut.data.role === "admin") {
+                                window.localStorage.setItem("adminmail", email.replace("+", ""));
+                                window.localStorage.setItem("user_role", "admin");
+                                navigate('/admin');
+                            } else if(checkOut.data.role ==="employee"){
+                                window.localStorage.setItem("emMail", email.replace("+", ""));
+                                window.localStorage.setItem("user_role", "employee");
+                                navigate('/employee');
+                            }
+                            
+
                         }, 8000);
                     });
                     break;
@@ -91,8 +99,10 @@ const ELogin = () => {
     }
     useEffect(() => {
         query_2();
-        if (window.localStorage.emMail !== undefined) {
+        if (window.localStorage.user_role === "employee") {
             navigate('/employee');
+        }else if(window.localStorage.user_role === "admin"){
+            navigate("/admin");
         }
     })
     return (
@@ -120,12 +130,12 @@ const ELogin = () => {
             </div>
             <div className="container">
                 <div className="registration_box login">
-                    <div className="reg_items">
+                    {/* <div className="reg_items">
                         <Link to={'/'} className="header">Admin</Link>
                         <Link to={'/e_login'} className='header active'>Employee</Link>
-                    </div>
+                    </div> */}
                     <div className="title" style={{ margin: "20px", marginTop: "50px" }}>
-                        <h2><span>Employee Login</span></h2>
+                        <h2><span>SIGN IN</span></h2>
                     </div>
                     <div className="grid_items" style={{ "--width": "90%", marginLeft: "30px", marginRight: "30px", padding: "25px", marginBottom: "-10px", marginTop: "-20px" }} onKeyUp={() => handlesubmit}>
                         <input type="text" placeholder="Enter Email" value={email} onChange={(evt) => setEmail(evt.target.value)} name="E_email" style={{ padding: "25px" }} />

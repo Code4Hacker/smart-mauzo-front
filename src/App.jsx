@@ -38,14 +38,14 @@ function App() {
           <Route path='/customers' element={<Customers />} />
           <Route path='/a_products' element={<AEProducts />} />
           <Route path='/customers/:id' element={<Customer />} />
-          <Route path='/' element={<Login />} />
+          <Route path='/' element={<ELogin />} />
           <Route path='/report' element={<AStocks />} />
 
 
           <Route path='/products' element={<EProducts />} />
 
           {/* Employee */}
-          <Route path='/e_login' element={<ELogin />} />
+          {/* <Route path='/e_login' element={<ELogin />} /> */}
           <Route path='/employee' element={<EDashboard />} />
           <Route path='/e_customers' element={<ECustomers />} />
           <Route path='/one_customer/:id' element={<OneCustomer />} />

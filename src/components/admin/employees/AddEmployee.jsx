@@ -29,7 +29,7 @@ const AddEmployee = ({ setEmployee }) => {
         formdata.append("fname", fname);
         formdata.append("lname", lname);
         formdata.append("address", address);
-        formdata.append("phone", phone);
+        formdata.append("phone", phone.replace("+", ""));
         formdata.append("mail", mail);
         formdata.append("codes", codes);
 
