@@ -22,7 +22,7 @@ const Mini = () => {
             <Link to={'/employees'}> <h3 className="bi bi-collection"></h3></Link>
             <Link to={'/customers'}> <h3 className="bi bi-people"></h3></Link>
             <Link to={'/deals'}> <h3 className="bi bi-cart"></h3></Link>
-            <Link to={'/expenses'}> <h3 className="bi bi-cash"></h3></Link>
+            <Link to={'/a_expenses'}> <h3 className="bi bi-cash"></h3></Link>
             <Link to={'/stuff'}> <h3 className="bi bi-personal-workspace"></h3></Link>
             <Link to={'/search_'}> <h3 className="bi bi-search"></h3></Link>
             <Link to={'/report'}> <h3 className="bi bi-building"></h3></Link>

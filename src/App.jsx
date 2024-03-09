@@ -1,7 +1,7 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Dashboard, Employees } from './components';
-import Login from './components/Welcome/Login';
+// import Login from './components/Welcome/Login';
 import Customers from './components/admin/customers/Customers';
 import Customer from './components/admin/customers/Customer';
 import { ECustomers, EDashboard, ELogin } from './components/employees';
@@ -24,6 +24,7 @@ import StuffMember2 from './components/employees/customers/StuffMember2';
 import EProducts from './components/employees/ProductData';
 import { Toaster } from 'react-hot-toast';
 import AEProducts from './components/admin/ProductData';
+import Expenses from './components/employees/Expenses';
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
 
 
           <Route path='/products' element={<EProducts />} />
+          <Route path='/expenses' element={<Expenses/>} />
 
           {/* Employee */}
           {/* <Route path='/e_login' element={<ELogin />} /> */}

@@ -75,7 +75,7 @@ const SideBar = () => {
                         </Link>
                     </li>
                     <li className="nested_list">
-                        <Link to={"/expenses"} className="dropdown">
+                        <Link to={"/a_expenses"} className="dropdown">
                             <i className="bi bi-cash"></i>
                             <span> Expenses
                             </span>
