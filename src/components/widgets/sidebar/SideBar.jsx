@@ -3,7 +3,7 @@ import './sidebar.css'
 import Aos from 'aos'
 import { Link, useNavigate } from 'react-router-dom';
 import jQuery from 'jquery';
-import imagelogo from "../../../assets/money.png";
+// import imagelogo from "../../../assets/money.png";
 
 const SideBar = () => {
     Aos.init({
@@ -74,6 +74,14 @@ const SideBar = () => {
                             </span>
                         </Link>
                     </li>
+                    <li className="nested_list">
+                        <Link to={"/expenses"} className="dropdown">
+                            <i className="bi bi-cash"></i>
+                            <span> Expenses
+                            </span>
+                        </Link>
+                    </li>
+                    
                     <li className="nested_list">
                         <Link to={"/search_"} className="dropdown">
                             <i className="bi bi-search"></i>

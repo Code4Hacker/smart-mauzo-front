@@ -19,7 +19,7 @@ export const Product_log = ({ product, setProduct }) => {
         <div className="product">
             <div className="left">
                 {/* <button className="bi bi-pen"></button> */}
-                <button className="bi bi-trash3" onClick={delet}></button>
+                {/* <button className="bi bi-trash3" onClick={delet}></button> */}
             </div>
             <div className="right">
                 <div className="p_head">
