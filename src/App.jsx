@@ -25,6 +25,7 @@ import EProducts from './components/employees/ProductData';
 import { Toaster } from 'react-hot-toast';
 import AEProducts from './components/admin/ProductData';
 import Expenses from './components/employees/Expenses';
+import ExpensesAdm from './components/admin/Expenses';
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
 
           <Route path='/products' element={<EProducts />} />
           <Route path='/expenses' element={<Expenses/>} />
+          <Route path='/a_expenses' element={<ExpensesAdm/>} />
 
           {/* Employee */}
           {/* <Route path='/e_login' element={<ELogin />} /> */}
